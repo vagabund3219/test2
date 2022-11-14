@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
 
-
-
-
 class Categories(models.Model):
     category_name = models.CharField(max_length=80, verbose_name='Название категории')
     category_user_id = models.ForeignKey(User, on_delete=models.CASCADE, default=1)

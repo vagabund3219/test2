@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
-
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from .script_folder.checkScript import *
 from .forms import Add_check_form, Add_transaction_form, AddNewCategory
-from .models import Check_data, Transactions, Categories, News, Bill
+from .models import Check_data, Transactions, Categories, News, Bill, Type_of_transcation
 from django.views.generic import ListView, CreateView, DetailView
-
-
+from .serializer import TransactionsSerializer, CheckSerializer, CategoriesSerializer, TypeOfTransactionSerializer
 
 class NewsList(ListView):
     model = News
@@ -74,3 +74,55 @@ def get_user_transactions(request):
     lst = sort_by_date(checks, transactions)
     return render(request, 'kursach/transactions_list.html', {'form': lst})
 
+class TypeOfTransactionApiList(generics.ListAPIView):
+    queryset = Type_of_transcation.objects.all()
+    serializer_class = TypeOfTransactionSerializer
+class CategoriesApiList(generics.ListCreateAPIView):
+    queryset = Categories.objects.all()
+    serializer_class = CategoriesSerializer
+
+class TransactionsApiList(generics.ListCreateAPIView):
+    queryset = Transactions.objects.all()
+    serializer_class = TransactionsSerializer
+class CheckApiList(generics.ListCreateAPIView):
+    queryset = Check_data.objects.all()
+    serializer_class = CheckSerializer
+class TransactionsAPIView(APIView):
+    def get(self, request):
+        lst = Transactions.objects.all()
+        return Response({'trans': TransactionsSerializer(lst, many=True).data})
+
+    def post(self, request):
+        serializer = TransactionsSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'title': serializer.data})
+
+    def put(self, request, *args, **kwargs):
+        pk=kwargs.get('pk', None)
+        if not pk:
+            return Response({'error':'pk....'})
+
+        try:
+            instance = Transactions.objects.get(pk=pk)
+
+        except:
+            return Response({'error':'pk....'})
+
+        serializer = TransactionsSerializer(data=request.data, instance=instance)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'post': serializer.data})
+
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get('pk', None)
+        if not pk:
+            return Response({'error':'therei s no such pk'})
+
+        try:
+            instance = Transactions.objects.get(pk=pk)
+        except:
+            return  Response({'error':'there i s no such pk'})
+
+        instance.delete()
+        return Response({'post': 'delete post' + str(pk)})

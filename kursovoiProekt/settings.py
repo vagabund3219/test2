@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'kursach.apps.KursachConfig',
     'users',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework',
+    'corsheaders',
 ]
 LOGOUT_REDIRECT_URL =  '/'
 LOGIN_REDIRECT_URL =  '/'
@@ -42,6 +44,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -80,8 +83,8 @@ DATABASES = {
     }
 }
 
-DATE_FORMAT = ( ( 'd-m-Y' ))
-DATE_INPUT_FORMATS = ( ('%d.%m.%Y'),)
+DATE_INPUT_FORMATS = ['%d.%m.%Y']
+DATE_FORMAT = ['%d.%m.%Y']
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -104,9 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
