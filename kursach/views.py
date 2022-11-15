@@ -24,6 +24,12 @@ class AddTransactionView(CreateView):
     template_name_suffix = '_create_form'
     form_class = Add_transaction_form
 
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(AddTransactionView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user.id})
+        return kwargs
+
     def form_valid(self, form):
         form.instance.item_user_id = self.request.user
         update_bill(Bill, form, self.request.user.id)
@@ -40,7 +46,8 @@ class AddNewCategory(CreateView):
     form_class = AddNewCategory
 
     def form_valid(self, form):
-        form.instance.item_user_id = self.request.user
+        form.instance.item_user_id = self.request.user.id
+        form.instance.category_user_id = self.request.user
         return super(AddNewCategory, self).form_valid(form)
 
 def send_check_view(request):
