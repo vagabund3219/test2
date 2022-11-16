@@ -2,12 +2,12 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from ..models import Check_data, Transactions, Categories, Type_of_transcation
+from ..models import CheckData, Transactions, Categories, TypeOfTranscation
 from ..serializer import TransactionsSerializer, CheckSerializer, CategoriesSerializer, TypeOfTransactionSerializer
 
 
 class TypeOfTransactionApiList(generics.ListAPIView):
-    queryset = Type_of_transcation.objects.all()
+    queryset = TypeOfTranscation.objects.all()
     serializer_class = TypeOfTransactionSerializer
 
 
@@ -16,25 +16,25 @@ class CategoriesApiList(generics.ListCreateAPIView):
     serializer_class = CategoriesSerializer
     def get_queryset(self):
         user = self.request.user
-        return Categories.objects.filter(category_user_id_id=user)
+        return Categories.objects.filter(category_user_id=user)
 
 class TransactionsApiList(generics.ListCreateAPIView):
     queryset = Transactions.objects.all()
     serializer_class = TransactionsSerializer
     def get_queryset(self):
         user = self.request.user
-        return Transactions.objects.filter(item_user_id_id=user)
+        return Transactions.objects.filter(item_user_id=user)
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['item_category_id_id',]
+    filterset_fields = ['item_category_id',]
 
 class CheckApiList(generics.ListCreateAPIView):
-    queryset = Check_data.objects.all()
+    queryset = CheckData.objects.all()
     serializer_class = CheckSerializer
     def get_queryset(self):
         user = self.request.user
-        return Check_data.objects.filter(check_user_id_id=user)
+        return CheckData.objects.filter(check_user_id=user)
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['check_category_id_id',]
+    filterset_fields = ['check_category_id',]
 
 class TransactionsAPIView(APIView):
     def get(self, request):

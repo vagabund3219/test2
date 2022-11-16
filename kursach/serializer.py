@@ -1,20 +1,20 @@
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 
-from .models import Transactions, Check_data, Categories, Type_of_transcation
+from .models import Transactions, CheckData, Categories, TypeOfTranscation
 
 
 # class TransactionsModel:
-#     def __init__(self, item_transaction_date, item_name, item_price, item_category_id, item_user_id, item_type_id):
+#     def __init__(self, item_transaction_date, item_name, item_price, item_category, item_user, item_type):
 #         self.item_transaction_date = item_transaction_date
 #         self.item_name = item_name
 #         self.item_price = item_price
-#         self.item_category_id = item_category_id
-#         self.item_user_id = item_user_id
-#         self.item_type_id = item_type_id
+#         self.item_category = item_category
+#         self.item_user = item_user
+#         self.item_type = item_type
 class TypeOfTransactionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Type_of_transcation
+        model = TypeOfTranscation
         fields = ('type_name', 'id')
 
 class CategoriesSerializer(serializers.ModelSerializer):
@@ -24,21 +24,21 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
 class CheckSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Check_data
-        fields = ('check_name', 'check_count', 'check_price', 'check_category_id', 'date', 'check_user_id')
+        model = CheckData
+        fields = ('check_name', 'check_count', 'check_price', 'check_category', 'date', 'check_user')
 
 
 class TransactionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transactions
-        fields = ('date', 'item_name', 'item_price', 'item_category_id', 'item_user_id', 'item_type_id')
+        fields = ('date', 'item_name', 'item_price', 'item_category', 'item_user', 'item_type')
         date = serializers.DateField(format='%d.%m.%Y')
     # item_transaction_date = serializers.DateField()
     # item_name = serializers.CharField()
     # item_price = serializers.
-    # item_category_id = serializers.
-    # item_user_id = serializers.
-    # item_type_id = serializers.
+    # item_category = serializers.
+    # item_user = serializers.
+    # item_type = serializers.
 
     # item_transaction_date = serializers.DateField()
     # item_name = serializers.CharField(max_length=80)
@@ -66,7 +66,7 @@ class TransactionsSerializer(serializers.ModelSerializer):
 
 
 # def encode():
-#     model = TransactionsModel('item_transaction_date: 2020-10-10', 'item_name: adadaaddaw', 'item_price: 1', 'item_category_id: 1', 'item_type_id: 1', 'item_user_id: 1')
+#     model = TransactionsModel('item_transaction_date: 2020-10-10', 'item_name: adadaaddaw', 'item_price: 1', 'item_category: 1', 'item_type: 1', 'item_user: 1')
 #     model_sr = TransactionsSerializer(model)
 #     print(model_sr.data)
 #     json = JSONRenderer().render(model_sr.data)

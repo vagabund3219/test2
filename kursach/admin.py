@@ -7,13 +7,13 @@ class TypeOfTranscationAdmin(admin.ModelAdmin):
 
 
 class TransactionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date','item_name', 'item_price', 'item_category_id', 'item_type_id', 'item_user_id')
-    list_filter = ('date', 'item_category_id', 'item_type_id', 'item_user_id')
-    # list_editable = ('item_transaction_date','item_name', 'item_price', 'item_category_id', 'item_type_id', 'item_user_id')
+    list_display = ('id', 'date','item_name', 'item_price', 'item_category', 'item_type', 'item_user')
+    list_filter = ('date', 'item_category', 'item_type', 'item_user')
+    # list_editable = ('item_transaction_date','item_name', 'item_price', 'item_category', 'item_type', 'item_user')
     # list_max_show_all = 30
     list_per_page = 20
     ordering = ('-date', 'item_price')
-    # raw_id_fields = ('item_category_id',)
+    # raw_id_fields = ('item_category',)
     search_fields = ['item_name']
     search_help_text = "Поиск по наиманованию транзакции"
 
@@ -33,12 +33,12 @@ class CategoriesAdmin(admin.ModelAdmin):
     search_fields = ['category_name']
 
 class CheckDataAdmin(admin.ModelAdmin):
-    list_display = ('id', 'check_name', 'check_count', 'check_price', 'check_category_id', 'date', 'check_user_id')
-    list_filter = ('check_category_id', 'check_user_id')
-    list_editable = ('check_category_id', 'check_name',)
+    list_display = ('id', 'check_name', 'check_count', 'check_price', 'check_category', 'date', 'check_user')
+    list_filter = ('check_category', 'check_user')
+    list_editable = ('check_category', 'check_name',)
     list_per_page = 30
     search_fields = ('check_name',)
-    ordering = ('check_user_id', '-date')
+    ordering = ('check_user', '-date')
 
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('id', 'news_title', 'news_date')
@@ -49,8 +49,8 @@ class NewsAdmin(admin.ModelAdmin):
     ordering = ('news_date',)
 
 admin.site.register(Categories, CategoriesAdmin)
-admin.site.register(Type_of_transcation, TypeOfTranscationAdmin)
-admin.site.register(Check_data, CheckDataAdmin)
+admin.site.register(TypeOfTranscation, TypeOfTranscationAdmin)
+admin.site.register(CheckData, CheckDataAdmin)
 admin.site.register(Transactions, TransactionsAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Bill, BillAdmin)

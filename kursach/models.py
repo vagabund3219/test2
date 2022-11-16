@@ -17,7 +17,7 @@ class Categories(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = "Категории"
 
-class Type_of_transcation(models.Model):
+class TypeOfTranscation(models.Model):
     type_name = models.CharField(max_length=80)
 
     def __str__(self):
@@ -27,13 +27,13 @@ class Type_of_transcation(models.Model):
         verbose_name = 'Тип транзакции'
         verbose_name_plural = "Типы транзакций"
 
-class Check_data(models.Model):
+class CheckData(models.Model):
     check_name = models.CharField(max_length=80)
     check_count = models.FloatField()
     check_price = models.FloatField()
-    check_category_id = models.ForeignKey(Categories, on_delete=models.CASCADE, default=1)
+    check_category = models.ForeignKey(Categories, on_delete=models.CASCADE, default=1)
     date = models.DateField(default=datetime.date.today())
-    check_user_id = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    check_user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.check_name
@@ -62,9 +62,9 @@ class Transactions(models.Model):
     date = models.DateField(verbose_name='Дата')
     item_name = models.CharField(max_length=80, verbose_name='Имя')
     item_price = models.FloatField(verbose_name='Цена')
-    item_category_id = models.ForeignKey(Categories, on_delete=models.CASCADE, default=1, verbose_name='Категория')
-    item_type_id = models.ForeignKey(Type_of_transcation, on_delete=models.PROTECT, default=1, verbose_name='Тип')# expenses incomes
-    item_user_id = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    item_category = models.ForeignKey(Categories, on_delete=models.CASCADE, default=1, verbose_name='Категория')
+    item_type = models.ForeignKey(TypeOfTranscation, on_delete=models.PROTECT, default=1, verbose_name='Тип')# expenses incomes
+    item_user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     def __str__(self):
         return self.item_name
 

@@ -23,7 +23,7 @@ def send_check(file):
 
 def update_bill(query, form, user):
     bill = query.objects.get_or_create(user_id=user)
-    if int(form.data['item_type_id']) == 3:
+    if int(form.data['item_type']) == 3:
         bill[0].bill_sum += int(form.data['item_price'])
     else:
         bill[0].bill_sum -= int(form.data['item_price'])
