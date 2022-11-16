@@ -16,6 +16,11 @@ class NewsDetail(DetailView):
 
 class GetUserTransactions(ListView):
     model = Transactions
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(GetUserTransactions, self).get_context_data(*args, **kwargs)
+        ctx["item_user_id_id"] = self.request.user.id
+        return ctx
     def get_queryset(self):
         return Transactions.objects.filter(item_user_id = self.request.user.id)
 
@@ -53,9 +58,12 @@ class AddNewCategory(CreateView):
 def send_check_view(request):
     template = 'kursach/index.html'
     if request.method == 'POST' and request.FILES:
-        form = Add_check_form(request.POST, request.FILES)
+        form = Add_check_form(request.POST['check_category_id'], request.FILES)
         file = request.FILES['checkImg'].read()
         response_data = send_check(file)
+        print(form.data)
+        print(form.check_category_id)
+
         if response_data != None and form.is_valid():
             for item in response_data:
                 to_db = Check_data(check_name=item['item'], check_count=item['count'], check_price=item['price'], check_category_id=form.cleaned_data['check_category_id'], check_user_id = request.user)
@@ -65,11 +73,12 @@ def send_check_view(request):
                 bill[0].save()
             return redirect('view_check')
         else:
-            form = Add_check_form()
+            print('eror')
             error = 'This is not check'
+            form = Add_check_form(user=request.user)
             return render(request, template, {'form': form, 'error': error})
     else:
-        form = Add_check_form()
+        form = Add_check_form(user=request.user)
     return render(request, template, {'form': form})
 
 def main(request):
@@ -78,15 +87,20 @@ def main(request):
 def get_user_transactions(request):
     checks = Check_data.objects.filter(check_user_id=request.user.id)
     transactions = Transactions.objects.filter(item_user_id=request.user.id)
+    user_id = request.user.id
+    print(user_id)
     lst = sort_by_date(checks, transactions)
-    return render(request, 'kursach/transactions_list.html', {'form': lst})
+    return render(request, 'kursach/transactions_list.html', {'form': lst, 'user_id': user_id})
 
 class TypeOfTransactionApiList(generics.ListAPIView):
     queryset = Type_of_transcation.objects.all()
     serializer_class = TypeOfTransactionSerializer
 class CategoriesApiList(generics.ListCreateAPIView):
-    queryset = Categories.objects.all()
+    # queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return Categories.objects.filter(category_user_id_id=user)
 
 class TransactionsApiList(generics.ListCreateAPIView):
     queryset = Transactions.objects.all()

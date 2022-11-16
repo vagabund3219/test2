@@ -1,5 +1,5 @@
 
-    Date.prototype.customFormat = function(formatString){
+Date.prototype.customFormat = function(formatString){
   var YYYY,YY,MMMM,MMM,MM,M,DDDD,DDD,DD,D,hhhh,hhh,hh,h,mm,m,ss,s,ampm,AMPM,dMod,th;
   YY = ((YYYY=this.getFullYear())+"").slice(-2);
   MM = (M=this.getMonth()+1)<10?('0'+M):M;
@@ -20,15 +20,13 @@
 };
 
 const elem = document.querySelector('.row');
-
-
 function byField(field) {
   return (a, b) => a[field] < b[field] ? 1 : -1;
 }
 
 function get_category(arr, id, name) {
     for (item of arr) {
-        if (item['id'] == id ) {
+        if (item['id'] == id) {
             return item[name]
         }
     }
