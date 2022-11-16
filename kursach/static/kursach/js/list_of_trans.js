@@ -56,39 +56,87 @@ async function req () {
     return data
 }
 
+
+
 req().then((data) => {
         data.sort(byField('date'));
         for (let item of data){
-            // if (Array.isArray(item)){
-            //     if (item['category_name']){
-            //
-            //     }
-            // }
-
-            if(!Array.isArray(item)){
-                date = new Date(Date.parse(item['date']));
-
-                if (!item['check_count']){
-                elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
-                              <ul class="list-group list-group-flush">
-                                  <li class="list-group-item">${item['item_name']}</li>
-                                  <li class="list-group-item">${get_category(data[0], item['item_category_id'], 'category_name')}</li>
-                                <li class="list-group-item">${item['item_price']}</li>
-                                  <li class="list-group-item">${get_type_trans(data[1], item['item_type_id'], 'type_name')}</li>
-                                   <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
-                              </ul>
-                            </div>`
-            } else{
-                elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
-                                      <ul class="list-group list-group-flush">
-                                          <li class="list-group-item">${item['check_name']}</li>
-                                          <li class="list-group-item">${item['check_count']}</li>
-                                          <li class="list-group-item">${get_category(data[0], item['check_category_id'], 'category_name')}</li>
-                                        <li class="list-group-item">${item['check_price']}</li>
-                                           <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
-                                      </ul>
-                                    </div>`
+            if (Array.isArray(item) && item[0]['category_name']){
+                for (let i of item) {
+                    console.log(i)
+                    elem.innerHTML += `<button class="rounded-circle" id="${i['id']}" style="height: 120px; width: 120px; margin-left: 40px; background-color: #00d1b2;">${i['category_name']}</button>`
                 }
             }
+
+            // if(!Array.isArray(item)){
+            //     date = new Date(Date.parse(item['date']));
+            //     if (!item['check_count']){
+            //     elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
+            //                   <ul class="list-group list-group-flush">
+            //                       <li class="list-group-item">${item['item_name']}</li>
+            //                       <li class="list-group-item">${get_category(data[0], item['item_category_id'], 'category_name')}</li>
+            //                     <li class="list-group-item">${item['item_price']}</li>
+            //                       <li class="list-group-item">${get_type_trans(data[1], item['item_type_id'], 'type_name')}</li>
+            //                        <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
+            //                   </ul>
+            //                 </div>`
+            // } else{
+            //     elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
+            //                           <ul class="list-group list-group-flush">
+            //                               <li class="list-group-item">${item['check_name']}</li>
+            //                               <li class="list-group-item">${item['check_count']}</li>
+            //                               <li class="list-group-item">${get_category(data[0], item['check_category_id'], 'category_name')}</li>
+            //                             <li class="list-group-item">${item['check_price']}</li>
+            //                                <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
+            //                           </ul>
+            //                         </div>`
+            //     }
+            // }
         }
+        const buttons = elem.querySelectorAll('.rounded-circle');
+        console.log(buttons)
+
+        buttons.forEach((btn)=>{
+            btn.addEventListener('click', ()=>{
+                  console.log('11111')
+                async function da(){
+                    console.log('22222')
+                                  const tr = await fetch(`http://127.0.0.1:8000/api/v1/transactions_list?item_category_id_id=${+btn.id}`);
+                    const ch = await fetch(`http://127.0.0.1:8000/api/v1/CheckApiList?check_category_id_id=${+btn.id}`);
+                    // console.log(btn.id)
+                    lst = await ch.json();
+                    lst.push(...await tr.json());
+
+                    console.log('11111111111111111111111111111111111111111111111111111')
+                    for (item of lst){
+                        if(!Array.isArray(item)){
+                        date = new Date(Date.parse(item['date']));
+                        console.log(item)
+                        if (!item['check_count']){
+                        elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
+                                      <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">${item['item_name']}</li>
+                                          <li class="list-group-item">${get_category(data[0], item['item_category_id'], 'category_name')}</li>
+                                        <li class="list-group-item">${item['item_price']}</li>
+                                          <li class="list-group-item">${get_type_trans(data[1], item['item_type_id'], 'type_name')}</li>
+                                           <li class="list-group-item">${item['date']}</li>
+                                      </ul>
+                                    </div>`
+                    } else{
+                        elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
+                                              <ul class="list-group list-group-flush">
+                                                  <li class="list-group-item">${item['check_name']}</li>
+                                                  <li class="list-group-item">${item['check_count']}</li>
+                                                  <li class="list-group-item">${get_category(data[0], item['check_category_id'], 'category_name')}</li>
+                                                <li class="list-group-item">${item['check_price']}</li>
+                                                   <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
+                                              </ul>
+                                            </div>`
+                        }
+                    }
+                    }
+                }
+
+            })
+        })
 });

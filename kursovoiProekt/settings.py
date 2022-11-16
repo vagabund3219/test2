@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'corsheaders',
+    'django_filters',
 ]
 LOGOUT_REDIRECT_URL =  '/'
 LOGIN_REDIRECT_URL =  '/'
@@ -72,7 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kursovoiProekt.wsgi.application'
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 

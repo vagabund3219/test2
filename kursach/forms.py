@@ -16,15 +16,16 @@ class AddNewCategory(forms.ModelForm):
 
 
 class Add_check_form(forms.Form):
-    def __init__(self, user, *args, **kwargs):
-        super(Add_check_form, self).__init__(*args, **kwargs)
-        self.fields['check_category_id'].queryset = Categories.objects.filter(category_user_id_id=user)
+    # def __init__(self, user, *args, **kwargs):
+    #     super(Add_check_form, self).__init__(*args, **kwargs)
+    #     # self.fields['check_category_id'].queryset = Categories.objects.filter(category_user_id_id=user)
+
     # class Meta:
     #     model = Transactions
         # fields = ['check_category_id']
     checkImg = forms.ImageField(label='Чек', widget=forms.FileInput(attrs={'class': 'form-control', 'id': "formFile"}))
     # check_category_id = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
-    check_category_id = forms.ModelChoiceField(queryset=Check_data.objects.none(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
+    check_category_id = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
 
 
 class Add_transaction_form(forms.ModelForm):
