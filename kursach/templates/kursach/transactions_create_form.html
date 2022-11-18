@@ -16,7 +16,8 @@
                 </div>
                 <div class="col-2 p-2">
                     <label for="formFile" class="form-label">{{ form.date.label}}</label>
-                    {{form.date|date:"DATE_INPUT_FORMATS"}}
+{#                    {{form.date|date:"DATE_INPUT_FORMATS"}}#}
+                    {{form.date}}
                 </div>
                 <div class="col-2 p-2">
                     <label for="formFile" class="form-label">{{ form.name.label}}</label>
@@ -29,7 +30,6 @@
                 <div class="col-2 p-2">
                     <label for="formFile" class="form-label">{{ form.price.label}}</label>
                     {{form.price}}
-
                 </div>
                 <div class="col-2 p-2" ><input type="submit" class="btn btn-primary col-12"></div>
              </div>

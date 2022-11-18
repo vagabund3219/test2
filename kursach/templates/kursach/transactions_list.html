@@ -1,35 +1,24 @@
 {% extends 'kursach/base.html' %}
 {% load filter_for_date %}
 {% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'kursach/css/transactions_list.css' %}">
+    <link rel="stylesheet" href="{% static 'kursach/js/vanillajs-datepicker/dist/css/datepicker.css' %}">
+{% endblock %}
 {% block content %}
     <div class="container text-center">
         <div class="row">
             <input type="hidden" id="userId" value={{user_id}}>
-{#            {% for item in form %}#}
-{#                          {% if item|type:"Transactions" %}#}
-{#                              <div class="card" style="width: 18rem; margin: 15px 20px 0 0;">#}
-{#                                  <ul class="list-group list-group-flush">#}
-{#                                      <li class="list-group-item">{{ item.name }}</li>#}
-{#                                      <li class="list-group-item"><a href="#">{{ item.category }}</a></li>#}
-{#                                    <li class="list-group-item">{{ item.type }}</li>#}
-{#                                      <li class="list-group-item">{{ item.price }}</li>#}
-{#                                       <li class="list-group-item">{{ item.date }}</li>#}
-{#                                  </ul>#}
-{#                            </div>#}
-{#                          {% endif %}#}
-{#                          {% if item|type:"CheckData" %}#}
-{#                              <div class="card" style="width: 18rem; margin: 15px 20px 0 0;">#}
-{#                                  <ul class="list-group list-group-flush">#}
-{#                                      <li class="list-group-item">{{ item.name }}</li>#}
-{#                                    <li class="list-group-item">{{ item.check_count }}</li>#}
-{#                                    <li class="list-group-item"><a href="#">{{ item.category }}</a></li>#}
-{#                                    <li class="list-group-item">{{ item.price }}</li>#}
-{#                                    <li class="list-group-item">{{ item.date }}</li>#}
-{#                                  </ul>#}
-{#                              </div>#}
-{#                          {% endif %}#}
-{#            {% endfor %}#}
         </div>
+        <aside class="hidden" id="aside-trans">
+            <div id="foo">
+              <input type="text" name="start">
+              <span>До</span>
+              <input type="text" name="end">
+            </div>
+        </aside>
+{#    <input type="text" name="date" class="form-control datepicker-input" id="foo" autocomplete="off" required="">#}
     </div>
     <script src="{% static 'kursach/js/list_of_trans.js' %}"></script>
+    <script src="https://kit.fontawesome.com/b726250d77.js" crossorigin="anonymous"></script>
 {% endblock  %}

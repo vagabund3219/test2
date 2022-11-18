@@ -1,4 +1,4 @@
-
+// import DateRangePicker from "./vanillajs-datepicker/js/DateRangePicker.js";
 
 Date.prototype.customFormat = function(formatString){
   var YYYY,YY,MMMM,MMM,MM,M,DDDD,DDD,DD,D,hhhh,hhh,hh,h,mm,m,ss,s,ampm,AMPM,dMod,th;
@@ -20,7 +20,6 @@ Date.prototype.customFormat = function(formatString){
   return formatString.replace("#hhhh#",hhhh).replace("#hhh#",hhh).replace("#hh#",hh).replace("#h#",h).replace("#mm#",mm).replace("#m#",m).replace("#ss#",ss).replace("#s#",s).replace("#ampm#",ampm).replace("#AMPM#",AMPM);
 };
 
-
 window.onload = (event) => {
   const row = document.querySelector('.row');
   const url = 'http://127.0.0.1:8000/api/v1/';
@@ -28,13 +27,14 @@ window.onload = (event) => {
   const transApiUrl = 'TransactionsApiList';
   const CategoriesApiList = 'CategoriesApiList';
   const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+  const aside = document.querySelector('#aside-trans');
 
   function byField(field) {
     return (a, b) => a[field] < b[field] ? 1 : -1;
   }
 
   async function getNameCategory(id) {
-    return await fetchReq(CategoriesApiList, 'категориями')
+    return fetchReq(CategoriesApiList, 'категориями')
         .then(items =>{
             for (item of items) {
                 if (item.id == id) {
@@ -45,7 +45,7 @@ window.onload = (event) => {
   }
 
   async function getTypeTrans(id) {
-    return await fetchReq(TypeOfTransactionApiList, 'типами транзакций')
+    return fetchReq(TypeOfTransactionApiList, 'типами транзакций')
         .then(items =>{
             for (item of items) {
                 if (item.id == id) {
@@ -58,7 +58,7 @@ window.onload = (event) => {
   function createCard(item, ul){
     Object.entries(item).forEach(async ([key, value])=>{
         if (key == 'date'){
-          date = new Date(Date.parse(value));
+          let date = new Date(Date.parse(value));
           ul.innerHTML += `<li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>`;
         }else if (key == 'category'){
           await getNameCategory(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`);
@@ -74,7 +74,6 @@ window.onload = (event) => {
   function displayCard(container, item){
     let div = document.createElement('div');
     div.classList.add('card');
-    div.style = 'width: 18rem; margin: 15px 20px 0 0;'//убрать
     let ul = document.createElement('ul');
     ul.classList.add('list-group', 'list-group-flush');
     createCard(item, ul);
@@ -83,42 +82,66 @@ window.onload = (event) => {
   }
 
   async function getItems(category){
-    let check = await fetch(`${url}${checkApiUrl}?check_category_id=${category}`);
-    let trans = await fetch(`${url}${transApiUrl}?item_category_id=${category}`);
-    let lst = [];
-    lst = await check.json();
-    trans1 = await trans.json();
+    const check = await fetch(`${url}${checkApiUrl}?category_id=${category}`);
+    const trans = await fetch(`${url}${transApiUrl}?category_id=${category}`);
+    let lst = await check.json();
+    let trans1 = await trans.json();
     trans1.forEach(item => lst.push(item));
     return lst
   }
 
   async function categoryDisplay(func) {
-    response = await func;
+    let response = await func;
     await response.forEach(category=>{
-      row.innerHTML += `<button class="category" id=${category['id']} style='width: 130px; height: 130px; border-radius:100%; margin-left: 30px;'>${category['name']}</button>`
+      row.innerHTML += `<button class="category" id=${category['id']}>${category['name']}</button>`
     })
     const buttons = document.querySelectorAll('.category');
     buttons.forEach(button => button.addEventListener('click', ()=>{
-      row.innerHTML = ''
+        aside.classList.add('show');
+        aside.classList.remove('hidden');
+      returnBtn(func)
       getItems(+button.id)
           .then(data =>{
-            data.sort(byField('date'));
-            data.forEach(item => displayCard(row, item))
+            if (data.length){
+              data.sort(byField('date'));
+              data.forEach(item => displayCard(row, item))
+            }else{
+              returnBtn(func);
+              let h2 = document.createElement('h2')
+              h2.innerHTML = '<h2>У вас нет записей в этой категории</h2>'
+              row.append(h2);
+            }
           })
     }))
   }
 
+  function returnBtn (func){
+      row.innerHTML = '<i class="fa fa-reply" aria-hidden="true"></i>'
+      const returnBtn = document.querySelector('.fa-reply');
+      returnBtn.addEventListener('click', ()=>{
+          aside.classList.add('hidden');
+        aside.classList.remove('show');
+        row.innerHTML = ''
+        categoryDisplay(func);
+      })
+  }
 
   async function fetchReq(path, errorText) {
     let req = await fetch(`${url}${path}`);
     if (req.ok == true && req.status < 300){
-      return await req.json();
+      return req.json();
     } else{
       console.log(`Что-то не так с ${errorText}`);
     }
   }
 
   categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
+
+  const elem = document.getElementById('foo');
+    const rangepicker = new DateRangePicker(elem, {
+      // ...options
+    });
+
 }
 
 // const elem = document.querySelector('.row');

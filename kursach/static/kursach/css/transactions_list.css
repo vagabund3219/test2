@@ -1,0 +1,25 @@
+button.category{
+    width: 130px;
+    height: 130px;
+    border-radius:100%;
+    margin: 20px 0 0 30px;
+}
+
+div.card {
+    width: 18rem;
+    margin: 15px 20px 0 0;
+}
+
+#aside-trans {
+    left: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
