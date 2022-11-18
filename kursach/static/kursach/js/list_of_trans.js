@@ -1,4 +1,5 @@
 
+
 Date.prototype.customFormat = function(formatString){
   var YYYY,YY,MMMM,MMM,MM,M,DDDD,DDD,DD,D,hhhh,hhh,hh,h,mm,m,ss,s,ampm,AMPM,dMod,th;
   YY = ((YYYY=this.getFullYear())+"").slice(-2);
@@ -20,12 +21,66 @@ Date.prototype.customFormat = function(formatString){
 };
 
 
-
 window.onload = (event) => {
   const row = document.querySelector('.row');
   const url = 'http://127.0.0.1:8000/api/v1/';
   const checkApiUrl = 'CheckApiList';
   const transApiUrl = 'TransactionsApiList';
+  const CategoriesApiList = 'CategoriesApiList';
+  const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+
+  function byField(field) {
+    return (a, b) => a[field] < b[field] ? 1 : -1;
+  }
+
+  async function getNameCategory(id) {
+    return await fetchReq(CategoriesApiList, 'категориями')
+        .then(items =>{
+            for (item of items) {
+                if (item.id == id) {
+                  return item.name
+                }
+            }
+        })
+  }
+
+  async function getTypeTrans(id) {
+    return await fetchReq(TypeOfTransactionApiList, 'типами транзакций')
+        .then(items =>{
+            for (item of items) {
+                if (item.id == id) {
+                  return item['type_name']
+                }
+            }
+        })
+  }
+
+  function createCard(item, ul){
+    Object.entries(item).forEach(async ([key, value])=>{
+        if (key == 'date'){
+          date = new Date(Date.parse(value));
+          ul.innerHTML += `<li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>`;
+        }else if (key == 'category'){
+          await getNameCategory(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`);
+        } else if(key == 'type'){
+          await getTypeTrans(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`)
+        }
+        else{
+          ul.innerHTML += `<li class="list-group-item">${value}</li>`;
+        }
+    });
+  }
+
+  function displayCard(container, item){
+    let div = document.createElement('div');
+    div.classList.add('card');
+    div.style = 'width: 18rem; margin: 15px 20px 0 0;'//убрать
+    let ul = document.createElement('ul');
+    ul.classList.add('list-group', 'list-group-flush');
+    createCard(item, ul);
+    div.append(ul);
+    container.append(div);
+  }
 
   async function getItems(category){
     let check = await fetch(`${url}${checkApiUrl}?check_category_id=${category}`);
@@ -40,32 +95,30 @@ window.onload = (event) => {
   async function categoryDisplay(func) {
     response = await func;
     await response.forEach(category=>{
-      row.innerHTML += `<button class="category" id=${category['id']} style='width: 130px; height: 130px; border-radius:100%; margin-left: 30px;'>${category['category_name']}</button>`
+      row.innerHTML += `<button class="category" id=${category['id']} style='width: 130px; height: 130px; border-radius:100%; margin-left: 30px;'>${category['name']}</button>`
     })
     const buttons = document.querySelectorAll('.category');
     buttons.forEach(button => button.addEventListener('click', ()=>{
       row.innerHTML = ''
       getItems(+button.id)
           .then(data =>{
-            data.forEach(item => {
-
-            })
+            data.sort(byField('date'));
+            data.forEach(item => displayCard(row, item))
           })
     }))
   }
 
 
-  async function getCategories() {
-    let categories = await fetch(`${url}CategoriesApiList`);
-    if (categories.ok == true && categories.status < 300){
-      return await categories.json();
+  async function fetchReq(path, errorText) {
+    let req = await fetch(`${url}${path}`);
+    if (req.ok == true && req.status < 300){
+      return await req.json();
     } else{
-      console.log('Что-то не так с категориями');
+      console.log(`Что-то не так с ${errorText}`);
     }
   }
 
-  categoryDisplay(getCategories());
-
+  categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
 }
 
 // const elem = document.querySelector('.row');
@@ -110,10 +163,10 @@ window.onload = (event) => {
 // req().then((data) => {
 //         data.sort(byField('date'));
 //         for (let item of data){
-//             if (Array.isArray(item) && item[0]['category_name']){
+//             if (Array.isArray(item) && item[0]['name']){
 //                 for (let i of item) {
 //                     console.log(i)
-//                     elem.innerHTML += `<button class="rounded-circle" id="${i['id']}" style="height: 120px; width: 120px; margin-left: 40px; background-color: #00d1b2;">${i['category_name']}</button>`
+//                     elem.innerHTML += `<button class="rounded-circle" id="${i['id']}" style="height: 120px; width: 120px; margin-left: 40px; background-color: #00d1b2;">${i['name']}</button>`
 //                 }
 //             }
 //
@@ -122,20 +175,20 @@ window.onload = (event) => {
 //                 if (!item['check_count']){
 //                 elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
 //                               <ul class="list-group list-group-flush">
-//                                   <li class="list-group-item">${item['item_name']}</li>
-//                                   <li class="list-group-item">${get_category(data[0], item['item_category'], 'category_name')}</li>
-//                                 <li class="list-group-item">${item['item_price']}</li>
-//                                   <li class="list-group-item">${get_type_trans(data[1], item['item_type'], 'type_name')}</li>
+//                                   <li class="list-group-item">${item['name']}</li>
+//                                   <li class="list-group-item">${get_category(data[0], item['category'], 'name')}</li>
+//                                 <li class="list-group-item">${item['price']}</li>
+//                                   <li class="list-group-item">${get_type_trans(data[1], item['type'], 'type_name')}</li>
 //                                    <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
 //                               </ul>
 //                             </div>`
 //             // } else{
 //             //     elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
 //             //                           <ul class="list-group list-group-flush">
-//             //                               <li class="list-group-item">${item['check_name']}</li>
+//             //                               <li class="list-group-item">${item['name']}</li>
 //             //                               <li class="list-group-item">${item['check_count']}</li>
-//             //                               <li class="list-group-item">${get_category(data[0], item['check_category'], 'category_name')}</li>
-//             //                             <li class="list-group-item">${item['check_price']}</li>
+//             //                               <li class="list-group-item">${get_category(data[0], item['category'], 'name')}</li>
+//             //                             <li class="list-group-item">${item['price']}</li>
 //             //                                <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
 //             //                           </ul>
 //             //                         </div>`
@@ -150,7 +203,7 @@ window.onload = (event) => {
 //                   console.log('11111')
 //                 async function da(){
 //                     console.log('22222')
-//                                   const tr = await fetch(`http://127.0.0.1:8000/api/v1/transactions_list?item_category_id_id=${+btn.id}`);
+//                     const tr = await fetch(`http://127.0.0.1:8000/api/v1/transactions_list?item_category_id_id=${+btn.id}`);
 //                     const ch = await fetch(`http://127.0.0.1:8000/api/v1/CheckApiList?check_category_id_id=${+btn.id}`);
 //                     // console.log(btn.id)
 //                     lst = await ch.json();
@@ -164,20 +217,20 @@ window.onload = (event) => {
 //                         if (!item['check_count']){
 //                         elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
 //                                       <ul class="list-group list-group-flush">
-//                                           <li class="list-group-item">${item['item_name']}</li>
-//                                           <li class="list-group-item">${get_category(data[0], item['item_category'], 'category_name')}</li>
-//                                         <li class="list-group-item">${item['item_price']}</li>
-//                                           <li class="list-group-item">${get_type_trans(data[1], item['item_type'], 'type_name')}</li>
+//                                           <li class="list-group-item">${item['name']}</li>
+//                                           <li class="list-group-item">${get_category(data[0], item['category'], 'name')}</li>
+//                                         <li class="list-group-item">${item['price']}</li>
+//                                           <li class="list-group-item">${get_type_trans(data[1], item['type'], 'type_name')}</li>
 //                                            <li class="list-group-item">${item['date']}</li>
 //                                       </ul>
 //                                     </div>`
 //                     } else{
 //                         elem.innerHTML += `<div class="card" style="width: 18rem; margin: 15px 20px 0 0;">
 //                                               <ul class="list-group list-group-flush">
-//                                                   <li class="list-group-item">${item['check_name']}</li>
+//                                                   <li class="list-group-item">${item['name']}</li>
 //                                                   <li class="list-group-item">${item['check_count']}</li>
-//                                                   <li class="list-group-item">${get_category(data[0], item['check_category'], 'category_name')}</li>
-//                                                 <li class="list-group-item">${item['check_price']}</li>
+//                                                   <li class="list-group-item">${get_category(data[0], item['category'], 'name')}</li>
+//                                                 <li class="list-group-item">${item['price']}</li>
 //                                                    <li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>
 //                                               </ul>
 //                                             </div>`

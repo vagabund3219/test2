@@ -18,11 +18,11 @@ class GetUserTransactions(ListView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(GetUserTransactions, self).get_context_data(*args, **kwargs)
-        ctx["item_user_id_id"] = self.request.user.id
+        ctx["user_id"] = self.request.user.id
         return ctx
 
     def get_queryset(self):
-        return Transactions.objects.filter(item_user_id=self.request.user.id)
+        return Transactions.objects.filter(user_id=self.request.user.id)
 
 
 class AddTransactionView(CreateView):
@@ -36,7 +36,7 @@ class AddTransactionView(CreateView):
         return kwargs
 
     def form_valid(self, form):
-        form.instance.item_user = self.request.user
+        form.instance.user = self.request.user
         update_bill(Bill, form, self.request.user.id)
         return super(AddTransactionView, self).form_valid(form)
 
@@ -45,7 +45,7 @@ class ViewCheck(ListView):
     model = CheckData
 
     def get_queryset(self):
-        return CheckData.objects.filter(check_user_id=self.request.user.id)
+        return CheckData.objects.filter(user_id=self.request.user.id)
 
 
 class AddNewCategory(CreateView):
@@ -54,8 +54,8 @@ class AddNewCategory(CreateView):
     form_class = AddNewCategory
 
     def form_valid(self, form):
-        form.instance.item_user = self.request.user.id
-        form.instance.category_user_id = self.request.user
+        # form.instance.user = self.request.user.id
+        form.instance.user = self.request.user
         return super(AddNewCategory, self).form_valid(form)
 
 
@@ -72,23 +72,23 @@ def send_check_view(request):
         if response_data != None and form.is_valid():
             # and form.is_valid()
             for item in response_data:
-                to_db = CheckData(check_name=item['item'], check_count=item['count'], check_price=item['price'],
-                                  check_category_id=form.data['check_category_id'], check_user_id=request.user.id)
+                to_db = CheckData(name=item['item'], count=item['count'], price=item['price'],
+                                  category_id=form.data['category_id'], user_id=request.user.id)
                 to_db.save()
                 bill = Bill.objects.get_or_create(user_id=request.user.id)
-                bill[0].bill_sum -= int(item['price'])
+                bill[0].sum -= int(item['price'])
                 bill[0].save()
             return redirect('view_check')
         else:
             error = 'This is not check'
             form = Add_check_form()
-            form.fields['check_category_id'].choices = [(choice.pk, choice.category_name) for choice in
-                                                        Categories.objects.filter(category_user_id=request.user.id)]
+            form.fields['category_id'].choices = [(choice.pk, choice.name) for choice in
+                                                        Categories.objects.filter(user_id=request.user.id)]
             return render(request, template, {'form': form, 'error': error})
     # else:
     form = Add_check_form()
-    form.fields['check_category_id'].choices = [(choice.pk, choice.category_name) for choice in
-                                                Categories.objects.filter(category_user_id=request.user.id)]
+    form.fields['category_id'].choices = [(choice.pk, choice.name) for choice in
+                                                Categories.objects.filter(user_id=request.user.id)]
     return render(request, template, {'form': form})
 
 
@@ -97,8 +97,8 @@ def main(request):
 
 
 def get_user_transactions(request):
-    checks = CheckData.objects.filter(check_user_id=request.user.id)
-    transactions = Transactions.objects.filter(item_user_id=request.user.id)
+    checks = CheckData.objects.filter(user_id=request.user.id)
+    transactions = Transactions.objects.filter(user_id=request.user.id)
     user_id = request.user.id
     print(user_id)
     lst = sort_by_date(checks, transactions)

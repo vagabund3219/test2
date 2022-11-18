@@ -4,14 +4,14 @@ from django.db import models
 from django.shortcuts import reverse
 
 class Categories(models.Model):
-    category_name = models.CharField(max_length=80, verbose_name='Название категории')
-    category_user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=80, verbose_name='Название категории')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('add_category')
 
     def __str__(self):
-        return self.category_name
+        return self.name
 
     class Meta:
         verbose_name = 'Категория'
@@ -28,15 +28,15 @@ class TypeOfTranscation(models.Model):
         verbose_name_plural = "Типы транзакций"
 
 class CheckData(models.Model):
-    check_name = models.CharField(max_length=80)
-    check_count = models.FloatField()
-    check_price = models.FloatField()
-    check_category = models.ForeignKey(Categories, on_delete=models.CASCADE, default=1)
+    name = models.CharField(max_length=80)
+    price = models.FloatField()
+    count = models.FloatField()
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today())
-    check_user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.check_name
+        return self.name
 
     class Meta:
         verbose_name = "Чек"
@@ -44,12 +44,12 @@ class CheckData(models.Model):
 
 
 class News(models.Model):
-    news_title = models.CharField(max_length=80)
-    news_date = models.DateField()
-    news_text = models.TextField()
+    title = models.CharField(max_length=80)
+    date = models.DateField()
+    text = models.TextField()
 
     def __str__(self):
-        return self.news_title
+        return self.title
 
     def get_absolute_url(self):
         return reverse('full_news')
@@ -60,13 +60,13 @@ class News(models.Model):
 
 class Transactions(models.Model):
     date = models.DateField(verbose_name='Дата')
-    item_name = models.CharField(max_length=80, verbose_name='Имя')
-    item_price = models.FloatField(verbose_name='Цена')
-    item_category = models.ForeignKey(Categories, on_delete=models.CASCADE, default=1, verbose_name='Категория')
-    item_type = models.ForeignKey(TypeOfTranscation, on_delete=models.PROTECT, default=1, verbose_name='Тип')# expenses incomes
-    item_user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    name = models.CharField(max_length=80, verbose_name='Имя')
+    price = models.FloatField(verbose_name='Цена')
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория')
+    type = models.ForeignKey(TypeOfTranscation, on_delete=models.PROTECT, verbose_name='Тип')# expenses incomes
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-        return self.item_name
+        return self.name
 
     def get_absolute_url(self):
         return reverse('get_user_transactions')
@@ -77,7 +77,7 @@ class Transactions(models.Model):
 
 
 class Bill(models.Model):
-    bill_sum = models.FloatField(default=0)
+    sum = models.FloatField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

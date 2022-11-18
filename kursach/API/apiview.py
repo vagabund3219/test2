@@ -16,25 +16,25 @@ class CategoriesApiList(generics.ListCreateAPIView):
     serializer_class = CategoriesSerializer
     def get_queryset(self):
         user = self.request.user
-        return Categories.objects.filter(category_user_id=user)
+        return Categories.objects.filter(user_id=user)
 
 class TransactionsApiList(generics.ListCreateAPIView):
     queryset = Transactions.objects.all()
     serializer_class = TransactionsSerializer
     def get_queryset(self):
         user = self.request.user
-        return Transactions.objects.filter(item_user_id=user)
+        return Transactions.objects.filter(user_id=user)
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['item_category_id',]
+    filterset_fields = ['category_id',]
 
 class CheckApiList(generics.ListCreateAPIView):
     queryset = CheckData.objects.all()
     serializer_class = CheckSerializer
     def get_queryset(self):
         user = self.request.user
-        return CheckData.objects.filter(check_user_id=user)
+        return CheckData.objects.filter(user_id=user)
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['check_category_id',]
+    filterset_fields = ['category_id',]
 
 class TransactionsAPIView(APIView):
     def get(self, request):

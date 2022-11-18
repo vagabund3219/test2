@@ -9,23 +9,23 @@ from kursovoiProekt import settings
 class AddNewCategory(forms.ModelForm):
     class Meta:
         model = Categories
-        fields = ['category_name']
+        fields = ['name']
         widgets = {
-            'category_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
 class Add_check_form(forms.Form):
     # def __init__(self, user, *args, **kwargs):
     #     super(Add_check_form, self).__init__(*args, **kwargs)
-    #     # self.fields['check_category'].queryset = Categories.objects.filter(category_user_id_id=user)
+    #     # self.fields['category'].queryset = Categories.objects.filter(category_user_id_id=user)
 
     # class Meta:
     #     model = Transactions
-        # fields = ['check_category']
+        # fields = ['category']
     checkImg = forms.ImageField(label='Чек', widget=forms.FileInput(attrs={'class': 'form-control', 'id': "formFile"}))
-    # check_category = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
-    check_category_id = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
+    # category = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
+    category_id = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
 
 
 class Add_transaction_form(forms.ModelForm):
@@ -33,28 +33,28 @@ class Add_transaction_form(forms.ModelForm):
         print(kwargs)
         self.user = kwargs.pop("user")
         super(Add_transaction_form, self).__init__(*args, **kwargs)
-        item_category_id = forms.Select(choices=Categories.objects.filter(category_user_id=self.user))
-        self.fields['item_category'] = forms.Select(choices=Categories.objects.filter(category_user_id=self.user))
-        self.fields['item_category'].queryset = Categories.objects.filter(category_user_id=self.user)
+        item_category_id = forms.Select(choices=Categories.objects.filter(user_id=self.user))
+        self.fields['category'] = forms.Select(choices=Categories.objects.filter(user_id=self.user))
+        self.fields['category'].queryset = Categories.objects.filter(user_id=self.user)
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
-    #     self.fields['item_category'] = forms.Select(choices=Categories.objects.filter(category_user_id=1))
+    #     self.fields['category'] = forms.Select(choices=Categories.objects.filter(user=1))
     class Meta:
         model = Transactions
-        # fields = ['date', 'item_name', 'item_price', 'item_category', 'item_type']
-        fields = ['date', 'item_name', 'item_price', 'item_type']
+        # fields = ['date', 'name', 'price', 'category', 'type']
+        fields = ['date', 'name', 'price', 'type']
         widgets = {
             'date': forms.DateInput(attrs={'class': 'form-control', 'id': 'foo', 'autocomplete':"off"}),
-            'item_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'item_price': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'item_category': forms.Select(attrs={'class': 'form-control'}),
-            'item_type': forms.Select(attrs={'class': 'form-control'})
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'price': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'category': forms.Select(attrs={'class': 'form-control'}),
+            'type': forms.Select(attrs={'class': 'form-control'})
         }
 
         #
         # def __init__(self, user, *args, **kwargs):
         #     if user:
-        #         self.fields['item_category'].queryset = user.Categories.all(category_user_id=user.id)
+        #         self.fields['category'].queryset = user.Categories.all(user=user.id)
 
 
 

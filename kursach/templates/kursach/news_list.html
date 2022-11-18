@@ -9,14 +9,14 @@
                 <div class="col-6 p-2">
                     <div class="card text-center">
                       <div class="card-header card-title">
-                        <h5>{{ item.news_title|truncatechars:45 }}</h5>
+                        <h5>{{ item.title|truncatechars:45 }}</h5>
                       </div>
                       <div class="card-body">
-                        <p class="card-text card-height">{{ item.news_text|truncatechars:300}}</p>
+                        <p class="card-text card-height">{{ item.text|truncatechars:300}}</p>
                         <a href="{% url 'news_detail' item.pk %}" class="btn btn-primary">Прочитать полностью</a>
                       </div>
                       <div class="card-footer text-muted">
-                        {{ item.news_date }}
+                        {{ item.date }}
                       </div>
                     </div>
                 </div>
