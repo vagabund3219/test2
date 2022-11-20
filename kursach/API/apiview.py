@@ -23,6 +23,8 @@ class CategoriesApiList(generics.ListCreateAPIView):
 class TransactionsApiList(generics.ListCreateAPIView):
     queryset = Transactions.objects.all()
     serializer_class = TransactionsSerializer
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user)
     def get_queryset(self):
         user = self.request.user
         return Transactions.objects.filter(user_id=user)

@@ -29,12 +29,22 @@ Date.prototype.customFormat = function(formatString){
         return formattedDate
     }
 
+    export function dateString(date){
+      const some = date.split('.');
+        let formattedDate = some[2];
+        formattedDate += `-${some[1]}`;
+        formattedDate += `-${some[0]}`;
+        return formattedDate
+    }
+
     export function filterDate(item){
       const end = Date.parse(new Date(dateParse(document.getElementById('end').value)));
       const start = Date.parse(new Date(dateParse(document.getElementById('start').value)));
       let itemDate = Date.parse(new Date(item.date));
       return ((itemDate >= start) && (itemDate<=end))
     }
+
+
 
     export  function byField(field) {
     return (a, b) => a[field] < b[field] ? 1 : -1;

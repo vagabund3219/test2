@@ -20,5 +20,5 @@ class CheckSerializer(serializers.ModelSerializer):
 class TransactionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transactions
-        fields = ('date', 'name', 'price', 'category', 'type', 'username')
+        fields = ('date', 'name', 'price', 'category', 'type', 'username', 'user')
         # date = serializers.DateField(format='%d.%m.%Y')
