@@ -1,8 +1,10 @@
+
 button.category{
     width: 130px;
     height: 130px;
     border-radius:100%;
     margin: 20px 0 0 30px;
+    background-color: #d8eede;
 }
 
 div.container.text-center{
@@ -31,5 +33,9 @@ div.card {
 .show {
     display: block;
 }
+
+
+
+
 
 
