@@ -9,15 +9,15 @@ from kursovoiProekt import settings
 class AddNewCategory(forms.ModelForm):
     class Meta:
         model = Categories
-        fields = ['name']
+        fields = ['name', 'type']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'type': forms.Select(attrs={'class': 'form-control'}),
         }
 
-
-class Add_check_form(forms.Form):
+class AddCheckForm(forms.Form):
     # def __init__(self, user, *args, **kwargs):
-    #     super(Add_check_form, self).__init__(*args, **kwargs)
+    #     super(AddCheckForm, self).__init__(*args, **kwargs)
     #     # self.fields['category'].queryset = Categories.objects.filter(category_user_id_id=user)
 
     # class Meta:
@@ -26,13 +26,13 @@ class Add_check_form(forms.Form):
     checkImg = forms.ImageField(label='Чек', widget=forms.FileInput(attrs={'class': 'form-control', 'id': "formFile"}))
     # category = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
     category_id = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label="(Nothing)", label='Категория', widget=forms.Select(attrs={'class': 'form-control'}))
+    username = forms.TextInput()
 
-
-class Add_transaction_form(forms.ModelForm):
+class AddTransactionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         print(kwargs)
         self.user = kwargs.pop("user")
-        super(Add_transaction_form, self).__init__(*args, **kwargs)
+        super(AddTransactionForm, self).__init__(*args, **kwargs)
         item_category_id = forms.Select(choices=Categories.objects.filter(user_id=self.user))
         self.fields['category'] = forms.Select(choices=Categories.objects.filter(user_id=self.user))
         self.fields['category'].queryset = Categories.objects.filter(user_id=self.user)
@@ -42,13 +42,14 @@ class Add_transaction_form(forms.ModelForm):
     class Meta:
         model = Transactions
         # fields = ['date', 'name', 'price', 'category', 'type']
-        fields = ['date', 'name', 'price', 'type']
+        fields = ['date', 'name', 'price', 'type', 'username']
         widgets = {
             'date': forms.DateInput(attrs={'class': 'form-control', 'id': 'foo', 'autocomplete':"off"}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'price': forms.TextInput(attrs={'class': 'form-control'}),
             # 'category': forms.Select(attrs={'class': 'form-control'}),
-            'type': forms.Select(attrs={'class': 'form-control'})
+            'type': forms.Select(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'})
         }
 
         #

@@ -17,6 +17,8 @@ class CategoriesApiList(generics.ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
         return Categories.objects.filter(user_id=user)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['type_id',]
 
 class TransactionsApiList(generics.ListCreateAPIView):
     queryset = Transactions.objects.all()

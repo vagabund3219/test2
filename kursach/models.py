@@ -6,7 +6,7 @@ from django.shortcuts import reverse
 class Categories(models.Model):
     name = models.CharField(max_length=80, verbose_name='Название категории')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    type = models.ForeignKey('TypeOfTranscation', on_delete=models.PROTECT)
     def get_absolute_url(self):
         return reverse('add_category')
 
@@ -34,6 +34,7 @@ class CheckData(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=60, verbose_name='Кто добавил')
 
     def __str__(self):
         return self.name
@@ -60,11 +61,12 @@ class News(models.Model):
 
 class Transactions(models.Model):
     date = models.DateField(verbose_name='Дата')
-    name = models.CharField(max_length=80, verbose_name='Имя')
+    name = models.CharField(max_length=80, verbose_name='Имя транзакции')
     price = models.FloatField(verbose_name='Цена')
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория')
     type = models.ForeignKey(TypeOfTranscation, on_delete=models.PROTECT, verbose_name='Тип')# expenses incomes
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=60, verbose_name='Кто добавил')
     def __str__(self):
         return self.name
 

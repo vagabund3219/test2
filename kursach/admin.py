@@ -7,14 +7,14 @@ class TypeOfTranscationAdmin(admin.ModelAdmin):
 
 
 class TransactionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date','name', 'price', 'category', 'type', 'user')
-    list_filter = ('date', 'category', 'type', 'user')
+    list_display = ('id', 'date','name', 'price', 'category', 'type', 'user', 'username')
+    list_filter = ('date', 'category', 'type', 'user', 'username')
     # list_editable = ('item_transaction_date','name', 'price', 'category', 'type', 'user')
     # list_max_show_all = 30
     list_per_page = 20
     ordering = ('-date', 'price')
     # raw_id_fields = ('category',)
-    search_fields = ['name']
+    search_fields = ['name', 'username']
     search_help_text = "Поиск по наиманованию транзакции"
 
 class BillAdmin(admin.ModelAdmin):
@@ -25,19 +25,19 @@ class BillAdmin(admin.ModelAdmin):
      ordering = ('user', 'sum')
 
 class CategoriesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'user')
-    list_editable = ('name',)
+    list_display = ('id', 'name', 'user', 'type')
+    list_editable = ('name', 'type')
     list_per_page = 30
-    list_filter = ('user', 'name')
+    list_filter = ('user', 'name', 'type')
     ordering = ('user',)
     search_fields = ['name']
 
 class CheckDataAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'count', 'price', 'category', 'date', 'user')
-    list_filter = ('category', 'user')
+    list_display = ('id', 'name', 'count', 'price', 'category', 'date', 'user', 'username')
+    list_filter = ('category', 'user', 'username')
     list_editable = ('category', 'name',)
     list_per_page = 30
-    search_fields = ('name',)
+    search_fields = ('name', 'username')
     ordering = ('user', '-date')
 
 class NewsAdmin(admin.ModelAdmin):

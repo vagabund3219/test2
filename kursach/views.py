@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .script_folder.checkScript import *
-from .forms import Add_check_form, Add_transaction_form, AddNewCategory
+from .forms import AddCheckForm, AddTransactionForm, AddNewCategory
 from .models import CheckData, Transactions, Categories, News, Bill
 from django.views.generic import ListView, CreateView, DetailView
 
@@ -28,7 +28,7 @@ class GetUserTransactions(ListView):
 class AddTransactionView(CreateView):
     model = Transactions
     template_name_suffix = '_create_form'
-    form_class = Add_transaction_form
+    form_class = AddTransactionForm
 
     def get_form_kwargs(self, **kwargs):
         kwargs = super(AddTransactionView, self).get_form_kwargs()
@@ -62,7 +62,7 @@ class AddNewCategory(CreateView):
 def send_check_view(request):
     template = 'kursach/index.html'
     if request.method == 'POST' and request.FILES:
-        form = Add_check_form(request.POST, request.FILES)
+        form = AddCheckForm(request.POST, request.FILES)
         print(form.fields)
         file = request.FILES['checkImg'].read()
         # response_data = send_check(file)
@@ -81,12 +81,12 @@ def send_check_view(request):
             return redirect('view_check')
         else:
             error = 'This is not check'
-            form = Add_check_form()
+            form = AddCheckForm()
             form.fields['category_id'].choices = [(choice.pk, choice.name) for choice in
                                                         Categories.objects.filter(user_id=request.user.id)]
             return render(request, template, {'form': form, 'error': error})
     # else:
-    form = Add_check_form()
+    form = AddCheckForm()
     form.fields['category_id'].choices = [(choice.pk, choice.name) for choice in
                                                 Categories.objects.filter(user_id=request.user.id)]
     return render(request, template, {'form': form})
