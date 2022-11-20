@@ -5,13 +5,20 @@ button.category{
     margin: 20px 0 0 30px;
 }
 
+div.container.text-center{
+    display: flex;
+}
+
 div.card {
     width: 18rem;
     margin: 15px 20px 0 0;
 }
 
 #aside-trans {
+    padding: 15px 20px;
+    background-color: #fafafa;
     left: 100%;
+    float: right;
 }
 
 .hidden {

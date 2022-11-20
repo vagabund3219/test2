@@ -11,14 +11,17 @@
             <input type="hidden" id="userId" value={{user_id}}>
         </div>
         <aside class="hidden" id="aside-trans">
+            <i class="fa fa-reply hidden" aria-hidden="true"></i>
+            <div class=" hidden" id="category-name"></div>
             <div id="foo">
-              <input type="text" name="start">
+              <input type="text" name="start" id="start">
               <span>До</span>
-              <input type="text" name="end">
+              <input type="text" name="end" id="end">
             </div>
+            <button id="submitFilter">Применить</button>
         </aside>
 {#    <input type="text" name="date" class="form-control datepicker-input" id="foo" autocomplete="off" required="">#}
     </div>
-    <script src="{% static 'kursach/js/list_of_trans.js' %}"></script>
+    <script type="module" src="{% static 'kursach/js/list_of_trans.js' %}"></script>
     <script src="https://kit.fontawesome.com/b726250d77.js" crossorigin="anonymous"></script>
 {% endblock  %}

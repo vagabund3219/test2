@@ -1,4 +1,4 @@
-// import DateRangePicker from "./vanillajs-datepicker/js/DateRangePicker.js";
+import DateRangePicker from "./vanillajs-datepicker/js/DateRangePicker.js";
 
 Date.prototype.customFormat = function(formatString){
   var YYYY,YY,MMMM,MMM,MM,M,DDDD,DDD,DD,D,hhhh,hhh,hh,h,mm,m,ss,s,ampm,AMPM,dMod,th;
@@ -28,6 +28,12 @@ window.onload = (event) => {
   const CategoriesApiList = 'CategoriesApiList';
   const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
   const aside = document.querySelector('#aside-trans');
+  const returnButton = document.querySelector('.fa-reply');
+  const submitFilterBtn = document.querySelector('#submitFilter');
+  const rangePicker = document.querySelector('#foo');
+  const userId = document.querySelector('#userId');
+  const categoryName = document.querySelector('#category-name');
+  const container = document.querySelector('.container');
 
   function byField(field) {
     return (a, b) => a[field] < b[field] ? 1 : -1;
@@ -36,7 +42,7 @@ window.onload = (event) => {
   async function getNameCategory(id) {
     return fetchReq(CategoriesApiList, 'категориями')
         .then(items =>{
-            for (item of items) {
+            for (let item of items) {
                 if (item.id == id) {
                   return item.name
                 }
@@ -47,7 +53,7 @@ window.onload = (event) => {
   async function getTypeTrans(id) {
     return fetchReq(TypeOfTransactionApiList, 'типами транзакций')
         .then(items =>{
-            for (item of items) {
+            for (let item of items) {
                 if (item.id == id) {
                   return item['type_name']
                 }
@@ -97,10 +103,14 @@ window.onload = (event) => {
     })
     const buttons = document.querySelectorAll('.category');
     buttons.forEach(button => button.addEventListener('click', ()=>{
-        aside.classList.add('show');
-        aside.classList.remove('hidden');
-      returnBtn(func)
-      getItems(+button.id)
+        aside.classList.toggle('hidden');
+        container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
+        console.log(document.getElementById('currentCategoryId'))
+        returnButton.classList.toggle('hidden');
+        categoryName.textContent = `${button.textContent}`;
+        categoryName.classList.toggle('hidden');
+          returnBtn(func);
+          getItems(+button.id)
           .then(data =>{
             if (data.length){
               data.sort(byField('date'));
@@ -116,12 +126,12 @@ window.onload = (event) => {
   }
 
   function returnBtn (func){
-      row.innerHTML = '<i class="fa fa-reply" aria-hidden="true"></i>'
+      row.innerHTML = ''
+
       const returnBtn = document.querySelector('.fa-reply');
       returnBtn.addEventListener('click', ()=>{
-          aside.classList.add('hidden');
-        aside.classList.remove('show');
-        row.innerHTML = ''
+          aside.classList.toggle('hidden');
+        row.innerHTML = '';
         categoryDisplay(func);
       })
   }
@@ -137,11 +147,32 @@ window.onload = (event) => {
 
   categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
 
-  const elem = document.getElementById('foo');
-    const rangepicker = new DateRangePicker(elem, {
-      // ...options
+
+    const rangepicker = new DateRangePicker(rangePicker, {
+      format: 'dd.mm.yyyy'
     });
 
+  submitFilterBtn.addEventListener('click', ()=>{
+    const currentCategoryId = document.getElementById('currentCategoryId');
+    getItems(currentCategoryId.value)
+        .then(data=>{
+          const filteredData = data.filter(filterDate(data));
+            console.log(filteredData, 'filtered')
+        }).catch((e)=>{
+            row.innerHTML = `Ошибка запроса, либо таких элементов нет`;
+    })
+
+  })
+
+  function filterDate (obj){
+      const start = document.getElementById('start').value;
+      console.log(start)
+      const end = document.getElementById('end').value;
+    console.log(obj);
+    if (obj.date > start && obj.date < end){
+        return obj
+    }
+  }
 }
 
 // const elem = document.querySelector('.row');
