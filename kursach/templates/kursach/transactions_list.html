@@ -9,40 +9,44 @@
     <div class="container text-center">
         <button class="floating-button" id="add-transaction-btn">Добавить</button>
         <input type="hidden" id="userId" value={{user_id}}>
-        <div class="row">
+        <div class="row-col">
 
         </div>
         {#  Форма для добавления транзакции #}
-        <form method="POST" class="hidden" id="add-transaction">
-            {% csrf_token %}
-                <div class="form-container">
-                    <div class="form-item">
-                        <label class="" for="">Имя транзакции</label>
-                        <input type="text" class="form-control" id="name-trans">
-                    </div>
-                    <div class="form-item">
-                        <label class="" for="">Кто добавил</label>
-                        <input type="text" class="form-control" id="username">
-                    </div>
-                    <div class="form-item">
-                        <label class="" for="">Категория</label>
-                        <select name="category_id" id="category_id" class="form-control"><option disabled>Выберите тип</option></select>
-                    </div>
-                    <div class="form-item">
-                        <label class="" for="">Тип</label>
-                        <select name="type_id" id="type_id" class="form-control"></select>
-                    </div>
-                    <div class="form-item">
-                        <label class="" for="">Сумма</label>
-                        <input type="text" class="form-control" id="sum">
-                    </div>
-                    <div class="form-item" >
-                        <label class="" for="">Дата</label>
-                        <input type="text" id="date" autocomplete="off" class="form-control">
-                    </div>
+        <div class="row">
+            <div class="form-div">
+                <form method="POST" class="hidden" id="add-transaction">
+                    {% csrf_token %}
+                        <div class="form-container">
+                            <div class="form-item">
+                                <label class="" for="">Имя транзакции</label>
+                                <input required type="text" class="form-control" id="name-trans">
+                            </div>
+                            <div class="form-item">
+                                <label class="" for="">Кто добавил</label>
+                                <input required type="text" class="form-control" id="username">
+                            </div>
+                            <div class="form-item">
+                                <label class="" for="">Категория</label>
+                                <select required name="category_id" id="category_id" class="form-control"><option disabled>Выберите тип</option></select>
+                            </div>
+                            <div class="form-item">
+                                <label class="" for="">Тип</label>
+                                <select required name="type_id" id="type_id" class="form-control"></select>
+                            </div>
+                            <div class="form-item">
+                                <label class="" for="">Сумма</label>
+                                <input required type="number" class="form-control" id="sum">
+                            </div>
+                            <div class="form-item" >
+                                <label class="" for="">Дата</label>
+                                <input required type="text" id="date" autocomplete="off" class="form-control">
+                            </div>
+                        </div>
+                        <button class="floating-button" type="submit" id="form-submit">Отправить</button>
+                    </form>
                 </div>
-                <button class="floating-button" type="submit" id="form-submit">Отправить</button>
-            </form>
+        </div>
         <aside class="hidden" id="aside-trans">
             <i class="fa fa-reply hidden" aria-hidden="true"></i>
             <span id="category-name"></span>

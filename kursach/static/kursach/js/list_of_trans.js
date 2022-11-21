@@ -13,7 +13,7 @@ window.onload = (event) => {
   const CategoriesApiList = 'CategoriesApiList';
   const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
    // Для элементов со страницы
-  const row = document.querySelector('.row');
+  const rowCol = document.querySelector('.row-col');
   const aside = document.querySelector('#aside-trans');
   const returnButton = document.querySelector('.fa-reply');
   const submitFilterBtn = document.querySelector('#submitFilter');
@@ -89,7 +89,7 @@ window.onload = (event) => {
   async function categoryDisplay(func) {
     let response = await func;
     await response.forEach(category=>{
-      row.innerHTML += `<button class="category" id=${category['id']}>${category['name']}</button>`
+      rowCol.innerHTML += `<button class="category" id=${category['id']}>${category['name']}</button>`
     })
     const buttons = document.querySelectorAll('.category');
     buttons.forEach(button => button.addEventListener('click', ()=>{
@@ -97,31 +97,30 @@ window.onload = (event) => {
         aside.classList.toggle('hidden');
         container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
         categoryName.textContent = `${button.textContent}`;
-        row.innerHTML = '';
+        rowCol.innerHTML = '';
         getItems(+button.id)
           .then(data =>{
                 returnBtn(func);
                 if (data.length){
                   data.sort(byField('date'));
-                  data.forEach(item => displayCard(row, item))
+                  data.forEach(item => displayCard(rowCol, item))
                 }else{
                   let h2 = document.createElement('h2')
                   h2.innerHTML = '<h2>У вас нет записей в этой категории</h2>'
-                  row.append(h2);
+                  rowCol.append(h2);
             }
           })
     }))
-
-
   }
 
   function returnBtn (func){
       returnButton.addEventListener('click', ()=>{
+          document.getElementById('currentCategoryId').remove();
           addTransactionBtn.classList.toggle('hidden');
           const ul = document.querySelector('.list-group-flush');
           ul ? ul.innerHTML = '' : {}
           aside.classList.toggle('hidden');
-          row.innerHTML = '';
+          rowCol.innerHTML = '';
           categoryDisplay(func);
       }, {'once':true})
   }
@@ -140,16 +139,19 @@ window.onload = (event) => {
 
   submitFilterBtn.addEventListener('click', ()=>{
     const currentCategoryId = document.getElementById('currentCategoryId');
+    console.log(currentCategoryId, 'currentCategoryId')
     getItems(currentCategoryId.value)
         .then(data=>{
+            console.log(data, 'data')
             const filteredData = data.filter(filterDate);
+            console.log(filteredData, 'filtered data')
             return filteredData
         }).then(filteredData=>{
-            filteredData.length > 0 ? row.innerHTML = '' : row.innerHTML = '<h1>Записи, подходящие под запрос, отсутствуют.</h1>'
+            filteredData.length > 0 ? rowCol.innerHTML = '' : rowCol.innerHTML = '<h1>Записи, подходящие под запрос, отсутствуют.</h1>'
             filteredData.sort(byField('date'));
-            filteredData.forEach(item => displayCard(row, item))
+            filteredData.forEach(item => displayCard(rowCol, item))
         }).catch((e)=>{
-            row.innerHTML = `Ошибка запроса`;
+            rowCol.innerHTML = `Ошибка запроса`;
         })
   })
 }

@@ -1,12 +1,12 @@
 import Datepicker from './vanillajs-datepicker/js/Datepicker.js'
 import ru from './vanillajs-datepicker/js/i18n/locales/ru.js';
 import {dateString} from "./custom_format_for_date.js";
-
+import {checkRequired} from "./forms_validations.js";
 
 window.addEventListener('load', (event) => {
     const doc = document;
     const addNewTransBtn = doc.querySelector('#add-transaction-btn');
-    const row = doc.querySelector('.row');
+    const rowCol = doc.querySelector('.row-col');
     const transactionAddForm = doc.querySelector('#add-transaction');
     const elem = doc.getElementById('date');
     const url = 'http://127.0.0.1:8000/api/v1/';
@@ -23,11 +23,14 @@ window.addEventListener('load', (event) => {
     });
 
 
+
     addNewTransBtn.addEventListener('click', ()=>{
+        checkRequired();
         const categoryButtons = doc.querySelectorAll('.category')
         categoryButtons.forEach(btn => btn.classList.toggle('hidden'))
         addNewTransBtn.classList.toggle('hidden');
         transactionAddForm.classList.toggle('hidden');
+        rowCol.classList.toggle('hidden');
         getTypes()
     })
 
@@ -48,7 +51,6 @@ window.addEventListener('load', (event) => {
 
     formSubmitBtn.addEventListener('click', (e)=>{
         e.preventDefault()
-        console.log(dateString(doc.querySelector('#date').value))
         const form = {
             'name':doc.querySelector('#name-trans').value,
             'username': doc.querySelector('#username').value,
@@ -61,17 +63,10 @@ window.addEventListener('load', (event) => {
         try{
             sendRequest('POST', `${url}${transApiUrl}`, form);
         }catch (e){
-            row.innerHTML += `<h1>${e}</h1>`
+            rowCol.innerHTML += `<h1>${e}</h1>`
         }
     })
 
-
-
-    // const d = doc.querySelector('#category_id')
-    // d.addEventListener('change', ()=>{
-    //
-    //
-    // })
 
     function getCookie(name) {
         let cookieValue = null;
@@ -98,8 +93,28 @@ window.addEventListener('load', (event) => {
             'method':method,
             'headers': headers,
             'body':JSON.stringify(body)
-        }).then(response => {return response.json()})
+        }).then(response => {
+            const titleCheck = doc.querySelector('h2');
+            titleCheck ? titleCheck.innerHTML = '' : {}
+            console.log(response.status);
+            if (response.ok && response.status<300){
+                console.log(111)
+                const h2 = doc.createElement('h2');
+                console.log(h2)
+                h2.innerHTML = `<h2 class="alert alert-success">Успешно!</h2>`;
+                const formDiv = doc.querySelector('.form-div');
+                formDiv.insertBefore(h2, formDiv.firstChild);
+                return response.json()
+            }else{
+                const h2 = doc.createElement('h2');
+                h2.innerHTML = `<h2 class="alert alert-danger">Неверно заполнена форма!</h2>`;
+                const formDiv = doc.querySelector('.form-div');
+                formDiv.insertBefore(h2, formDiv.firstChild);
+            }
+        })
     }
+
+
     // sendRequest('POST', `${url}${transApiUrl}`, )
     //     {
     //     "date": "2022-11-17",
