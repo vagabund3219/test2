@@ -20,6 +20,7 @@ window.onload = (event) => {
   const rangePicker = document.querySelector('#foo');
   const categoryName = document.querySelector('#category-name');
   const container = document.querySelector('.container');
+  const addTransactionBtn = document.querySelector('#add-transaction-btn');
 
 
   const rangepicker = new DateRangePicker(rangePicker, {
@@ -92,6 +93,7 @@ window.onload = (event) => {
     })
     const buttons = document.querySelectorAll('.category');
     buttons.forEach(button => button.addEventListener('click', ()=>{
+        addTransactionBtn.classList.toggle('hidden');
         aside.classList.toggle('hidden');
         container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
         console.log(document.getElementById('currentCategoryId'))
@@ -152,12 +154,6 @@ window.onload = (event) => {
         }).catch((e)=>{
             row.innerHTML = `Ошибка запроса`;
         })
-
   })
-
-
-
-
-
 }
 
