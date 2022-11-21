@@ -96,21 +96,18 @@ window.onload = (event) => {
         addTransactionBtn.classList.toggle('hidden');
         aside.classList.toggle('hidden');
         container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
-        console.log(document.getElementById('currentCategoryId'))
-        returnButton.classList.toggle('hidden');
         categoryName.textContent = `${button.textContent}`;
-        categoryName.classList.toggle('hidden');
-          returnBtn(func);
-          getItems(+button.id)
+        row.innerHTML = '';
+        getItems(+button.id)
           .then(data =>{
-            if (data.length){
-              data.sort(byField('date'));
-              data.forEach(item => displayCard(row, item))
-            }else{
-              returnBtn(func);
-              let h2 = document.createElement('h2')
-              h2.innerHTML = '<h2>У вас нет записей в этой категории</h2>'
-              row.append(h2);
+                returnBtn(func);
+                if (data.length){
+                  data.sort(byField('date'));
+                  data.forEach(item => displayCard(row, item))
+                }else{
+                  let h2 = document.createElement('h2')
+                  h2.innerHTML = '<h2>У вас нет записей в этой категории</h2>'
+                  row.append(h2);
             }
           })
     }))
@@ -119,13 +116,13 @@ window.onload = (event) => {
   }
 
   function returnBtn (func){
-      row.innerHTML = ''
-
-      const returnBtn = document.querySelector('.fa-reply');
-      returnBtn.addEventListener('click', ()=>{
+      returnButton.addEventListener('click', ()=>{
+          addTransactionBtn.classList.toggle('hidden');
+          const ul = document.querySelector('.list-group-flush');
+          ul ? ul.innerHTML = '' : {}
           aside.classList.toggle('hidden');
-        row.innerHTML = '';
-        categoryDisplay(func);
+          row.innerHTML = '';
+          categoryDisplay(func);
       }, {'once':true})
   }
 
