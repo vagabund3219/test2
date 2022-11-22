@@ -26,10 +26,22 @@ window.addEventListener('load', (event) => {
 
     function newTransaction(){
         const categoryButtons = doc.querySelectorAll('.category');
+        const cards = doc.querySelectorAll('.card');
+        const forItemsContainer = doc.querySelector('.for-items');
+        const filterButton = doc.querySelector('#submitFilter');
+        filterButton.disabled = true;
+        forItemsContainer.classList.toggle('hidden')
         categoryButtons.forEach(btn => btn.classList.toggle('hidden'));
-        addNewTransBtn.classList.toggle('hidden');
+        cards.forEach(card => card.remove());
+        // addNewTransBtn.classList.toggle('hidden');
+
         transactionAddForm.classList.toggle('hidden');
-        rowCol.classList.toggle('hidden');
+
+        // transactionAddForm.classList.remove('hidden');
+        // transactionAddForm.classList.add('add-transaction-form');
+
+        // rowCol.classList.toggle('hidden');
+        // row.classList.toggle('hidden');
         getTypes();
     }
 

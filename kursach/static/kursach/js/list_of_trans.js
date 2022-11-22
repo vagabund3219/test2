@@ -22,12 +22,18 @@ window.onload = (event) => {
   const categoryName = document.querySelector('#category-name');
   const container = document.querySelector('.container');
   const addTransactionBtn = document.querySelector('#add-transaction-btn');
-
+  const asideCategories = document.querySelector('#aside-categories');
+  const asideCategoriesReturn = document.querySelector('#aside-categories-return');
+  const form = document.querySelector('#add-transaction');
 
   const rangepicker = new DateRangePicker(rangePicker, {
       format: 'dd.mm.yyyy',
       language: 'ru'
     });
+
+  function hideFields(listOfFields){
+      listOfFields.forEach(field=>field.classList.toggle('hidden'));
+  }
 
 
   async function getNameCategory(id) {
@@ -90,40 +96,45 @@ window.onload = (event) => {
   async function categoryDisplay(func) {
     let response = await func;
     await response.forEach(category=>{
-      rowCol.innerHTML += `<button class="category" id=${category['id']}>${category['name']}</button>`
+      row.innerHTML += `<button class="category" id=${category['id']}>${category['name']}</button>`
     })
     const buttons = document.querySelectorAll('.category');
     buttons.forEach(button => button.addEventListener('click', ()=>{
-        addTransactionBtn.classList.toggle('hidden');
-        aside.classList.toggle('hidden');
+        hideFields([asideCategories, aside]);
         container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
         categoryName.textContent = `${button.textContent}`;
-        rowCol.innerHTML = '';
+        // rowCol.innerHTML = '';
+        row.innerHTML = '';
         getItems(+button.id)
           .then(data =>{
                 returnBtn(func);
                 if (data.length){
                   data.sort(byField('date'));
                   data.forEach(item => displayCard(row, item))
-                  // data.forEach(item => displayCard(rowCol, item))
                 }else{
                   let h2 = document.createElement('h2')
                   h2.innerHTML = '<h2>У вас нет записей в этой категории</h2>'
-                  rowCol.append(h2);
+                  row.append(h2);
             }
           })
     }))
   }
 
-
+  asideCategoriesReturn.addEventListener('click', ()=>{
+      form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
+      const buttons = document.querySelectorAll('.category');
+      buttons.forEach(button => button.classList.remove('hidden'))
+  })
 
   function returnBtn (func){
       returnButton.addEventListener('click', ()=>{
+          // form.classList.contains('hidden') ? {} : form.classList.remove('add-transaction-form')
+          submitFilterBtn.disabled = false;
+          form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
           document.getElementById('currentCategoryId').remove();
-          addTransactionBtn.classList.toggle('hidden');
+          hideFields([asideCategories, aside])
           const ul = document.querySelector('.list-group-flush');
           ul ? ul.innerHTML = '' : {}
-          aside.classList.toggle('hidden');
           rowCol.innerHTML = '';
           row.innerHTML = '';
           categoryDisplay(func);
@@ -144,17 +155,14 @@ window.onload = (event) => {
 
   submitFilterBtn.addEventListener('click', ()=>{
     const currentCategoryId = document.getElementById('currentCategoryId');
-    console.log(currentCategoryId, 'currentCategoryId')
     getItems(currentCategoryId.value)
         .then(data=>{
-            console.log(data, 'data')
             const filteredData = data.filter(filterDate);
-            console.log(filteredData, 'filtered data')
             return filteredData
         }).then(filteredData=>{
-            filteredData.length > 0 ? rowCol.innerHTML = '' : rowCol.innerHTML = '<h1>Записи, подходящие под запрос, отсутствуют.</h1>'
+            filteredData.length > 0 ? row.innerHTML = '' : row.innerHTML = '<h1>Записи, подходящие под запрос, отсутствуют.</h1>'
             filteredData.sort(byField('date'));
-            filteredData.forEach(item => displayCard(rowCol, item))
+            filteredData.forEach(item => displayCard(row, item))
         }).catch((e)=>{
             rowCol.innerHTML = `Ошибка запроса`;
         })

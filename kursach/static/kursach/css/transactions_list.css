@@ -2,15 +2,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-#do{
-    margin-left: 10px;
-}
-
 .date-picker-range{
     border-radius: 20px;
     width: 140px;
     display: inline-block;
-    margin-left: 10px;
 }
 
 #category-name{
@@ -18,9 +13,14 @@
     text-align: center;
     color: #524f4e;
 }
+
+#do{
+    display: block;
+    text-align: center;
+}
 button.category{
-    width: 130px;
-    height: 130px;
+    width: 170px;
+    height: 170px;
     border-radius:100%;
     margin: 20px 0 0 30px;
     transition: .3s;
@@ -58,7 +58,7 @@ button.category.rofl:hover{
   height: 45px;
   line-height: 45px;
   border-radius: 45px;
-  margin: 10px 20px;
+  margin: 10px auto;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   text-transform: uppercase;
@@ -70,6 +70,7 @@ button.category.rofl:hover{
   box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
   transition: .3s;
 }
+
 .floating-button:hover {
   background: #2EE59D;
   box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
@@ -78,34 +79,61 @@ button.category.rofl:hover{
 }
 
 
-div.container.text-center{
-    display: flex;
-    /*justify-content: space-between;*/
-    justify-content: center;
-}
+/*div.container.text-center{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 
 
 
 div.card {
     width: 18rem;
-    margin: 15px 20px 0 0;
+    margin: 15px 0 0 0;
+    display: inline-block;
 }
 
-#aside-trans {
+aside{
+    margin-top: 15px;
+    width: 260px;
     padding: 15px 20px;
     background-color: #fafafa;
-    left: 100%;
     float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
+
+/*#aside-trans {*/
+/*    padding: 15px 20px;*/
+/*    background-color: #fafafa;*/
+/*    left: 100%;*/
+/*    float: right;*/
+/*}*/
 
 .hidden {
     display: none;
 }
 
+.add-transaction-form{
+    display: inline-block;
+}
+
 .form-container{
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.row{
+    display: flex;
+    width: 1030px;
+    justify-content: space-between;
+}
+
+.for-items{
+    display: inline-block;
 }
 
 

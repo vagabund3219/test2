@@ -38,15 +38,14 @@ Date.prototype.customFormat = function(formatString){
     }
 
     export function filterDate(item){
-      const end = Date.parse(new Date(dateParse(document.getElementById('end').value)));
-      console.log(new Date(dateParse(document.getElementById('end').value)), 'end')
-      console.log(end, '1')
-      const start = Date.parse(new Date(dateParse(document.getElementById('start').value)));
-      console.log(new Date(dateParse(document.getElementById('start').value)), 'start')
-        console.log(start, '2')
-      let itemDate = Date.parse(new Date(item.date));
-        console.log(itemDate, 'itemDate')
-      return ((itemDate >= start) && (itemDate<=end))
+        if (document.getElementById('end').value && document.getElementById('start').value){
+            const end = Date.parse(new Date(dateParse(document.getElementById('end').value)));
+            const start = Date.parse(new Date(dateParse(document.getElementById('start').value)));
+            let itemDate = Date.parse(new Date(item.date));
+            return ((itemDate >= start) && (itemDate<=end))
+        }else{
+            return true
+        }
     }
 
 
