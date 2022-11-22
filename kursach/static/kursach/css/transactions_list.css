@@ -2,7 +2,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-
 #do{
     margin-left: 10px;
 }
@@ -33,11 +32,22 @@ button.category{
     /*background-color:rgba(255, 255, 255, 0.1);*/
 }
 
+
 button.category:hover{
       background: #2EE59D;
       box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
       color: white;
       transform: translateY(-7px);
+}
+
+button.category.rofl{
+    width: 250px;
+    height: 250px;
+    transition: .8s;
+}
+
+button.category.rofl:hover{
+      background: url("https://www.meme-arsenal.com/memes/fa3ce36d25b92531bb38c39306c7c6d3.jpg") center center;
 }
 
 
@@ -70,7 +80,8 @@ button.category:hover{
 
 div.container.text-center{
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    justify-content: center;
 }
 
 
@@ -91,15 +102,12 @@ div.card {
     display: none;
 }
 
-.show {
-    display: block;
-}
-
 .form-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 
 
 

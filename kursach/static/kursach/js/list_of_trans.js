@@ -14,6 +14,7 @@ window.onload = (event) => {
   const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
    // Для элементов со страницы
   const rowCol = document.querySelector('.row-col');
+  const row = document.querySelector('.row');
   const aside = document.querySelector('#aside-trans');
   const returnButton = document.querySelector('.fa-reply');
   const submitFilterBtn = document.querySelector('#submitFilter');
@@ -69,7 +70,7 @@ window.onload = (event) => {
 
   function displayCard(container, item){
     let div = document.createElement('div');
-    div.classList.add('card');
+    div.classList.add('card', 'col-3');
     let ul = document.createElement('ul');
     ul.classList.add('list-group', 'list-group-flush');
     createCard(item, ul);
@@ -103,7 +104,8 @@ window.onload = (event) => {
                 returnBtn(func);
                 if (data.length){
                   data.sort(byField('date'));
-                  data.forEach(item => displayCard(rowCol, item))
+                  data.forEach(item => displayCard(row, item))
+                  // data.forEach(item => displayCard(rowCol, item))
                 }else{
                   let h2 = document.createElement('h2')
                   h2.innerHTML = '<h2>У вас нет записей в этой категории</h2>'
@@ -113,6 +115,8 @@ window.onload = (event) => {
     }))
   }
 
+
+
   function returnBtn (func){
       returnButton.addEventListener('click', ()=>{
           document.getElementById('currentCategoryId').remove();
@@ -121,6 +125,7 @@ window.onload = (event) => {
           ul ? ul.innerHTML = '' : {}
           aside.classList.toggle('hidden');
           rowCol.innerHTML = '';
+          row.innerHTML = '';
           categoryDisplay(func);
       }, {'once':true})
   }
@@ -153,6 +158,16 @@ window.onload = (event) => {
         }).catch((e)=>{
             rowCol.innerHTML = `Ошибка запроса`;
         })
+  })
+
+    const rofl = document.querySelector('#rofl');
+  rofl.addEventListener('click', ()=>{
+      const buttons = document.querySelectorAll('.category');
+      buttons.forEach(button=>button.addEventListener('mouseenter', ()=>{
+            button.classList.toggle('rofl');
+            let sound = document.getElementById("Sound");
+            sound.play();
+        }))
   })
 }
 

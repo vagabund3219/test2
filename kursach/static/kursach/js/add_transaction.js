@@ -1,5 +1,6 @@
 import Datepicker from './vanillajs-datepicker/js/Datepicker.js'
 import ru from './vanillajs-datepicker/js/i18n/locales/ru.js';
+import {validatindTransForm} from './forms_validations.js';
 import {dateString} from "./custom_format_for_date.js";
 // import {checkRequired} from "./forms_validations.js";
 
@@ -42,55 +43,13 @@ window.addEventListener('load', (event) => {
         const categories = await fetch(`${url}${CategoriesApiList}`)
             .then(response => response.json())
 
-        typeSelect.innerHTML = '<option value="d">Выберите тип</option>';
+        // typeSelect.innerHTML = '<option value="d">Выберите тип</option>';
         typeSelect.innerHTML += types.map(item => `<option value="${item.id}">${item.type_name}</option>`).join('');
         typeSelect.addEventListener('change', ()=>{
             const filtered = categories.filter(item=>item.type===+typeSelect.value);
             categorySelect.innerHTML = filtered.map(category => `<option value="${category.id}">${category.name}</option>`).join('');
         })
     }
-
-
-    // formSubmitBtn.addEventListener('click', (e)=>{
-    //     e.preventDefault()
-    //     const form = {
-    //         'name':doc.querySelector('#name-trans').value,
-    //         'username': doc.querySelector('#username').value,
-    //         'category': +doc.querySelector('#category_id').value,
-    //         'type':+doc.querySelector('#type_id').value,
-    //         'price':parseFloat(doc.querySelector('#sum').value.replace(",", ".")),
-    //         'date': dateString(doc.querySelector('#date').value),
-    //         'user': +doc.querySelector('#userId').value
-    //     }
-    //     try{
-    //         sendRequest('POST', `${url}${transApiUrl}`, form);
-    //     }catch (e){
-    //         rowCol.innerHTML += `<h1>${e}</h1>`
-    //     }
-    // })
-
-
-
-
-
-    // transactionAddForm.addEventListener('submit', (e)=>{
-    //     e.preventDefault()
-    //     const form = {
-    //         'name':doc.querySelector('#name-trans').value,
-    //         'username': doc.querySelector('#username').value,
-    //         'category': +doc.querySelector('#category_id').value,
-    //         'type':+doc.querySelector('#type_id').value,
-    //         'price':parseFloat(doc.querySelector('#sum').value.replace(",", ".")),
-    //         'date': dateString(doc.querySelector('#date').value),
-    //         'user': +doc.querySelector('#userId').value
-    //     }
-    //     try{
-    //         sendRequest('POST', `${url}${transApiUrl}`, form);
-    //     }catch (e){
-    //         rowCol.innerHTML += `<h1>${e}</h1>`
-    //     }
-    // })
-
 
     function getCookie(name) {
         let cookieValue = null;
@@ -132,79 +91,8 @@ window.addEventListener('load', (event) => {
             }
         })
     }
+    validatindTransForm();
 
-    //
-    // sendRequest('POST', `${url}${transApiUrl}`, )
-    //     {
-    //     "date": "2022-11-17",
-    //     "name": "Шаурма",
-    //     "price": 230.0,
-    //     "category": 2,
-    //     "type": 1,
-    //     "username": "Ваня",
-    //     "user": 1
-    // }
-
-    const form  = doc.getElementsByTagName('form')[0];
-
-    const name = doc.querySelector('#name-trans');
-    const nameError = doc.querySelector('#name-trans + span.error');
-
-    const username = doc.querySelector('#username');
-    const usernameError = doc.querySelector('#username + span.error');
-
-    const type = doc.querySelector('#type_id');
-    const typeError = doc.querySelector('#type_id + span.error');
-
-    const category = doc.querySelector('#category_id');
-    const categoryError = doc.querySelector('#category_id + span.error');
-
-    const sum = doc.querySelector('#sum');
-    const sumError = doc.querySelector('#sum + span.error');
-
-    const date = doc.querySelector('#date');
-    const dateError = doc.querySelector('#date + span.error');
-
-    const formInputs = [[name, nameError], [username, usernameError], [type, typeError], [category, categoryError], [sum, sumError], [date, dateError]];
-    formInputs.forEach(item=>item[0].addEventListener('input', function (event) {
-      if (item[0].validity.valid) {
-        item[1].textContent = '';
-        item[1].className = 'error';
-      } else {
-        showError();
-      }
-    }))
-
-    form.addEventListener('submit', function (event) {
-      formInputs.forEach(item=>{
-        if (!item[0].validity.valid){
-          showError(item[0], item[1]);
-          event.preventDefault();
-        }else{
-            event.preventDefault()
-            const form = {
-                'name':doc.querySelector('#name-trans').value,
-                'username': doc.querySelector('#username').value,
-                'category': +doc.querySelector('#category_id').value,
-                'type':+doc.querySelector('#type_id').value,
-                'price':parseFloat(doc.querySelector('#sum').value.replace(",", ".")),
-                'date': dateString(doc.querySelector('#date').value),
-                'user': +doc.querySelector('#userId').value
-            }
-            sendRequest('POST', `${url}${transApiUrl}`, form);
-
-        }
-      })
-    });
-
-    function showError(field, fieldError) {
-        if (field.validity.valueMissing){
-          fieldError.textContent = 'Пожалуйста, заполните поле';
-        }else if(field.validity.typeMismatch) {
-          fieldError.textContent = 'Убедитесь в правильности ввода';
-      }
-      fieldError.className = 'error active';
-    }
 
 })
 

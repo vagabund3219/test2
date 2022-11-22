@@ -9,9 +9,15 @@
     <div class="container text-center">
         <button class="floating-button" id="add-transaction-btn">Добавить</button>
         <input type="hidden" id="userId" value={{user_id}}>
+{#        <button id="rofl" class="floating-button">Click</button>#}
+
+        <audio id="Sound" src="{% static  'smesnoi-negr-v-temnote-online-audio-convertercom_yi09xDYZ.mp3' %}" autoplay=true></audio>
+        {# Вывод транзакций #}
         <div class="row-col">
 
         </div>
+        {# Вывод транзакций #}
+
         {#  Форма для добавления транзакции #}
         <div class="row">
             <div class="form-div">
@@ -46,38 +52,16 @@
                             <label for="date">
                                 <span>Дата</span>
                                 <input type="text" id="date" autocomplete="off" class="form-control" required>
-                                <span class="error" aria-live="polite"></span>
+                                <span class="error dateerr" aria-live="polite"></span>
                             </label>
-{#                            <div class="form-item">#}
-{#                                <label class="" for="">Имя транзакции</label>#}
-{#                                <input type="text" class="form-control" id="name-trans">#}
-{#                            </div>#}
-{#                            <div class="form-item">#}
-{#                                <label class="" for="">Кто добавил</label>#}
-{#                                <input type="text" class="form-control" id="username">#}
-{#                            </div>#}
-{#                            <div class="form-item">#}
-{#                                <label class="" for="">Категория</label>#}
-{#                                <select name="category_id" id="category_id" class="form-control"><option disabled>Выберите тип</option></select>#}
-{#                            </div>#}
-{#                            <div class="form-item">#}
-{#                                <label class="" for="">Тип</label>#}
-{#                                <select name="type_id" id="type_id" class="form-control"></select>#}
-{#                            </div>#}
-{#                            <div class="form-item">#}
-{#                                <label class="" for="">Сумма</label>#}
-{#                                <input type="number" class="form-control" id="sum">#}
-{#                            </div>#}
-{#                            <div class="form-item">#}
-{#                                <label class="" for="">Дата</label>#}
-{#                                <input type="text" id="date" autocomplete="off" class="form-control">#}
-{#                            </div>#}
                         </div>
-{#                        <button class="floating-button" type="submit" id="form-submit">Отправить</button>#}
                     <button class="floating-button">Отправить</button>
                     </form>
                 </div>
         </div>
+        {#  Форма для добавления транзакции #}
+
+        {# Боковая панель  #}
         <aside class="hidden" id="aside-trans">
             <i class="fa fa-reply hidden" aria-hidden="true"></i>
             <span id="category-name"></span>
@@ -89,8 +73,10 @@
             <button id="submitFilter" class="floating-button">Применить</button>
             <button class="floating-button" id="add-new-transaction">Добавить</button>
         </aside>
-{#    <input type="text" name="date" class="form-control datepicker-input" id="foo" autocomplete="off" required="">#}
+        {# Боковая панель  #}
     </div>
+
+
     <script type="module" src="{% static 'kursach/js/list_of_trans.js' %}"></script>
     <script src="https://kit.fontawesome.com/b726250d77.js" crossorigin="anonymous"></script>
     <script type="module" src="{% static 'kursach/js/add_transaction.js' %}"></script>

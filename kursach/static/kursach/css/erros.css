@@ -1,19 +1,13 @@
 
-
-p * {
-  display: block;
-}
-
-input:invalid{
-  /*border-color: #900;*/
-  /*background-color: #FDD;*/
-}
-
-input:valid{
+.valid{
   border-color: #519c22;
 }
 
 input:focus:invalid {
+  outline: none;
+}
+
+select:focus:invalid {
   outline: none;
 }
 
@@ -33,10 +27,3 @@ input:focus:invalid {
   padding: 0.3em;
 }
 
-
-
-
-
-
-
-/* */
