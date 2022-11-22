@@ -15,35 +15,66 @@
         {#  Форма для добавления транзакции #}
         <div class="row">
             <div class="form-div">
-                <form method="POST" class="hidden" id="add-transaction">
+                <form novalidate method="POST" class="hidden" id="add-transaction">
                     {% csrf_token %}
                         <div class="form-container">
-                            <div class="form-item">
-                                <label class="" for="">Имя транзакции</label>
-                                <input required type="text" class="form-control" id="name-trans">
-                            </div>
-                            <div class="form-item">
-                                <label class="" for="">Кто добавил</label>
-                                <input required type="text" class="form-control" id="username">
-                            </div>
-                            <div class="form-item">
-                                <label class="" for="">Категория</label>
-                                <select required name="category_id" id="category_id" class="form-control"><option disabled>Выберите тип</option></select>
-                            </div>
-                            <div class="form-item">
-                                <label class="" for="">Тип</label>
-                                <select required name="type_id" id="type_id" class="form-control"></select>
-                            </div>
-                            <div class="form-item">
-                                <label class="" for="">Сумма</label>
-                                <input required type="number" class="form-control" id="sum">
-                            </div>
-                            <div class="form-item" >
-                                <label class="" for="">Дата</label>
-                                <input required type="text" id="date" autocomplete="off" class="form-control">
-                            </div>
+                            <label for="name-trans">
+                                <span>Имя транзакции</span>
+                                <input type="text" id="name-trans" class="form-control" autocomplete="off" required>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+                            <label for="username">
+                                <span>Кто добавил</span>
+                                <input type="text" id="username" class="form-control" required>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+                            <label for="type_id">
+                                <span>Тип</span>
+                                <select name="type_id" id="type_id" class="form-control" required></select>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+                            <label for="category_id">
+                                <span>Категория</span>
+                                <select name="category_id" id="category_id" class="form-control" required></select>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+                            <label for="sum">
+                                <span>Сумма</span>
+                                <input type="number" class="form-control" id="sum" autocomplete="off" required>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+                            <label for="date">
+                                <span>Дата</span>
+                                <input type="text" id="date" autocomplete="off" class="form-control" required>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+{#                            <div class="form-item">#}
+{#                                <label class="" for="">Имя транзакции</label>#}
+{#                                <input type="text" class="form-control" id="name-trans">#}
+{#                            </div>#}
+{#                            <div class="form-item">#}
+{#                                <label class="" for="">Кто добавил</label>#}
+{#                                <input type="text" class="form-control" id="username">#}
+{#                            </div>#}
+{#                            <div class="form-item">#}
+{#                                <label class="" for="">Категория</label>#}
+{#                                <select name="category_id" id="category_id" class="form-control"><option disabled>Выберите тип</option></select>#}
+{#                            </div>#}
+{#                            <div class="form-item">#}
+{#                                <label class="" for="">Тип</label>#}
+{#                                <select name="type_id" id="type_id" class="form-control"></select>#}
+{#                            </div>#}
+{#                            <div class="form-item">#}
+{#                                <label class="" for="">Сумма</label>#}
+{#                                <input type="number" class="form-control" id="sum">#}
+{#                            </div>#}
+{#                            <div class="form-item">#}
+{#                                <label class="" for="">Дата</label>#}
+{#                                <input type="text" id="date" autocomplete="off" class="form-control">#}
+{#                            </div>#}
                         </div>
-                        <button class="floating-button" type="submit" id="form-submit">Отправить</button>
+{#                        <button class="floating-button" type="submit" id="form-submit">Отправить</button>#}
+                    <button class="floating-button">Отправить</button>
                     </form>
                 </div>
         </div>
@@ -56,11 +87,12 @@
               <input class="date-picker-range form-control" type="text" name="end" id="end">
             </div>
             <button id="submitFilter" class="floating-button">Применить</button>
-            <button class="add-new-transaction floating-button">Добавить</button>
+            <button class="floating-button" id="add-new-transaction">Добавить</button>
         </aside>
 {#    <input type="text" name="date" class="form-control datepicker-input" id="foo" autocomplete="off" required="">#}
     </div>
     <script type="module" src="{% static 'kursach/js/list_of_trans.js' %}"></script>
     <script src="https://kit.fontawesome.com/b726250d77.js" crossorigin="anonymous"></script>
     <script type="module" src="{% static 'kursach/js/add_transaction.js' %}"></script>
+    <script type="module" src="{% static 'kursach/js/forms_validations.js' %}"></script>
 {% endblock  %}

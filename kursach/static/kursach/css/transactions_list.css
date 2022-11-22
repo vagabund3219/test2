@@ -30,6 +30,7 @@ button.category{
     text-align: center;
     font-weight: 600;
     color: #524f4e;
+    /*background-color:rgba(255, 255, 255, 0.1);*/
 }
 
 button.category:hover{
@@ -92,6 +93,12 @@ div.card {
 
 .show {
     display: block;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
