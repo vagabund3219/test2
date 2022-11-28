@@ -6,7 +6,7 @@ import {dateString} from "./custom_format_for_date.js";
 
 window.addEventListener('load', (event) => {
     const doc = document;
-    const addNewTransBtn = doc.querySelector('#add-transaction-btn');
+    // const addNewTransBtn = doc.querySelector('#add-transaction-btn');
     const addNewTransBtnSide = doc.querySelector('#add-new-transaction');
     const rowCol = doc.querySelector('.row-col');
     const transactionAddForm = doc.querySelector('#add-transaction');
@@ -39,7 +39,7 @@ window.addEventListener('load', (event) => {
         cards.forEach(card => card.remove());
         // addNewTransBtn.classList.toggle('hidden');
         addNewTransBtnSide.disabled = true;
-        addNewTransBtn.disabled = true;
+        // addNewTransBtn.disabled = true;
         // transactionAddForm.classList.toggle('hidden');
 
         transactionAddForm.classList.remove('hidden');
@@ -52,7 +52,7 @@ window.addEventListener('load', (event) => {
 
     addNewTransBtnSide.addEventListener('click', newTransaction)
 
-    addNewTransBtn.addEventListener('click', newTransaction)
+    // addNewTransBtn.addEventListener('click', newTransaction)
 
     async function getTypes(){
         const types = await fetch(`${url}${TypeOfTransactionApiList}`)
@@ -97,9 +97,14 @@ window.addEventListener('load', (event) => {
             titleCheck ? titleCheck.innerHTML = '' : {}
             console.log(response.status);
             if (response.ok && response.status<300){
+                const form  = document.querySelectorAll('.transLabel');
+                form.forEach(label => {
+                    label.querySelector('input') ? label.querySelector('input').value = '' : {};
+                    label.querySelector('select') ? label.querySelector('select').value = 'd' : {};
+                })
                 const h2 = doc.createElement('h2');
                 h2.innerHTML = `<h2 class="alert alert-success">Успешно!</h2>`;
-                const formDiv = doc.querySelector('.form-div');
+                const formDiv = doc.querySelector('.form-container');
                 formDiv.insertBefore(h2, formDiv.firstChild);
                 return response.json()
             }else{

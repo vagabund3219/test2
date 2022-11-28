@@ -10,7 +10,7 @@ class TypeOfTransactionSerializer(serializers.ModelSerializer):
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categories
-        fields = ('name', 'id', 'type')
+        fields = ('name', 'id', 'type', 'user')
 
 class CheckSerializer(serializers.ModelSerializer):
     class Meta:

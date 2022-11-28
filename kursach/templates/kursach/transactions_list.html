@@ -8,9 +8,6 @@
 {% block content %}
     <div class="container">
         <input type="hidden" id="userId" value={{user_id}}>
-        {#  rofl  #}
-        <button id="rofl" class="floating-button hidden">Click</button>
-        <audio id="Sound" src="{% static  'smesnoi-negr-v-temnote-online-audio-convertercom_yi09xDYZ.mp3' %}" autoplay=false></audio>
         {# Вывод транзакций #}
         <div class="row-col">
 
@@ -27,45 +24,65 @@
                 <form novalidate method="POST" class="hidden" id="add-transaction">
                     {% csrf_token %}
                         <div class="form-container">
-                            <label for="name-trans">
+                            <label class="transLabel" for="name-trans" >
                                 <span>Имя транзакции</span>
                                 <input type="text" id="name-trans" class="form-control" autocomplete="off" required>
                                 <span class="error" aria-live="polite"></span>
                             </label>
-                            <label for="username">
+                            <label class="transLabel" for="username">
                                 <span>Кто добавил</span>
                                 <input type="text" id="username" class="form-control" required>
                                 <span class="error" aria-live="polite"></span>
                             </label>
-                            <label for="type_id">
+                            <label class="transLabel" for="type_id">
                                 <span>Тип</span>
                                 <select name="type_id" id="type_id" class="form-control" required></select>
                                 <span class="error" aria-live="polite"></span>
                             </label>
-                            <label for="category_id">
+                            <label class="transLabel" for="category_id">
                                 <span>Категория</span>
                                 <select name="category_id" id="category_id" class="form-control" required></select>
                                 <span class="error" aria-live="polite"></span>
                             </label>
-                            <label for="sum">
+                            <label class="transLabel" for="sum">
                                 <span>Сумма</span>
                                 <input type="number" class="form-control" id="sum" autocomplete="off" required>
                                 <span class="error" aria-live="polite"></span>
                             </label>
-                            <label for="date">
+                            <label class="transLabel" for="date">
                                 <span>Дата</span>
                                 <input type="text" id="date" autocomplete="off" class="form-control" required>
                                 <span class="error dateerr" aria-live="polite"></span>
                             </label>
+                             <button class="floating-button">Отправить</button>
                         </div>
-                    <button class="floating-button">Отправить</button>
+
                 </form>
         {#  Форма для добавления транзакции #}
+
+        {#  Форма для добавления категорий #}
+        <form novalidate method="POST" class="hidden" id="add-category-form">
+            {% csrf_token %}
+                <div class="category_form_container">
+                            <label class="category_label" for="name_category">
+                                <span>Имя категории</span>
+                                <input type="text" id="name_category" class="form-control" autocomplete="off" required>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+                            <label class="category_label" for="type_id_category">
+                                <span>Тип</span>
+                                <select name="type_id" id="type_id_category" class="form-control" required></select>
+                                <span class="error" aria-live="polite"></span>
+                            </label>
+                    <button class="floating-button">Отправить</button>
+                </div>
+        </form>
+        {#  Форма для добавления категорий #}
 
         {# Боковая панель в категории#}
         <aside class="hidden" id="aside-trans">
             <div class="upper">
-                <i class="fa fa-reply hidden" aria-hidden="true"></i>
+                <i class="fa fa-reply hidden"  id="returnButtonFromCategory" aria-hidden="true"></i>
                 <span id="category-name"></span>
             </div>
             <div id="foo">
@@ -77,10 +94,11 @@
             <button class="floating-button" id="add-new-transaction">Добавить</button>
         </aside>
         {# Боковая панель в категории #}
+
         {# Боковая панель в просмотре всех категорий #}
         <aside id="aside-categories">
             <i class="fa fa-reply" aria-hidden="true" id="aside-categories-return"></i>
-            <button class="floating-button" id="add-transaction-btn">Добавить</button>
+            <button class="floating-button" id="add-category-btn">Добавить</button>
         </aside>
         {# Боковая панель в просмотре всех категорий #}
 
@@ -91,4 +109,5 @@
     <script src="https://kit.fontawesome.com/b726250d77.js" crossorigin="anonymous"></script>
     <script type="module" src="{% static 'kursach/js/add_transaction.js' %}"></script>
     <script type="module" src="{% static 'kursach/js/forms_validations.js' %}"></script>
+    <script type="module" src="{% static 'kursach/js/add_category.js' %}"></script>
 {% endblock  %}

@@ -16,12 +16,12 @@ window.onload = (event) => {
   const rowCol = document.querySelector('.row-col');
   const row = document.querySelector('.row');
   const aside = document.querySelector('#aside-trans');
-  const returnButton = document.querySelector('.fa-reply');
+  const returnButton = document.querySelector('#returnButtonFromCategory');
   const submitFilterBtn = document.querySelector('#submitFilter');
   const rangePicker = document.querySelector('#foo');
   const categoryName = document.querySelector('#category-name');
   const container = document.querySelector('.container');
-  const addNewTransBtn = document.querySelector('#add-transaction-btn');
+  const addNewCategoryBtn = document.querySelector('#add-category-btn');
   const addNewTransBtnSide = document.querySelector('#add-new-transaction');
   const asideCategories = document.querySelector('#aside-categories');
   const asideCategoriesReturn = document.querySelector('#aside-categories-return');
@@ -84,24 +84,9 @@ window.onload = (event) => {
                 <span class="label">Дата</span>
                 <span class="value">${date.customFormat('#D# #MMM# #YYYY#')}</span>
             </li>`
-
-      // getTypeTrans(item.type).then(data=>{document.getElementById('typeCard').innerHTML += data})
-    // Object.entries(item).forEach(async ([key, value])=>{
-    //
-    //     // if (key == 'date'){
-    //     //   let date = new Date(Date.parse(value));
-    //     //   ul.innerHTML += `<li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>`;
-    //     // }else if (key == 'category'){
-    //     //   await getNameCategory(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`);
-    //     // } else if(key == 'type'){
-    //     //   await getTypeTrans(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`)
-    //     // }
-    //     // else{
-    //     //   ul.innerHTML += `<li class="list-group-item">${value}</li>`;
-    //     // }
-    // });
   }
 
+  //Отображение
   function displayCard(container, item){
     let div = document.createElement('div');
     div.classList.add('card', 'col-3');
@@ -112,6 +97,8 @@ window.onload = (event) => {
     container.append(div);
   }
 
+
+  //Получение чеков и транзакций
   async function getItems(category){
     const check = await fetch(`${url}${checkApiUrl}?category_id=${category}`);
     const trans = await fetch(`${url}${transApiUrl}?category_id=${category}`);
@@ -146,7 +133,10 @@ window.onload = (event) => {
         hideFields([asideCategories, aside]);
         button.classList.add('.category')
         container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
-        categoryName.textContent = `${document.querySelector('.articles__title').textContent}`;
+        // container.innerHTML += `<input type="text" id='currentCategoryId' value=${button.id} />`
+
+        // categoryName.textContent = `${document.querySelector('.articles__title').textContent}`;
+        categoryName.textContent = `${button.children[0].children[0].textContent}`;
         // rowCol.innerHTML = '';
         row.innerHTML = '';
         getItems(+button.id)
@@ -165,24 +155,24 @@ window.onload = (event) => {
   }
 
   asideCategoriesReturn.addEventListener('click', ()=>{
-      const forItemsContainer = document.querySelector('.for-items');
-      // form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
-      // forItemsContainer.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
-      const buttons = document.querySelectorAll('.category');
-      buttons.forEach(button => button.classList.remove('hidden'))
-      form.classList.remove('add-transaction-form');
-      form.classList.add('hidden');
-      forItemsContainer.classList.remove('hidden');
-      addNewTransBtnSide.disabled = false;
-      addNewTransBtn.disabled = false;
-      submitFilterBtn.disabled = false;
+      // const forItemsContainer = document.querySelector('.for-items');
+      // // form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
+      // // forItemsContainer.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
+      // const buttons = document.querySelectorAll('.category');
+      // buttons.forEach(button => button.classList.remove('hidden'))
+      // form.classList.remove('add-transaction-form');
+      // form.classList.add('hidden');
+      // forItemsContainer.classList.remove('hidden');
+      // addNewTransBtnSide.disabled = false;
+      // // addNewTransBtn.disabled = false;
+      // submitFilterBtn.disabled = false;
 
-
-
-      const categorie = document.querySelectorAll('.articles__article');
-      categorie.forEach(button => button.classList.remove('hidden'))
+      //
+      //
+      // const categorie = document.querySelectorAll('.articles__article');
+      // categorie.forEach(button => button.classList.remove('hidden'))
   })
-
+  //returnButtonFromCategory
   function returnBtn (func){
       returnButton.addEventListener('click', ()=>{
           const forItemsContainer = document.querySelector('.for-items');
@@ -193,9 +183,10 @@ window.onload = (event) => {
           form.classList.remove('add-transaction-form');
           form.classList.add('hidden');
           addNewTransBtnSide.disabled = false;
-          addNewTransBtn.disabled = false;
+          // addNewTransBtn.disabled = false;
           submitFilterBtn.disabled = false;
           document.getElementById('currentCategoryId').remove();
+          // document.getElementById('currentCategoryId').innerHTML = 'dzdvdxvvdx';
           hideFields([asideCategories, aside])
 
 
@@ -234,14 +225,5 @@ window.onload = (event) => {
         })
   })
 
-    const rofl = document.querySelector('#rofl');
-  rofl.addEventListener('click', ()=>{
-      const buttons = document.querySelectorAll('.category');
-      buttons.forEach(button=>button.addEventListener('mouseenter', ()=>{
-            button.classList.toggle('rofl');
-            let sound = document.getElementById("Sound");
-            sound.play();
-        }))
-  })
 }
 
