@@ -21,7 +21,8 @@ window.onload = (event) => {
   const rangePicker = document.querySelector('#foo');
   const categoryName = document.querySelector('#category-name');
   const container = document.querySelector('.container');
-  const addTransactionBtn = document.querySelector('#add-transaction-btn');
+  const addNewTransBtn = document.querySelector('#add-transaction-btn');
+  const addNewTransBtnSide = document.querySelector('#add-new-transaction');
   const asideCategories = document.querySelector('#aside-categories');
   const asideCategoriesReturn = document.querySelector('#aside-categories-return');
   const form = document.querySelector('#add-transaction');
@@ -57,21 +58,48 @@ window.onload = (event) => {
             }
         })
   }
+  async function createCard(item, ul){
+      let type;
+      let date = new Date(Date.parse(item.date));
+      await getTypeTrans(item.type).then(data=>type=data)
+      ul.innerHTML =
+`            <li class="list-group-item card-row">
+                <span class="label">Имя транзакции</span>
+                <span class="value">${item.name.slice(0, 13)}</span>
+            </li>
+            <li class="list-group-item card-row">
+                <span class="label">Кто добавил</span>
+                <span class="value">${item.username}</span>
+            </li>
+            <li class="list-group-item card-row">
+                <span class="label">Тип</span>
+                <span class="value">${type}</span>
+            </li>
+<!--            // <li class="list-group-item"><span class="label">Количество</span></li> -->
+            <li class="list-group-item card-row">
+                <span class="label">Сумма</span>
+                <span class="value">${item.price}</span>
+            </li>
+            <li class="list-group-item card-row">
+                <span class="label">Дата</span>
+                <span class="value">${date.customFormat('#D# #MMM# #YYYY#')}</span>
+            </li>`
 
-  function createCard(item, ul){
-    Object.entries(item).forEach(async ([key, value])=>{
-        if (key == 'date'){
-          let date = new Date(Date.parse(value));
-          ul.innerHTML += `<li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>`;
-        }else if (key == 'category'){
-          await getNameCategory(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`);
-        } else if(key == 'type'){
-          await getTypeTrans(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`)
-        }
-        else{
-          ul.innerHTML += `<li class="list-group-item">${value}</li>`;
-        }
-    });
+      // getTypeTrans(item.type).then(data=>{document.getElementById('typeCard').innerHTML += data})
+    // Object.entries(item).forEach(async ([key, value])=>{
+    //
+    //     // if (key == 'date'){
+    //     //   let date = new Date(Date.parse(value));
+    //     //   ul.innerHTML += `<li class="list-group-item">${date.customFormat( "#DD#.#MM#.#YYYY#" )}</li>`;
+    //     // }else if (key == 'category'){
+    //     //   await getNameCategory(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`);
+    //     // } else if(key == 'type'){
+    //     //   await getTypeTrans(value).then(data=>ul.innerHTML += `<li class="list-group-item">${data}</li>`)
+    //     // }
+    //     // else{
+    //     //   ul.innerHTML += `<li class="list-group-item">${value}</li>`;
+    //     // }
+    // });
   }
 
   function displayCard(container, item){
@@ -94,15 +122,31 @@ window.onload = (event) => {
   }
 
   async function categoryDisplay(func) {
+      const ol  = document.createElement('ol');
+      ol.classList.add('articles')
     let response = await func;
     await response.forEach(category=>{
-      row.innerHTML += `<button class="category" id=${category['id']}>${category['name']}</button>`
+      // row.innerHTML += `<button class="category" id=${category['id']}>${category['name']}</button>`
+               ol.innerHTML += `<li class='articles__article' style="--animation-order: 1;">
+                            <a href="#" class="articles__link" id=${category['id']} >
+                                <div class="articles__content articles__content--lhs">
+                                    <h2 class="articles__title">${category.name}</h2>
+                                </div>
+                                <div class="articles__content articles__content--rhs" aria-hidden="true">
+                                    <h2 class="articles__title">${category.name}</h2>
+                                </div>
+                            </a>
+                        </li>
+`
+        row.append(ol);
     })
-    const buttons = document.querySelectorAll('.category');
+    // const buttons = document.querySelectorAll('.category');
+    const buttons = document.querySelectorAll('.articles__link');
     buttons.forEach(button => button.addEventListener('click', ()=>{
         hideFields([asideCategories, aside]);
+        button.classList.add('.category')
         container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
-        categoryName.textContent = `${button.textContent}`;
+        categoryName.textContent = `${document.querySelector('.articles__title').textContent}`;
         // rowCol.innerHTML = '';
         row.innerHTML = '';
         getItems(+button.id)
@@ -121,19 +165,41 @@ window.onload = (event) => {
   }
 
   asideCategoriesReturn.addEventListener('click', ()=>{
-      form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
+      const forItemsContainer = document.querySelector('.for-items');
+      // form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
+      // forItemsContainer.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
       const buttons = document.querySelectorAll('.category');
       buttons.forEach(button => button.classList.remove('hidden'))
+      form.classList.remove('add-transaction-form');
+      form.classList.add('hidden');
+      forItemsContainer.classList.remove('hidden');
+      addNewTransBtnSide.disabled = false;
+      addNewTransBtn.disabled = false;
+      submitFilterBtn.disabled = false;
+
+
+
+      const categorie = document.querySelectorAll('.articles__article');
+      categorie.forEach(button => button.classList.remove('hidden'))
   })
 
   function returnBtn (func){
       returnButton.addEventListener('click', ()=>{
-          // form.classList.contains('hidden') ? {} : form.classList.remove('add-transaction-form')
+          const forItemsContainer = document.querySelector('.for-items');
+          const ul = document.querySelector('.list-group-flush');
+
+
+          forItemsContainer.classList.remove('hidden');
+          form.classList.remove('add-transaction-form');
+          form.classList.add('hidden');
+          addNewTransBtnSide.disabled = false;
+          addNewTransBtn.disabled = false;
           submitFilterBtn.disabled = false;
-          form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
           document.getElementById('currentCategoryId').remove();
           hideFields([asideCategories, aside])
-          const ul = document.querySelector('.list-group-flush');
+
+
+
           ul ? ul.innerHTML = '' : {}
           rowCol.innerHTML = '';
           row.innerHTML = '';

@@ -33,7 +33,7 @@ class CategoriesAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 class CheckDataAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'count', 'price', 'category', 'date', 'user', 'username')
+    list_display = ('id', 'name', 'count', 'price', 'category', 'date', 'user', 'username', 'type')
     list_filter = ('category', 'user', 'username')
     list_editable = ('category', 'name',)
     list_per_page = 30

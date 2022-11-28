@@ -15,7 +15,7 @@ class CategoriesSerializer(serializers.ModelSerializer):
 class CheckSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckData
-        fields = ('name', 'count', 'price', 'category', 'date', 'username')
+        fields = ('name', 'count', 'price', 'category', 'date', 'username', 'type')
 
 class TransactionsSerializer(serializers.ModelSerializer):
     class Meta:

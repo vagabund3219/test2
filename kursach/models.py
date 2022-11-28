@@ -34,6 +34,7 @@ class CheckData(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    type = models.ForeignKey(TypeOfTranscation, on_delete=models.PROTECT, verbose_name='Тип')
     username = models.CharField(max_length=60, verbose_name='Кто добавил')
 
     def __str__(self):

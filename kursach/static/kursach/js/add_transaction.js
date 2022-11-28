@@ -25,20 +25,25 @@ window.addEventListener('load', (event) => {
     });
 
     function newTransaction(){
-        const categoryButtons = doc.querySelectorAll('.category');
+        // const categoryButtons = doc.querySelectorAll('.category');
+        const categoryButtons = doc.querySelectorAll('.articles__article');
         const cards = doc.querySelectorAll('.card');
         const forItemsContainer = doc.querySelector('.for-items');
         const filterButton = doc.querySelector('#submitFilter');
+
         filterButton.disabled = true;
-        forItemsContainer.classList.toggle('hidden')
-        categoryButtons.forEach(btn => btn.classList.toggle('hidden'));
+        // forItemsContainer.classList.toggle('hidden')
+        forItemsContainer.classList.add('hidden');
+        // categoryButtons.forEach(btn => btn.classList.toggle('hidden'));
+        categoryButtons.forEach(btn => btn.classList.add('hidden'));
         cards.forEach(card => card.remove());
         // addNewTransBtn.classList.toggle('hidden');
+        addNewTransBtnSide.disabled = true;
+        addNewTransBtn.disabled = true;
+        // transactionAddForm.classList.toggle('hidden');
 
-        transactionAddForm.classList.toggle('hidden');
-
-        // transactionAddForm.classList.remove('hidden');
-        // transactionAddForm.classList.add('add-transaction-form');
+        transactionAddForm.classList.remove('hidden');
+        transactionAddForm.classList.add('add-transaction-form');
 
         // rowCol.classList.toggle('hidden');
         // row.classList.toggle('hidden');
@@ -54,8 +59,7 @@ window.addEventListener('load', (event) => {
                             .then(response => response.json())
         const categories = await fetch(`${url}${CategoriesApiList}`)
             .then(response => response.json())
-
-        // typeSelect.innerHTML = '<option value="d">Выберите тип</option>';
+        typeSelect.innerHTML = '<option value="d">Выберите тип</option>';
         typeSelect.innerHTML += types.map(item => `<option value="${item.id}">${item.type_name}</option>`).join('');
         typeSelect.addEventListener('change', ()=>{
             const filtered = categories.filter(item=>item.type===+typeSelect.value);
@@ -103,7 +107,7 @@ window.addEventListener('load', (event) => {
             }
         })
     }
-    validatindTransForm();
+    validatindTransForm(sendRequest);
 
 
 })

@@ -1,10 +1,10 @@
+import {dateString} from "./custom_format_for_date.js";
 
-
-    const url = 'http://127.0.0.1:8000/api/v1/';
+const url = 'http://127.0.0.1:8000/api/v1/';
     const transApiUrl = 'TransactionsApiList';
     const doc = document;
 
-    export function validatindTransForm(){
+    export function validatindTransForm(sendRequest){
         const form  = doc.getElementsByTagName('form')[0];
         const name = doc.querySelector('#name-trans');
         const nameError = doc.querySelector('#name-trans + span.error');
@@ -40,6 +40,8 @@
           })
             if (name.validity.valid && username.validity.valid && type.validity.valid && category.validity.valid && sum.validity.valid && date.validity.valid){
                 event.preventDefault()
+                console.log(doc.querySelector('#date'))
+                console.log(dateString(doc.querySelector('#date').value))
                 const form = {
                     'name':doc.querySelector('#name-trans').value,
                     'username': doc.querySelector('#username').value,
@@ -49,6 +51,7 @@
                     'date': dateString(doc.querySelector('#date').value),
                     'user': +doc.querySelector('#userId').value
                 }
+
                 sendRequest('POST', `${url}${transApiUrl}`, form);
             }
         });

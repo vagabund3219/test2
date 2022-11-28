@@ -8,9 +8,9 @@
 {% block content %}
     <div class="container">
         <input type="hidden" id="userId" value={{user_id}}>
+        {#  rofl  #}
         <button id="rofl" class="floating-button hidden">Click</button>
-
-        <audio id="Sound" src="{% static  'smesnoi-negr-v-temnote-online-audio-convertercom_yi09xDYZ.mp3' %}" autoplay=true></audio>
+        <audio id="Sound" src="{% static  'smesnoi-negr-v-temnote-online-audio-convertercom_yi09xDYZ.mp3' %}" autoplay=false></audio>
         {# Вывод транзакций #}
         <div class="row-col">
 
@@ -24,7 +24,7 @@
         </div>
 
         {#  Форма для добавления транзакции #}
-                <form novalidate method="POST" class="hidden а" id="add-transaction">
+                <form novalidate method="POST" class="hidden" id="add-transaction">
                     {% csrf_token %}
                         <div class="form-container">
                             <label for="name-trans">
@@ -59,7 +59,7 @@
                             </label>
                         </div>
                     <button class="floating-button">Отправить</button>
-                    </form>
+                </form>
         {#  Форма для добавления транзакции #}
 
         {# Боковая панель в категории#}
