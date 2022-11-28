@@ -1,6 +1,7 @@
 import Datepicker from './vanillajs-datepicker/js/Datepicker.js'
 import ru from './vanillajs-datepicker/js/i18n/locales/ru.js';
 import {validatindTransForm} from './forms_validations.js';
+import {dangerAlert, successAlert} from "./alerts.js";
 import {dateString} from "./custom_format_for_date.js";
 // import {checkRequired} from "./forms_validations.js";
 
@@ -93,22 +94,16 @@ window.addEventListener('load', (event) => {
             'headers': headers,
             'body':JSON.stringify(body)
         }).then(response => {
-            const titleCheck = doc.querySelector('h2');
-            titleCheck ? titleCheck.innerHTML = '' : {}
-            console.log(response.status);
             if (response.ok && response.status<300){
                 const form  = document.querySelectorAll('.transLabel');
                 form.forEach(label => {
                     label.querySelector('input') ? label.querySelector('input').value = '' : {};
                     label.querySelector('select') ? label.querySelector('select').value = 'd' : {};
                 })
-                const h2 = doc.createElement('h2');
-                h2.innerHTML = `<h2 class="alert alert-success">Успешно!</h2>`;
-                const formDiv = doc.querySelector('.form-container');
-                formDiv.insertBefore(h2, formDiv.firstChild);
+                successAlert('Успешно');
                 return response.json()
             }else{
-                console.log('error send')
+                dangerAlert('Ошибка');
             }
         })
     }

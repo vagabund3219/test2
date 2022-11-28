@@ -1,4 +1,5 @@
 import {validatingCategoriesForm} from "./forms_validations.js";
+import {dangerAlert, successAlert} from "./alerts.js";
 
 window.addEventListener('load', (event) => {
     const addNewCategoryBtn = document.querySelector('#add-category-btn');
@@ -68,29 +69,16 @@ window.addEventListener('load', (event) => {
 
             const titleCheck = document.querySelector('.errororsuccess');
             titleCheck ? titleCheck.innerHTML = '' : {}
-
             if (response.ok && response.status<300){
                 const form  = document.querySelectorAll('.category_label');
                 form.forEach(label => {
                     label.querySelector('input') ? label.querySelector('input').value = '' : {};
                     label.querySelector('select') ? label.querySelector('select').value = 'd' : {};
                 })
-                const h2 = document.createElement('h2');
-                h2.classList.add('errororsuccess')
-                h2.innerHTML = `<h2 class="alert alert-success">Успешно!</h2>`;
-                const formDiv = document.querySelector('.category_form_container');
-                formDiv.insertBefore(h2, formDiv.firstChild);
+                successAlert('Успешно');
                 return response.json()
-
             }else{
-                console.log('error send')
-                const h2 = document.createElement('h2');
-                h2.classList.add('errororsuccess')
-                h2.innerHTML = `<h2 class="alert alert-danger">Ошибка!</h2>`;
-                const formDiv = document.querySelector('.category_form_container');
-                formDiv.insertBefore(h2, formDiv.firstChild);
-
-
+                dangerAlert('Ошибка');
             }
         })
     }
