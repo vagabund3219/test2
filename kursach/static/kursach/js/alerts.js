@@ -1,33 +1,29 @@
 
+    const body = document.body;
+    function closeAlert(div){
+        div.classList.add('hide');
+        setTimeout(()=>{
+            div.remove()
+        }, 640)
+    }
 
-    export function dangerAlert(text){
-            const body = document.body;
+    function alertExp(text, classname){
             const div = document.createElement('div');
-            div.classList.add('alert', 'danger-alert')
+            div.classList.add('alert', classname)
             div.innerHTML = `<h3>${text}</h3>
                               <a class="close">&times;</a>`
-            div.querySelector('a').addEventListener('click', ()=>{
-                div.classList.add('hide');
-                setTimeout(()=>{
-                    div.remove()
-                }, 640)
-            })
+            div.querySelector('a').addEventListener('click', ()=>closeAlert(div))
+            setTimeout(()=>closeAlert(div), 3500)
             body.append(div);
     }
 
+    export function dangerAlert(text){
+        alertExp(text, 'danger-alert')
+    }
 
     export function successAlert(text){
-            const body = document.body;
-            const div = document.createElement('div');
-            div.classList.add('alert', 'success-alert')
-            div.innerHTML = `<h3>${text}</h3>
-                             <a class="close">&times;</a>`
-            div.querySelector('a').addEventListener('click', ()=>{
-                div.classList.add('hide');
-                setTimeout(()=>{
-                    div.remove()
-                }, 640)
-            })
-            body.append(div);
+        alertExp(text, 'success-alert')
     }
+
+
 

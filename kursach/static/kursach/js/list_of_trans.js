@@ -5,13 +5,14 @@ import './custom_format_for_date.js';
 import {filterDate, byField} from './custom_format_for_date.js';
 Object.assign(DatePicker.locales, ru)
 
+//Для запросов
+export const url = 'http://127.0.0.1:8000/api/v1/';
+export const checkApiUrl = 'CheckApiList';
+export const transApiUrl = 'TransactionsApiList';
+export const CategoriesApiList = 'CategoriesApiList';
+export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+
 window.onload = (event) => {
-    //Для запросов
-  const url = 'http://127.0.0.1:8000/api/v1/';
-  const checkApiUrl = 'CheckApiList';
-  const transApiUrl = 'TransactionsApiList';
-  const CategoriesApiList = 'CategoriesApiList';
-  const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
    // Для элементов со страницы
   const rowCol = document.querySelector('.row-col');
   const row = document.querySelector('.row');
@@ -127,17 +128,13 @@ window.onload = (event) => {
 `
         row.append(ol);
     })
-    // const buttons = document.querySelectorAll('.category');
+
     const buttons = document.querySelectorAll('.articles__link');
     buttons.forEach(button => button.addEventListener('click', ()=>{
         hideFields([asideCategories, aside]);
         button.classList.add('.category')
         container.innerHTML += `<input type="hidden" id='currentCategoryId' value=${button.id} />`
-        // container.innerHTML += `<input type="text" id='currentCategoryId' value=${button.id} />`
-
-        // categoryName.textContent = `${document.querySelector('.articles__title').textContent}`;
         categoryName.textContent = `${button.children[0].children[0].textContent}`;
-        // rowCol.innerHTML = '';
         row.innerHTML = '';
         getItems(+button.id)
           .then(data =>{
@@ -154,43 +151,19 @@ window.onload = (event) => {
     }))
   }
 
-  asideCategoriesReturn.addEventListener('click', ()=>{
-      // const forItemsContainer = document.querySelector('.for-items');
-      // // form.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
-      // // forItemsContainer.classList.contains('hidden') ? {} : form.classList.toggle('hidden')
-      // const buttons = document.querySelectorAll('.category');
-      // buttons.forEach(button => button.classList.remove('hidden'))
-      // form.classList.remove('add-transaction-form');
-      // form.classList.add('hidden');
-      // forItemsContainer.classList.remove('hidden');
-      // addNewTransBtnSide.disabled = false;
-      // // addNewTransBtn.disabled = false;
-      // submitFilterBtn.disabled = false;
-
-      //
-      //
-      // const categorie = document.querySelectorAll('.articles__article');
-      // categorie.forEach(button => button.classList.remove('hidden'))
-  })
   //returnButtonFromCategory
   function returnBtn (func){
       returnButton.addEventListener('click', ()=>{
           const forItemsContainer = document.querySelector('.for-items');
           const ul = document.querySelector('.list-group-flush');
 
-
           forItemsContainer.classList.remove('hidden');
           form.classList.remove('add-transaction-form');
           form.classList.add('hidden');
           addNewTransBtnSide.disabled = false;
-          // addNewTransBtn.disabled = false;
           submitFilterBtn.disabled = false;
           document.getElementById('currentCategoryId').remove();
-          // document.getElementById('currentCategoryId').innerHTML = 'dzdvdxvvdx';
           hideFields([asideCategories, aside])
-
-
-
           ul ? ul.innerHTML = '' : {}
           rowCol.innerHTML = '';
           row.innerHTML = '';
