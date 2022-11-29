@@ -288,6 +288,17 @@ li.list-group-item.card-row{
   transition: opacity .5s ease-in,transform .3s ease-in-out .25s;
 }
 
+.add-new-check-form{
+    display: inline-block;
+}
+
+.check-form-container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .hidden {
     display: none;
 }

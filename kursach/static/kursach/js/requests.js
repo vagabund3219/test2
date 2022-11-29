@@ -1,6 +1,7 @@
 import {dangerAlert, successAlert} from "./alerts.js";
+import {url} from "./list_of_trans.js";
 
-export function sendRequest(method, url, body = null, successFunc){
+export function sendRequest(method, url, body = null, labelClass){
         const csrftoken = getCookie('csrftoken');
         const headers = {
             "X-CSRFToken": csrftoken,
@@ -12,12 +13,20 @@ export function sendRequest(method, url, body = null, successFunc){
             'body':JSON.stringify(body)
         }).then(response => {
             if (response.ok && response.status<300){
-                successFunc();
+                propForRequest(labelClass);
                 successAlert('Успешно');
                 return response.json()
             }else{
                 dangerAlert('Ошибка');
             }
+        })
+    }
+
+    function propForRequest(labelClass){
+        const form = document.querySelectorAll(labelClass);
+        form.forEach(label => {
+            label.querySelector('input') ? label.querySelector('input').value = '' : {};
+            label.querySelector('select') ? label.querySelector('select').value = 'd' : {};
         })
     }
 
@@ -35,3 +44,12 @@ export function sendRequest(method, url, body = null, successFunc){
         }
         return cookieValue;
     }
+
+    export async function fetchReq(path, errorText) {
+        let req = await fetch(`${url}${path}`);
+        if (req.ok == true && req.status < 300){
+          return req.json();
+        } else{
+          console.log(`Что-то не так с ${errorText}`);
+        }
+  }

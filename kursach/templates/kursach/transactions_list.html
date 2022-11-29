@@ -81,20 +81,28 @@
 
 
         {#  Форма для добавления чеков #}
-{##}
-{#        <form method="post" id="add-new-check-form" enctype="multipart/form-data">#}
-{#            <div class="check-form-container">#}
-{#                <label class="check_label" for="checkImage">#}
-{#                    <span>Чек</span>#}
-{#                    <input type="file" id="check_image"  class="form-control" required>#}
-{#                </label>#}
-{#                <label class="check_label" for="type_id_category">#}
-{#                    <span>Тип</span>#}
-{#                    <select name="type_id" id="type_id_category" class="form-control" required></select>#}
-{#                    <span class="error" aria-live="polite"></span>#}
-{#                </label>#}
-{#            </div>#}
-{#        </form>#}
+
+        <form novalidate method="POST" class="add-new-check-form hidden" id="add-new-check-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="check-form-container">
+                <label class="check_label" for="checkImage">
+                    <span>Чек</span>
+                    <input type="file" id="check_image"  class="form-control" required>
+                    <span class="error" aria-live="polite"></span>
+                </label>
+                <label class="check_label" for="check_username">
+                    <span>Кто добавил</span>
+                    <input type="text" id="check_username" class="form-control" autocomplete="off" required>
+                    <span class="error" aria-live="polite"></span>
+                </label>
+                <label class="check_label" for="check_category_id">
+                    <span>Тип</span>
+                    <select name="category_id" id="check_category_id" class="form-control" required></select>
+                    <span class="error" aria-live="polite"></span>
+                </label>
+                <button class="floating-button">Отправить</button>
+            </div>
+        </form>
 
         {#  Форма для добавления чеков #}
 
@@ -134,4 +142,5 @@
     <script type="module" src="{% static 'kursach/js/forms_validations.js' %}"></script>
     <script type="module" src="{% static 'kursach/js/add_category.js' %}"></script>
     <script type="module" src="{% static 'kursach/js/alerts.js' %}"></script>
+    <script type="module" src="{% static 'kursach/js/add_check.js' %}"></script>
 {% endblock  %}

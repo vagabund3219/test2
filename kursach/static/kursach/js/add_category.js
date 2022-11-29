@@ -37,16 +37,8 @@ window.addEventListener('load', (event) => {
 
     categoryForm.addEventListener('submit', ()=>{
        event.preventDefault()
-        validatingCategoriesForm() ? sendRequest('POST', `${url}${CategoriesApiList}`, validatingCategoriesForm(), propForRequest) : console.log('.....')
+        validatingCategoriesForm() ? sendRequest('POST', `${url}${CategoriesApiList}`, validatingCategoriesForm(), '.category_label') : console.log('.....')
     })
-
-    function propForRequest(){
-        const form  = document.querySelectorAll('.category_label');
-        form.forEach(label => {
-            label.querySelector('input') ? label.querySelector('input').value = '' : {};
-            label.querySelector('select') ? label.querySelector('select').value = 'd' : {};
-        })
-    }
 
 })
 

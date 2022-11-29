@@ -3,6 +3,8 @@ import DatePicker from "./vanillajs-datepicker/js/Datepicker.js";
 import ru from './vanillajs-datepicker/js/i18n/locales/ru.js';
 import './custom_format_for_date.js';
 import {filterDate, byField} from './custom_format_for_date.js';
+import {fetchReq} from "./requests.js";
+
 Object.assign(DatePicker.locales, ru)
 
 //Для запросов
@@ -11,6 +13,8 @@ export const checkApiUrl = 'CheckApiList';
 export const transApiUrl = 'TransactionsApiList';
 export const CategoriesApiList = 'CategoriesApiList';
 export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+
+
 
 window.onload = (event) => {
    // Для элементов со страницы
@@ -157,6 +161,8 @@ window.onload = (event) => {
           const forItemsContainer = document.querySelector('.for-items');
           const ul = document.querySelector('.list-group-flush');
 
+          document.querySelector('#add-new-check-form').classList.add('hidden');
+
           forItemsContainer.classList.remove('hidden');
           form.classList.remove('add-transaction-form');
           form.classList.add('hidden');
@@ -171,14 +177,14 @@ window.onload = (event) => {
       }, {'once':true})
   }
 
-  async function fetchReq(path, errorText) {
-    let req = await fetch(`${url}${path}`);
-    if (req.ok == true && req.status < 300){
-      return req.json();
-    } else{
-      console.log(`Что-то не так с ${errorText}`);
-    }
-  }
+  // async function fetchReq(path, errorText) {
+  //   let req = await fetch(`${url}${path}`);
+  //   if (req.ok == true && req.status < 300){
+  //     return req.json();
+  //   } else{
+  //     console.log(`Что-то не так с ${errorText}`);
+  //   }
+  // }
 
   categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
 

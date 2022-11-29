@@ -50,18 +50,9 @@ window.addEventListener('load', (event) => {
         })
     }
 
-    function propForRequest(){
-        const form  = document.querySelectorAll('.transLabel');
-        form.forEach(label => {
-            label.querySelector('input') ? label.querySelector('input').value = '' : {};
-            label.querySelector('select') ? label.querySelector('select').value = 'd' : {};
-        })
-    }
-
     transactionAddForm.addEventListener('submit', async (event)=>{
         event.preventDefault()
-        console.log(validatindTransForm())
-        validatindTransForm() ? sendRequest('POST', `${url}${transApiUrl}`, validatindTransForm(), propForRequest) : console.log('.....')
+        validatindTransForm() ? sendRequest('POST', `${url}${transApiUrl}`, validatindTransForm(), '.transLabel') : console.log('.....')
     })
 
 })

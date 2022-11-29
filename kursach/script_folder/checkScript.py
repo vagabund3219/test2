@@ -5,6 +5,7 @@ def send_check(file):
     data = {'token': '17072.ReLJYknAYHiPk5ohg'}
     files = {'qrfile': file}
     response = requests.post(url, data=data, files=files)#send request to API
+    print(response.request.body)
     parsed_data = response.json()
     list_of_items = []
     if (response.status_code == 200):

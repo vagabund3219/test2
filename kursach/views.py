@@ -63,12 +63,12 @@ def send_check_view(request):
     template = 'kursach/index.html'
     if request.method == 'POST' and request.FILES:
         form = AddCheckForm(request.POST, request.FILES)
-        print(form.fields)
+        # print(form.fields)
         file = request.FILES['checkImg'].read()
-        # response_data = send_check(file)
-        response_data = [{'item': 'Календарь-домик (Гифтман):5/60', 'price': 39.0, 'count': 1},
-                         {'item': 'Фонарь аккум зар от сети TD-R15LED(СИ):12/72', 'price': 10.0, 'count': 1}]
-        print(form.data)
+        response_data = send_check(file)
+        # response_data = [{'item': 'Календарь-домик (Гифтман):5/60', 'price': 39.0, 'count': 1},
+        #                  {'item': 'Фонарь аккум зар от сети TD-R15LED(СИ):12/72', 'price': 10.0, 'count': 1}]
+        # print(form.data)
         if response_data != None and form.is_valid():
             # and form.is_valid()
             for item in response_data:

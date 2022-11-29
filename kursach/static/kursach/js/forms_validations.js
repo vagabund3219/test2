@@ -1,5 +1,5 @@
 import {dateString} from "./custom_format_for_date.js";
-import {url, transApiUrl, CategoriesApiList} from './list_of_trans.js'
+
 
     const doc = document;
 
@@ -93,6 +93,48 @@ export function validatingCategoriesForm(){
                     'type':+doc.querySelector('#type_id_category').value,
                     'user': +doc.querySelector('#userId').value
                 }
+                return form
+            }
+}
+
+export function validatingCheckForm(){
+        const form  = doc.querySelector('#add-new-check-form');
+        const name = doc.querySelector('#check_image');
+        const nameError = doc.querySelector('#check_image + span.error');
+        const category = doc.querySelector('#check_category_id');
+        const categoryError = doc.querySelector('#check_category_id + span.error');
+
+        const formInputs = [[name, nameError], [category, categoryError]];
+        formInputs.forEach(item=>item[0].addEventListener('input', function (event) {
+          if (item[0].validity.valid) {
+              item[0].classList.add('valid');
+            item[1].textContent = '';
+            item[1].className = 'error';
+          } else {
+              item[0].classList.remove('valid');
+              showError(item[0], item[1]);
+          }
+        }))
+
+          formInputs.forEach(item=>{
+            if (!item[0].validity.valid){
+              showError(item[0], item[1]);
+              event.preventDefault();
+            }
+          })
+
+            if (name.validity.valid && category.validity.valid){
+                event.preventDefault()
+                const form = {
+                        "name": "Фонарь аккум зар от сети TD-R15LED(СИ):12/72",
+                        "count": 1.0,
+                        "price": 10.0,
+                        "category": +doc.querySelector('#check_category_id').value,
+                        "date": "2022-11-26",
+                        "username": doc.querySelector('#check_username').value,
+                        "type": 1,
+                        "user": +doc.querySelector('#userId').value
+                    }
                 return form
             }
 
