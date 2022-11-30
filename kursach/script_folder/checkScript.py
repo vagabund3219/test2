@@ -1,12 +1,27 @@
+import json
 import requests
+
+import requests
+from requests_toolbelt.utils import dump
+
 
 def send_check(file):
     url = 'https://proverkacheka.com/api/v1/check/get'
     data = {'token': '17072.ReLJYknAYHiPk5ohg'}
-    files = {'qrfile': file}
+    # files = {'qrfile': file}
+    files = {'qrfile': 'filecontent'}
     response = requests.post(url, data=data, files=files)#send request to API
-    print(response.request.body)
+    # response = requests.post('url', data=data, files=files)#send request to API
+    print('headers',response.request.headers)
+    print('body',response.request.body)
+
+    da = dump.dump_response(response)
+    print('111111111111111', da.decode('utf-8'))
+
+    print('ssssssssssssssssssss111111111111111111', response.request.headers)
     parsed_data = response.json()
+    print(parsed_data)
+
     list_of_items = []
     if (response.status_code == 200):
         try:

@@ -8,6 +8,15 @@
 {% block content %}
     <div class="container">
         <input type="hidden" id="userId" value={{user_id}}>
+
+        {# Вывод диаграмм #}
+
+        <div class="diagram_container hidden" id="chart_div">
+
+        </div>
+
+        {# Вывод диаграмм #}
+
         {# Вывод транзакций #}
         <div class="row-col">
 
@@ -143,4 +152,7 @@
     <script type="module" src="{% static 'kursach/js/add_category.js' %}"></script>
     <script type="module" src="{% static 'kursach/js/alerts.js' %}"></script>
     <script type="module" src="{% static 'kursach/js/add_check.js' %}"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module" src="{% static 'kursach/js/diagram.js' %}"></script>
 {% endblock  %}

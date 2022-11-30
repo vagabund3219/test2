@@ -1,5 +1,6 @@
 import {url, TypeOfTransactionApiList, transApiUrl, CategoriesApiList} from './list_of_trans.js';
 import {sendRequest} from "./requests.js";
+
 import {fetchReq} from "./requests.js";
 import {validatingCheckForm} from "./forms_validations.js";
 
@@ -44,26 +45,27 @@ window.addEventListener('load', () => {
     async function sendCheck(){
         const url = 'https://proverkacheka.com/api/v1/check/get';
         const data = {token: '17072.ReLJYknAYHiPk5ohg'};
+        // const data={ 'fn': '9280440300770583', //ФН
+        //         'fd' : '33110', //ФД
+        //         'fp': '4138469556', //ФП
+        //         't' : '20210217T2028', //время с чека
+        //         'n' : '1', //вид кассового чека
+        //         's' : '419.54', //сумма чека
+        //         'qr' : '0', //признак сканирования QR-кода
+        //         'token':'17072.ReLJYknAYHiPk5ohg' //здесь прописываем токен доступа
+        //         }
+        console.log(JSON.stringify(data))
+        const head =  "{'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '264', 'Content-Type': 'multipart/form-data; boundary=cb555f65716bf690f5b5c96c5572584e'}"
+        const response = await fetch(url, {
+            method: 'post',
+            // headers: {
+            //
+            //     'token': '17072.ReLJYknAYHiPk5ohg' ,
+            // },
+            body: data
+        })
 
-
-        // let reader = new FileReader();
-        // console.log(reader.readAsDataURL(doc.getElementById('check_image').files[0]))
-        // reader.readAsDataURL(doc.getElementById('check_image').files[0])
-        let imageBinary = ''
-        let reader = new FileReader();
-        reader.readAsBinaryString(document.querySelector('#check_image').files[0])
-        reader.addEventListener('load', function() {
-            // console.log('ddddddddd', this.result);
-            const files = {'qrfile':  this.result}
-            fetch(url, {
-                'method':'POST',
-                // 'headers': {'Content-Type': 'application/json'},
-                'body':JSON.stringify({token: '17072.ReLJYknAYHiPk5ohg'})
-            }).then(response => {
-                response.json().then(item=>console.log(item))
-            })
-            // fetch(url, data, files).then(item=>item.json()).then(item=>console.log(item))
-        });
+        response.json().then(response=>console.log(response))
     }
 
 })
