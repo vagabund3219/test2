@@ -29,43 +29,40 @@ window.addEventListener('load', () => {
 
     addNewCheckForm.addEventListener('submit', (event)=>{
         event.preventDefault()
-        // console.log(doc.getElementById('check_image').value)
-        sendCheck()
-
-
-
-
-          //   console.log(reader.readAsText(document.querySelector('#check_image').files[0]), 'aaaaaaa')
-          // reader.readAsText(document.querySelector('#check_image').files[0]);
-
+        const filee  = document.querySelector('#check_image').files[0];
+        const reader = new FileReader();
+          reader.addEventListener('load', (event) => {
+            const result = event.target.result;
+            sendCheck(result)
+          });
+          reader.readAsDataURL(filee);
 
         // validatingCheckForm() ? sendRequest('POST', `${url}${transApiUrl}`, validatingCheckForm(), '.check_label') : console.log('.....')
     })
 
-    async function sendCheck(){
+    async function sendCheck(par){
         const url = 'https://proverkacheka.com/api/v1/check/get';
-        const data = {token: '17072.ReLJYknAYHiPk5ohg'};
-        // const data={ 'fn': '9280440300770583', //ФН
-        //         'fd' : '33110', //ФД
-        //         'fp': '4138469556', //ФП
-        //         't' : '20210217T2028', //время с чека
-        //         'n' : '1', //вид кассового чека
-        //         's' : '419.54', //сумма чека
-        //         'qr' : '0', //признак сканирования QR-кода
-        //         'token':'17072.ReLJYknAYHiPk5ohg' //здесь прописываем токен доступа
-        //         }
-        console.log(JSON.stringify(data))
-        const head =  "{'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '264', 'Content-Type': 'multipart/form-data; boundary=cb555f65716bf690f5b5c96c5572584e'}"
-        const response = await fetch(url, {
-            method: 'post',
-            // headers: {
-            //
-            //     'token': '17072.ReLJYknAYHiPk5ohg' ,
-            // },
-            body: data
-        })
+        const token = '17072.ReLJYknAYHiPk5ohg';
+        fetch('http://api.qrserver.com/v1/read-qr-code/?fileurl=https://htstatic.imgsmail.ru/pic_image/fc79efd29b1466f5f2054ab6f31802d7/840/1120/1968415/')
+            .then(res => res.json())
+            .then(res => {
+                const checkResponse = res[0]['symbol'][0]['data']
+                // var url = "https://proverkacheka.com/api/v1/check/get";
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                   if (xhr.readyState === 4) {
+                      console.log(xhr.status);
+                      console.log(xhr.responseText);
+                   }};
 
-        response.json().then(response=>console.log(response))
+                // var data = `${checkResponse}&token=${token}`;
+                var data = `qrfile=${par}&token=${token}`;
+
+                // xhr.send(data);
+                xhr.send(data)
+            })
     }
 
 })

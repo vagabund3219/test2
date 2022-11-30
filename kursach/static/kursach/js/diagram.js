@@ -3,19 +3,15 @@ import {transApiUrl, CategoriesApiList, checkApiUrl} from "./list_of_trans.js";
 
 google.charts.load('current', {'packages':['corechart']});
 
-      // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
 
-        let dat = []
         async function func(){
-                fetchReq(transApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
-                fetchReq(checkApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
+                let dat = []
+                const trans = await fetchReq(transApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
+                const check = await fetchReq(checkApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
+                dat.push(trans)
                 console.log(dat)
-
         }
         func()
 
