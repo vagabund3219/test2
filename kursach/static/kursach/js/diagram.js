@@ -6,32 +6,61 @@ google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
 
-        async function func(){
+ async function getCategories(){
+          const categories = await fetchReq(CategoriesApiList, '')
+          console.log(categories)
+          let arr = []
+          categories.forEach(category=>{
+              arr.push({
+                  name:category.name,
+                  count:0,
+                  id:category.id
+              })
+          })
+          // console.log(arr)
+          return arr
+      }
+
+
+
+        async function getItems(){
                 let dat = []
-                const trans = await fetchReq(transApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
-                const check = await fetchReq(checkApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
-                dat.push(trans)
-                console.log(dat)
+                await fetchReq(transApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
+                await fetchReq(checkApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
+                // console.log(dat)
+                let arr = await getCategories()
+                dat.forEach(item => {
+                    console.log(item, 'item')
+                    arr.forEach(arr=>{
+                        console.log(arr, 'arr item')
+                        if (arr.id===item.category){
+                            arr.count += 1;
+                        }else{
+                            console.log('....')
+                        }
+                    })
+                })
+                console.log(arr)
+                return arr
         }
-        func()
 
-      function drawChart() {
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
+
+
+      async function drawChart() {
+        let data = new google.visualization.DataTable();
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 5],
-          ['Pepperoni', 2]
-        ]);
+        const categories = await getItems()
+          let arra = []
+        for (const [index, element] of categories.entries()) {
+            arra.push([element.name, element.count])
+          console.log(index, element);
+        }
+        data.addRows(arra);
 
-        // Set chart options
-        var options = {'title':'Категории',
-                       'width':400,
+        let options = {'title':'Категории',
+                       'width':450,
                        'height':300};
 
         // Instantiate and draw our chart, passing in some options.

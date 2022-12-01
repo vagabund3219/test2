@@ -95,7 +95,7 @@ def send_check_view(request):
 def main(request):
     return render(request, 'kursach/news_list.html')
 def design(request):
-    return render(request, 'kursach/new_design.html')
+    return render(request, 'kursach/new_design.html', {'user': request.user})
 
 
 def get_user_transactions(request):

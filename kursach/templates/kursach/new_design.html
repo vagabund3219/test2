@@ -14,18 +14,20 @@
     {% endblock %}
 </head>
 <body>
-{#        <div class="preloader">#}
-{#          <div class="preloader__row">#}
-{#            <div class="preloader__item"></div>#}
-{#            <div class="preloader__item"></div>#}
-{#          </div>#}
-{#        </div>#}
+        <div class="preloader">
+          <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+          </div>
+        </div>
         <div class="containe">
             <div class="aside">
-                <div class="aside_logo">
-                    <img src="{% static 'images/logo.png' %}" alt="logo" class="aside_logo">
-                    <div class="aside_header">Track</div>
-                </div>
+                <div class="aside_header">
+                    <div class="aside_logo">
+                        <img src="{% static 'images/logo.png' %}" alt="logo" class="aside_logo">
+                        <div class="aside_header_title">Track</div>
+                    </div>
+
                 <nav class="aside_nav">
                     <ul class="aside_ul">
                         <li class="aside_li">
@@ -34,12 +36,12 @@
                             <div class="aside_text">Главная</div>
                         </li>
                         <li class="aside_li">
-                            <i class="bi bi-border-all"></i>
+                            <i class="bi bi-newspaper"></i>
 {#                            <img src="{% static 'images/logo.png' %}" alt="aside_icon" class="aside_icon">#}
                             <div class="aside_text">Новости</div>
                         </li>
                         <li class="aside_li">
-                            <i class="bi bi-bar-chart-fill"></i>
+                            <i class="bi bi-cash-coin"></i>
 {#                            <img src="{% static 'images/logo.png' %}" alt="aside_icon" class="aside_icon">#}
                             <div class="aside_text">Транзакции</div>
                         </li>
@@ -50,22 +52,109 @@
                         </li>
                     </ul>
                 </nav>
+                </div>
+                <div class="aside_footer">
+                    {% if user.is_authenticated %}
+                        <span class="navbar-text"><a href="{% url 'logout' %}">Выход</a></span>
+                          {% else %}
+                          <span class="navbar-text"><a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Авторизация</a></span>
+                    {% endif %}
+                </div>
             </div>
 
             <div class="right_container">
-                <div class="header">
-                    <div class="header_title">Траты</div>
-                    <div class="header_search">
-                        <input type="text" class="header_input" placeholder="Поиск..">
-                        <img src="{% static 'images/search.png' %}" alt="search_icon" class="header_search_icon">
+                <div class="right_container_left">
+                    <div class="right_container_header">
+                        <div class="header_title">Траты</div>
+                        <div class="header_search">
+                            <input type="text" class="header_input" placeholder="Поиск..">
+                            <img src="{% static 'images/search.png' %}" alt="search_icon" class="header_search_icon">
+                        </div>
                     </div>
+                    <div class="footer_upper">
+                            <div class="footer_stats" id="footer_income">9000</div>
+                            <div class="footer_stats" id="footer_expense">9000</div>
+{#                            <div class="footer_stats" id="footer_income"></div>#}
+                        </div>
+                        <div class="footer_middle" id="footer_diagram">
+                            diagram
+                        </div>
+                        <div class="footer_down"></div>
+                </div>
 
-                        <i class="bi bi-bell"></i>
-                     {% if user.is_authenticated %}
-                         <span class="navbar-text"><a href="{% url 'logout' %}">Выход</a></span>
-                          {% else %}
-                         <span class="navbar-text"><a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Авторизация</a></span>
-                     {% endif %}
+                <div class="right_container_right">
+                    <div class="right_container_right_top">
+                        <div class="bell"><i class="bi bi-bell"></i></div>
+                         {% if user.is_authenticated %}
+                             <div class="account">
+                                <div class="account_name">{{ user.first_name }}</div>
+                                 <img src="{% static 'images/avatar.png' %}" alt="avatar" class="account_avatar">
+                             </div>
+                              {% else %}
+                             <span class="navbar-text"><a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Авторизация</a></span>
+                         {% endif %}
+                    </div>
+                    <div class="footer_title">Мой счет</div>
+                        <div class="footer_card">
+                            <div class="footer_card_top">
+                                <div class="footer_card_left">
+                                    <div class="footer_card_title">Баланс</div>
+                                    <div class="footer_card_balance">8000</div>
+                                </div>
+                                <div class="footer_card_right">
+                                    VISA
+                                </div>
+                            </div>
+                            <div class="footer_card_number">
+                                <div class="card_numbers">****</div>
+                                <div class="card_numbers">****</div>
+                                <div class="card_numbers">****</div>
+                                <div class="card_numbers">****</div>
+                            </div>
+                            <div class="footer_card_name">Ivan Artemov</div>
+                        </div>
+                        <div class="footer_last_payments">Последние операции</div>
+                        <div class="footer_right_down">
+                            <ul class="footer_right_ul">
+                                <li class="footer_right_li">
+                                    <div class="footer_cart">
+                                        <i class="bi bi-cart2"></i>
+                                    </div>
+                                    <div class="footer_right_li_right">
+                                        <div class="footer_right_top">
+                                            <div class="footer_right_name">Операция</div>
+                                            <div class="footer_right_sum">999</div>
+                                        </div>
+                                        <div class="footer_right_time">22.12.2020</div>
+                                    </div>
+                                </li>
+                                <li class="footer_right_li">
+                                    <div class="footer_cart">
+                                        <i class="bi bi-cart2"></i>
+                                    </div>
+                                    <div class="footer_right_li_right">
+                                        <div class="footer_right_top">
+                                            <div class="footer_right_name">Операция</div>
+                                            <div class="footer_right_sum">999</div>
+                                        </div>
+                                        <div class="footer_right_time">22.12.2020</div>
+                                    </div>
+                                </li>
+                                <li class="footer_right_li">
+                                    <div class="footer_cart">
+                                        <i class="bi bi-cart2"></i>
+                                    </div>
+                                    <div class="footer_right_li_right">
+                                        <div class="footer_right_top">
+                                            <div class="footer_right_name">Операция</div>
+                                            <div class="footer_right_sum">999</div>
+                                        </div>
+                                        <div class="footer_right_time">22.12.2020</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
