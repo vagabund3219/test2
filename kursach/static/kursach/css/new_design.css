@@ -1,0 +1,61 @@
+
+@import '../../fonts/Mul';
+.containe{
+    padding: 10px;
+    background-color: #f6f7ff;
+    display: flex;
+}
+
+.right_container{
+    width: 80%;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.aside{
+    width: 20%;
+    flex-direction: column;
+    background-color: #f6f7ff;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.aside_nav{
+    /*width: 20%;*/
+    text-align: center;
+    margin: 0 auto ;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.header_search input{
+    background-color: #f5f9ff;
+    border: none;
+}
+
+.header_search{
+    background-color: #f5f9ff;
+    border-radius: 25px;
+    padding: 6px 13px   ;
+}
+
+
+.header_search_icon{
+    width: 21px;
+    height: 21px;
+}
+.aside_ul{
+    list-style: none;
+}
+
+.aside_li{
+    display: flex;
+}
+
+.aside_text{
+    margin-left: 10px;
+}

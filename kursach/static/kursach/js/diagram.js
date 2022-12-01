@@ -30,7 +30,7 @@ google.charts.load('current', {'packages':['corechart']});
         ]);
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
+        var options = {'title':'Категории',
                        'width':400,
                        'height':300};
 

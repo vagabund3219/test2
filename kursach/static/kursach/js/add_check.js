@@ -42,7 +42,8 @@ window.addEventListener('load', () => {
 
     async function sendCheck(par){
         const url = 'https://proverkacheka.com/api/v1/check/get';
-        const token = '17072.ReLJYknAYHiPk5ohg';
+        // const token = '17072.ReLJYknAYHiPk5ohg';
+        const token = '17975.feEzZQlH2W8acWoqk';
         fetch('http://api.qrserver.com/v1/read-qr-code/?fileurl=https://htstatic.imgsmail.ru/pic_image/fc79efd29b1466f5f2054ab6f31802d7/840/1120/1968415/')
             .then(res => res.json())
             .then(res => {
@@ -55,6 +56,15 @@ window.addEventListener('load', () => {
                    if (xhr.readyState === 4) {
                       console.log(xhr.status);
                       console.log(xhr.responseText);
+                      if (xhr.status===200){
+                          try{
+                              for (item of xhr.responseText["data"]['json']['items']){
+                                  console.log(item)
+                              }
+                          }catch (e){
+
+                          }
+                      }
                    }};
 
                 // var data = `${checkResponse}&token=${token}`;
