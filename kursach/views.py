@@ -95,7 +95,8 @@ def send_check_view(request):
 def main(request):
     return render(request, 'kursach/news_list.html')
 def design(request):
-    return render(request, 'kursach/new_design.html', {'user': request.user})
+    balance = Bill.objects.filter(user_id=request.user.id)
+    return render(request, 'kursach/new_design/new_design_base.html', {'user': request.user, 'balance': balance[0]})
 
 
 def get_user_transactions(request):

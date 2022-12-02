@@ -1,5 +1,10 @@
 import {dangerAlert, successAlert} from "./alerts.js";
-import {url} from "./list_of_trans.js";
+
+export const url = 'http://127.0.0.1:8000/api/v1/';
+export const checkApiUrl = 'CheckApiList';
+export const transApiUrl = 'TransactionsApiList';
+export const CategoriesApiList = 'CategoriesApiList';
+export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
 
 export function sendRequest(method, url, body = null, labelClass){
         const csrftoken = getCookie('csrftoken');
