@@ -1,4 +1,6 @@
 import {getAllTransaction, displayTransactions, showLastTransactions} from "./newdesign_show_transactions.js";
+import {fetchReq, CategoriesApiList} from "./requests.js";
+import {categoryDisplay} from "./newdesign_show_categories.js";
 
 
 window.addEventListener('load', ()=>{
@@ -9,13 +11,24 @@ window.addEventListener('load', ()=>{
     const transApiUrl = 'TransactionsApiList';
     const CategoriesApiList = 'CategoriesApiList';
     const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+    const navNewsButton = doc.getElementById('nav_news');
 
-    showLastTransactions();
 
     navTransactionButton.addEventListener('click', async ()=>{
-        const transactions = await getAllTransaction();
-        displayTransactions(transactions);
+        const articlesOl = document.querySelector('.articles');
+        articlesOl ? articlesOl.remove() : {}
+        categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
     })
+
+    navNewsButton.addEventListener('click', async ()=>{
+        const newsContainer = doc.querySelector('.news_container');
+        newsContainer.classList.toggle('hidden');
+    })
+
+
+
+
+    showLastTransactions();
 
 
 })

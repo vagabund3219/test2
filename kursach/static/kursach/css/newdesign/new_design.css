@@ -30,6 +30,7 @@ body {
     display: flex;
     border-radius: 25px;
     justify-content: space-between;
+    height: 100%;
 }
 
 /* Left aside */
@@ -216,7 +217,7 @@ body {
 .footer_card{
     margin-top: 25px;
     /*background-color: rgb(6,41,198);*/
-    background: url('../../images/card.webp');
+    background: url('../../../images/card.webp');
     color: #ffffff;
     padding: 17px;
     border-radius: 25px;
@@ -290,11 +291,19 @@ body {
     align-items: center;
 }
 
+
+
 .footer_right_down{
     padding: 0 10px;
     height: 30%;
     overflow: hidden;
+    overflow-y: scroll;
+
 }
+::-webkit-scrollbar{
+    display: none;
+}
+
 
 .footer_last_payments{
     margin-top: 50px;
@@ -325,9 +334,21 @@ body {
     margin-left: 15px;
 }
 
+.main_content_container{
+    /*background-color: #f6f7ff;*/
+    height: 92%;
+    border-radius: 25px;
+    padding: 10px;
+    overflow: scroll;
+}
+
 
 
 
 
 /* Last payments */
 
+
+.hidden {
+    display: none;
+}

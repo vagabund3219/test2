@@ -20,6 +20,14 @@ Date.prototype.customFormat = function(formatString){
   return formatString.replace("#hhhh#",hhhh).replace("#hhh#",hhh).replace("#hh#",hh).replace("#h#",h).replace("#mm#",mm).replace("#m#",m).replace("#ss#",ss).replace("#s#",s).replace("#ampm#",ampm).replace("#AMPM#",AMPM);
 };
 
+    export function dateNewDesign(date){
+      const some = date.split('-');
+        let formattedDate = some[2];
+        formattedDate += `.${some[1]}`;
+        formattedDate += `.${some[0]}`;
+        return formattedDate
+    }
+
 
     export function dateParse(date){
       const some = date.split('.');

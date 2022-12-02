@@ -1,11 +1,5 @@
-// import {url, transApiUrl, checkApiUrl} from "./requests.js"
-import {filterDate, byField} from './custom_format_for_date.js';
-
-const url = 'http://127.0.0.1:8000/api/v1/';
-const checkApiUrl = 'CheckApiList';
-const transApiUrl = 'TransactionsApiList';
-const CategoriesApiList = 'CategoriesApiList';
-const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+import {url, transApiUrl, checkApiUrl} from "./requests.js"
+import {dateNewDesign, byField} from './custom_format_for_date.js';
 
 const lastTransactionsUl = document.querySelector('.footer_right_ul');
 
@@ -21,6 +15,7 @@ export async function getAllTransaction(){
 export async function displayTransactions(listOfTransactions){
     listOfTransactions.sort(byField('date'));
     console.log(listOfTransactions)
+
 }
 
 
@@ -39,12 +34,9 @@ export async function showLastTransactions(){
                                             <div class="footer_right_name">${transactions[i]['name'].substring(0, 16)}</div>
                                             <div class="footer_right_sum">${transactions[i]['price']}</div>
                                         </div>
-                                        <div class="footer_right_time">${transactions[i]['date']}</div>
+                                        <div class="footer_right_time">${dateNewDesign(transactions[i]['date'])}</div>
                                     </div>
                                 </li>`
-            console.log(li)
-            console.log(lastTransactionsUl)
-            console.log(transactions)
             lastTransactionsUl.innerHTML += li;
             i++;
         }

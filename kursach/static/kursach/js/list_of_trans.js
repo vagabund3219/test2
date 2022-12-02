@@ -8,11 +8,11 @@ import {fetchReq} from "./requests.js";
 Object.assign(DatePicker.locales, ru)
 
 //Для запросов
-// export const url = 'http://127.0.0.1:8000/api/v1/';
-// export const checkApiUrl = 'CheckApiList';
-// export const transApiUrl = 'TransactionsApiList';
-// export const CategoriesApiList = 'CategoriesApiList';
-// export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+export const url = 'http://127.0.0.1:8000/api/v1/';
+export const checkApiUrl = 'CheckApiList';
+export const transApiUrl = 'TransactionsApiList';
+export const CategoriesApiList = 'CategoriesApiList';
+export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
 
 
 
