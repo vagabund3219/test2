@@ -1,6 +1,7 @@
 import {getAllTransaction, displayTransactions, showLastTransactions} from "./newdesign_show_transactions.js";
 import {fetchReq, CategoriesApiList} from "./requests.js";
 import {categoryDisplay} from "./newdesign_show_categories.js";
+import {showNews} from "./new_design_news.js";
 
 
 window.addEventListener('load', ()=>{
@@ -22,7 +23,8 @@ window.addEventListener('load', ()=>{
 
     navNewsButton.addEventListener('click', async ()=>{
         const newsContainer = doc.querySelector('.news_container');
-        newsContainer.classList.toggle('hidden');
+        // newsContainer.classList.toggle('hidden');
+        showNews()
     })
 
 

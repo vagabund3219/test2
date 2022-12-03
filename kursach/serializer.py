@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
-from .models import Transactions, CheckData, Categories, TypeOfTranscation
+from .models import Transactions, CheckData, Categories, TypeOfTranscation, News
 
 class TypeOfTransactionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,3 +22,8 @@ class TransactionsSerializer(serializers.ModelSerializer):
         model = Transactions
         fields = ('date', 'name', 'price', 'category', 'type', 'username', 'user')
         # date = serializers.DateField(format='%d.%m.%Y')
+
+class NewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News
+        fields = ('title', 'subtitle', 'description', 'image', 'tags')

@@ -5,6 +5,7 @@ export const checkApiUrl = 'CheckApiList';
 export const transApiUrl = 'TransactionsApiList';
 export const CategoriesApiList = 'CategoriesApiList';
 export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+export const NewsApiUrl = 'NewsApiList';
 
 export function sendRequest(method, url, body = null, labelClass){
         const csrftoken = getCookie('csrftoken');

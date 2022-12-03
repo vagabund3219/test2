@@ -46,10 +46,11 @@ class CheckData(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField(max_length=80)
-    date = models.DateField()
-    text = models.TextField()
-
+    title = models.CharField(max_length=30,default='2')
+    subtitle = models.CharField(max_length=50, default='2')
+    description = models.TextField(default='2')
+    image = models.ImageField(upload_to='images/%Y/%m/%d/')
+    tags = models.CharField(max_length=255,default='2')
     def __str__(self):
         return self.title
 

@@ -1,5 +1,5 @@
 import {url, transApiUrl, checkApiUrl} from "./requests.js"
-import {dateNewDesign, byField} from './custom_format_for_date.js';
+import {byField} from './custom_format_for_date.js';
 
 const lastTransactionsUl = document.querySelector('.footer_right_ul');
 
@@ -25,18 +25,18 @@ export async function showLastTransactions(){
         let i = 0
         while (i<4){
             const li = `                                
-                                <li class="footer_right_li">
-                                    <div class="footer_cart">
-                                        <i class="bi bi-cart2"></i>
-                                    </div>
-                                    <div class="footer_right_li_right">
-                                        <div class="footer_right_top">
-                                            <div class="footer_right_name">${transactions[i]['name'].substring(0, 16)}</div>
-                                            <div class="footer_right_sum">${transactions[i]['price']}</div>
-                                        </div>
-                                        <div class="footer_right_time">${dateNewDesign(transactions[i]['date'])}</div>
-                                    </div>
-                                </li>`
+                        <li class="footer_right_li">
+                            <div class="footer_cart">
+                                <i class="bi bi-cart2"></i>
+                            </div>
+                            <div class="footer_right_li_right">
+                                <div class="footer_right_top">
+                                    <div class="footer_right_name">${transactions[i]['name'].substring(0, 16)}</div>
+                                    <div class="footer_right_sum">${transactions[i]['price']}</div>
+                                </div>
+                                <div class="footer_right_time">${(transactions[i]['date'])}</div>
+                            </div>
+                        </li>`
             lastTransactionsUl.innerHTML += li;
             i++;
         }

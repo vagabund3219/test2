@@ -41,12 +41,12 @@ class CheckDataAdmin(admin.ModelAdmin):
     ordering = ('user', '-date')
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'date')
-    list_filter = ('date', )
+    list_display = ('id', 'title', 'description', 'subtitle', 'tags', 'image')
+    list_filter = ('tags', )
     list_editable = ('title',)
     list_per_page = 30
-    search_fields = ('title', 'text')
-    ordering = ('date',)
+    search_fields = ('title', 'description')
+    ordering = ('title',)
 
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(TypeOfTranscation, TypeOfTranscationAdmin)
