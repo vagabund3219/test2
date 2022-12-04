@@ -21,12 +21,12 @@ class CategoriesSerializer(serializers.ModelSerializer):
 class CheckSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckData
-        fields = ('name', 'count', 'price', 'category', 'date', 'username', 'type', 'user')
+        fields = ('name', 'count', 'price', 'category', 'date', 'username', 'type', 'user', 'id')
 
 class TransactionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transactions
-        fields = ('date', 'name', 'price', 'category', 'type', 'username', 'user')
+        fields = ('date', 'name', 'price', 'category', 'type', 'username', 'user', 'id')
         # date = serializers.DateField(format='%d.%m.%Y')
 
 class NewsSerializer(serializers.ModelSerializer):

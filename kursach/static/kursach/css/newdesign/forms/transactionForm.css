@@ -7,3 +7,18 @@
     flex-direction: column;
     justify-content: center;
 }
+
+
+
+.delete-trans-button{
+  position: absolute;
+  bottom: 2%;
+  right: 1%;
+  font-size: 22px;
+}
+
+.delete-trans-button:hover{
+    background: #900;
+    color: #fff;
+    transform: translateY(-7px);
+}

@@ -10,21 +10,12 @@ export function ifDelete(className){
 }
 
 export async function navTransactionButtonListener(){
-        const CategoriesApiList = 'CategoriesApiList';
+    if (document.getElementById('userId').value){
         const navTransactionButton = document.getElementById('nav_transactions');
         const headerTitle = document.querySelector('.header_title');
-        // navTransactionButton.addEventListener('click', async ()=>{
-        //     const mainContentContainer = document.querySelector('.main_content_container');
-        //     mainContentContainer.innerHTML = `<div class="transactions-container"></div>`
-        //
-        //     headerTitle.textContent = 'Категории';
-        //     categoryEditingMenu();
-        //     categoryEditingListeners();
-        //     await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
-        //     categoriesButtonListener();
-        // })
-        navTransactionButton.addEventListener('click', ()=>showCategories(headerTitle))
 
+        navTransactionButton.addEventListener('click', ()=>showCategories(headerTitle))
+    }
 }
 
 
@@ -34,24 +25,6 @@ window.addEventListener('load', ()=>{
     const navNewsButton = doc.getElementById('nav_news');
     //Заголовок в контенте
     const headerTitle = doc.querySelector('.header_title');
-
-    // const mainContentContainer = document.querySelector('.main_content_container');
-
-
-
-    // Listeners
-
-    // navTransactionButton.addEventListener('click', async ()=>{
-    //     mainContentContainer.innerHTML = `<div class="transactions-container"></div>`
-    //
-    //     headerTitle.textContent = 'Категории';
-    //
-    //     categoryEditingMenu();
-    //     categoryEditingListeners();
-    //     await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
-    //     categoriesButtonListener();
-    // })
-
 
 
 
@@ -68,7 +41,9 @@ window.addEventListener('load', ()=>{
     })
 
 
+    if (document.getElementById('userId').value){
+        showLastTransactions();
+    }
 
-    showLastTransactions();
 
 })

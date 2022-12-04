@@ -45,6 +45,7 @@ async function showTransactionsForCategory(categoryId){
 
 export async function showLastTransactions(){
         const transactions = await getAllTransaction();
+        lastTransactionsUl.innerHTML = '';
         transactions.sort(byField('date'));
         let i = 0
         while (i<4){
@@ -111,6 +112,7 @@ export async function showLastTransactions(){
   function displayCard(container, item){
     let div = document.createElement('div');
     div.classList.add('card', 'col-3');
+    div.id = item.id;
     let ul = document.createElement('ul');
     ul.classList.add('list-group', 'list-group-flush');
     createCard(item, ul);

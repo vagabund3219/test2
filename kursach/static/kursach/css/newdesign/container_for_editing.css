@@ -41,8 +41,11 @@
 
 .delete-category-button:hover{
     background: #900;
+    color: #fff;
     transform: translateY(-7px);
 }
+
+
 
 .delete-category-button{
     border-radius: 15px;

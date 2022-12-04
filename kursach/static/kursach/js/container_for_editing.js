@@ -1,5 +1,5 @@
 import {categoryFormListener, createCategoryForm} from "./new_design_add_category.js";
-import {CategoriesApiDelete, CategoriesApiList, fetchReq, sendRequest, url} from "./requests.js";
+import {CategoriesApiDelete, CategoriesApiList, fetchReq, sendRequest, url, TransactionsApiDelete} from "./requests.js";
 import {categoriesButtonListener, categoryDisplay, showCategories} from "./newdesign_show_categories.js";
 import {navTransactionButtonListener} from "./new_design_base.js";
 import {transactionsAddForm} from './new_design_add_transaction.js'
@@ -77,5 +77,19 @@ export function transactionsEditingListeners(){
         ifDelete('.row');
         ifDelete('#add-transaction');
         transactionsAddForm();
+    })
+
+
+    transactionDeleteButton.addEventListener('click', (event)=>{
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card=>{
+            card.querySelector('i') ? card.querySelector('i').remove() : {}
+            card.innerHTML += `<i class="bi bi-trash delete-trans-button"></i>`
+            card.querySelector('.delete-trans-button').addEventListener('click', async (event)=>{
+                await sendRequest('delete', `${url}${TransactionsApiDelete}/${card.id}/`)
+                // navTransactionButtonListener();
+                showCategories(document.querySelector('.header_title'));
+            })
+        })
     })
 }

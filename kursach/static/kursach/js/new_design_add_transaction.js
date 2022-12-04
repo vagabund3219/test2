@@ -1,7 +1,7 @@
 import {CategoriesApiList, sendRequest, TypeOfTransactionApiList, url, transApiUrl} from "./requests.js";
 import Datepicker from './vanillajs-datepicker/js/Datepicker.js'
 import {validatindTransForm} from "./forms_validations.js";
-import {getBill} from "./new_design_updating_bill.js";
+import {getBill, updateBill} from "./new_design_updating_bill.js";
 
 
 
@@ -73,14 +73,20 @@ function createTransactionsForm(){
         const transactionAddForm = document.querySelector('#add-transaction');
         transactionAddForm.addEventListener('submit', async (event)=>{
             event.preventDefault()
-            validatindTransForm() ? sendRequest('POST', `${url}${transApiUrl}`, validatindTransForm(), '.transLabel') : console.log('.....')
+        //     validatindTransForm() ? sendRequest('POST', `${url}${transApiUrl}`, validatindTransForm(), '.transLabel') : console.log('.....')
+
+            if (validatindTransForm()){
+
+                const validatedForm = await validatindTransForm()
+                sendRequest('POST', `${url}${transApiUrl}`, validatedForm, '.transLabel')
+                await updateBill(validatedForm);
+                await getBill();
+            }
         })
     }
 
     export async function transactionsAddForm(){
         await createTransactionsForm();
         await transactionFormListener();
-        getBill();
-
 
     }

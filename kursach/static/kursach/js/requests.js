@@ -5,6 +5,7 @@ export const checkApiUrl = 'CheckApiList';
 export const transApiUrl = 'TransactionsApiList';
 export const CategoriesApiList = 'CategoriesApiList';
 export const CategoriesApiDelete = 'CategoriesApiDelete';
+export const TransactionsApiDelete = 'TransactionsApiDelete';
 export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
 export const NewsApiUrl = 'NewsApiList';
 export const BillApiGetUpdate = 'BillApiGetUpdate';

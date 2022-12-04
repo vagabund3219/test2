@@ -375,12 +375,12 @@ body {
 
 
 .row{
-    justify-content: center;
+    /*justify-content: center;*/
     /*gap: 10px;*/
 }
 
 div.card {
-    width: 18rem;
+    width: 19rem;
     margin: 15px 0 0 20px;
     display: inline-block;
 }
