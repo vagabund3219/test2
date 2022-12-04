@@ -1,0 +1,9 @@
+.add-transaction-form{
+    display: inline-block;
+}
+.form-container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

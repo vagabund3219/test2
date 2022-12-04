@@ -1,11 +1,17 @@
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
-from .models import Transactions, CheckData, Categories, TypeOfTranscation, News
+from .models import Transactions, CheckData, Categories, TypeOfTranscation, News, Bill
 
 class TypeOfTransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeOfTranscation
         fields = ('type_name', 'id')
+
+class BillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bill
+        fields = ('sum', 'id', 'user')
+
 
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,5 +1,6 @@
-import {url, transApiUrl, checkApiUrl} from "./requests.js"
+import {url, transApiUrl, checkApiUrl, fetchReq, CategoriesApiList} from "./requests.js"
 import {displayTransactions} from "./newdesign_show_transactions.js";
+import {categoryEditingListeners, categoryEditingMenu, transactionsEditingMenu, transactionsEditingListeners} from "./container_for_editing.js";
 
 
 // const mainContentContainer = document.querySelector('.main_content_container');
@@ -30,10 +31,26 @@ import {displayTransactions} from "./newdesign_show_transactions.js";
       const mainContentContainer = document.querySelector('.transactions-container');
       const categoriesButtons = document.querySelectorAll('.articles__article');
       categoriesButtons.forEach(categoryButton=>{
-          categoryButton.addEventListener('click', ()=>{
-              mainContentContainer.innerHTML = ''
-              displayTransactions(categoryButton.id)
+          categoryButton.addEventListener('click', (event)=>{
+              if (event.target.tagName != 'I'){
+                  mainContentContainer.innerHTML = ''
+                  document.querySelector('#categoryName').textContent = categoryButton.querySelector('.articles__title').textContent
+                  displayTransactions(categoryButton.id)
+                  transactionsEditingMenu();
+                  transactionsEditingListeners();
+              }
           })
       })
+  }
+
+  export async function showCategories(headerTitle){
+      const mainContentContainer = document.querySelector('.main_content_container');
+      mainContentContainer.innerHTML = `<div class="transactions-container"></div>`
+
+      headerTitle.textContent = 'Категории';
+        categoryEditingMenu();
+        categoryEditingListeners();
+        await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
+        categoriesButtonListener();
   }
 

@@ -95,10 +95,13 @@ def send_check_view(request):
 def main(request):
     return render(request, 'kursach/news_list.html')
 def design(request):
-    balance = Bill.objects.filter(user_id=request.user.id)
+    balance = 0
     news = News.objects.all
-    return render(request, 'kursach/new_design/new_design_base.html', {'user': request.user, 'balance': balance[0], 'news': news})
+    user = None
+    if request.user and Bill.objects.filter(user_id=request.user.id):
+        return render(request, 'kursach/new_design/new_design_base.html', {'user': request.user, 'balance':  Bill.objects.filter(user_id=request.user.id)[0], 'news': news})
 
+    return render(request, 'kursach/new_design/new_design_base.html', {'user': user, 'balance': balance, 'news': news})
 
 def get_user_transactions(request):
     checks = CheckData.objects.filter(user_id=request.user.id)

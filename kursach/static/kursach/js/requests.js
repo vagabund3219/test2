@@ -4,8 +4,10 @@ export const url = 'http://127.0.0.1:8000/api/v1/';
 export const checkApiUrl = 'CheckApiList';
 export const transApiUrl = 'TransactionsApiList';
 export const CategoriesApiList = 'CategoriesApiList';
+export const CategoriesApiDelete = 'CategoriesApiDelete';
 export const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
 export const NewsApiUrl = 'NewsApiList';
+export const BillApiGetUpdate = 'BillApiGetUpdate';
 
 export function sendRequest(method, url, body = null, labelClass){
         const csrftoken = getCookie('csrftoken');

@@ -1,43 +1,65 @@
 import {getAllTransaction, displayTransactions, showLastTransactions} from "./newdesign_show_transactions.js";
 import {fetchReq, CategoriesApiList} from "./requests.js";
-import {categoriesButtonListener, categoryDisplay} from "./newdesign_show_categories.js";
+import {categoriesButtonListener, categoryDisplay, showCategories} from "./newdesign_show_categories.js";
 import {showNews} from "./new_design_news.js";
-import {categoryEditingMenu} from "./container_for_editing.js";
+import {categoryEditingListeners, categoryEditingMenu} from "./container_for_editing.js";
 
 
 export function ifDelete(className){
     document.querySelector(className) ? document.querySelector(className).remove() : {}
 }
 
+export async function navTransactionButtonListener(){
+        const CategoriesApiList = 'CategoriesApiList';
+        const navTransactionButton = document.getElementById('nav_transactions');
+        const headerTitle = document.querySelector('.header_title');
+        // navTransactionButton.addEventListener('click', async ()=>{
+        //     const mainContentContainer = document.querySelector('.main_content_container');
+        //     mainContentContainer.innerHTML = `<div class="transactions-container"></div>`
+        //
+        //     headerTitle.textContent = 'Категории';
+        //     categoryEditingMenu();
+        //     categoryEditingListeners();
+        //     await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
+        //     categoriesButtonListener();
+        // })
+        navTransactionButton.addEventListener('click', ()=>showCategories(headerTitle))
+
+}
+
 
 window.addEventListener('load', ()=>{
     const doc = document;
-    const navTransactionButton = doc.getElementById('nav_transactions');
-    const url = 'http://127.0.0.1:8000/api/v1/';
-    const checkApiUrl = 'CheckApiList';
-    const transApiUrl = 'TransactionsApiList';
-    const CategoriesApiList = 'CategoriesApiList';
-    const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
+    //Кнопки бокового меню
     const navNewsButton = doc.getElementById('nav_news');
+    //Заголовок в контенте
     const headerTitle = doc.querySelector('.header_title');
 
-    const mainContentContainer = document.querySelector('.main_content_container');
+    // const mainContentContainer = document.querySelector('.main_content_container');
 
-    navTransactionButton.addEventListener('click', async ()=>{
-        mainContentContainer.innerHTML = ''
-        const transactionsContainer = doc.createElement('div');
-        transactionsContainer.classList.add('transactions-container')
-        mainContentContainer.append(transactionsContainer)
 
-        headerTitle.textContent = 'Категории'
 
-        categoryEditingMenu()
+    // Listeners
 
-        await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
-        categoriesButtonListener();
-    })
+    // navTransactionButton.addEventListener('click', async ()=>{
+    //     mainContentContainer.innerHTML = `<div class="transactions-container"></div>`
+    //
+    //     headerTitle.textContent = 'Категории';
+    //
+    //     categoryEditingMenu();
+    //     categoryEditingListeners();
+    //     await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
+    //     categoriesButtonListener();
+    // })
+
+
+
+
+    navTransactionButtonListener()
+
 
     navNewsButton.addEventListener('click', async ()=>{
+        const mainContentContainer = document.querySelector('.main_content_container');
         mainContentContainer.innerHTML = ''
 
         headerTitle.textContent = 'Новости'
@@ -47,10 +69,6 @@ window.addEventListener('load', ()=>{
 
 
 
-
-
-
     showLastTransactions();
-
 
 })

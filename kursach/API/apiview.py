@@ -2,12 +2,18 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from ..models import CheckData, Transactions, Categories, TypeOfTranscation, News
-from ..serializer import TransactionsSerializer, CheckSerializer, CategoriesSerializer, TypeOfTransactionSerializer,NewsSerializer
+from ..models import CheckData, Transactions, Categories, TypeOfTranscation, News, Bill
+from ..serializer import TransactionsSerializer, CheckSerializer, CategoriesSerializer, TypeOfTransactionSerializer,NewsSerializer, BillSerializer
 
 class NewsApiList(generics.ListAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+class BillApiGetUpdate(generics.RetrieveUpdateDestroyAPIView):
+    def get_queryset(self):
+        user = self.request.user
+        return Bill.objects.filter(user_id=user)
+
+    serializer_class = BillSerializer
 
 
 class TypeOfTransactionApiList(generics.ListAPIView):
@@ -23,6 +29,12 @@ class CategoriesApiList(generics.ListCreateAPIView):
         return Categories.objects.filter(user_id=user)
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['type_id',]
+
+class CategoriesApiDelete(generics.DestroyAPIView):
+    serializer_class = CategoriesSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return Categories.objects.filter(user_id=user)
 
 class TransactionsApiList(generics.ListCreateAPIView):
     queryset = Transactions.objects.all()

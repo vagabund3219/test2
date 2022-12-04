@@ -79,6 +79,17 @@ body {
 .aside_li{
     margin-top: 18px;
     display: flex;
+    cursor: pointer;
+    transition: .43s;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.aside_li:hover{
+    background: #fed852;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+    color: white;
+    transform: translateY(-7px);
 }
 
 .aside_text{
@@ -100,6 +111,18 @@ body {
 }
 .auth_text a{
     text-decoration: none;
+}
+
+.auth-exiting{
+    padding: 12px;
+    transition: .45s;
+}
+
+.auth-exiting:hover{
+    background: #900;
+    transform: translateY(-7px);
+    border-radius: 25px;
+    color: #fff;
 }
 
 
@@ -338,7 +361,7 @@ body {
     /*background-color: #f6f7ff;*/
     height: 92%;
     border-radius: 25px;
-    padding: 10px;
+    /*padding: 10px;*/
     overflow: scroll;
 }
 
@@ -352,8 +375,8 @@ body {
 
 
 .row{
-    /*justify-content: space-around;*/
-    gap: 10px;
+    justify-content: center;
+    /*gap: 10px;*/
 }
 
 div.card {
@@ -370,6 +393,15 @@ span.label{
 li.list-group-item.card-row{
     display: flex;
     justify-content: space-between;
+}
+
+#exit-arrow{
+    margin-right: 0.7rem;
+    font-size: 22px;
+}
+
+.bi-person-circle{
+    font-size: 30px;
 }
 
 .hidden {

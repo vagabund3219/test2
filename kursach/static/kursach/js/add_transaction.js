@@ -11,6 +11,7 @@ window.addEventListener('load', (event) => {
     const addNewTransBtnSide = doc.querySelector('#add-new-transaction');
     const transactionAddForm = doc.querySelector('#add-transaction');
     const elem = doc.getElementById('date');
+    console.log(elem)
     const categorySelect = doc.getElementById('category_id');
     const typeSelect = doc.getElementById('type_id');
 
