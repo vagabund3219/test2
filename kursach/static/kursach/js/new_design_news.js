@@ -11,20 +11,40 @@ export async function showNews(){
     const newsCardContainer = document.createElement('div');
     newsCardContainer.classList.add('projcard-container');
 
-    const newsContainer = document.querySelector('.news_container');
+    const newsContainer = document.querySelector('.main_content_container');
 
-    console.log(news)
     news.forEach(item=>{
-        console.log(item)
-        newsCardContainer.innerHTML += (createNewsCard(item.title, item.subtitle, item.description, item.tags, item.img))
+        newsCardContainer.innerHTML += (createNewsCard(item.title, item.subtitle, item.description, item.tags, item.image))
     })
     newsContainer.append(newsCardContainer)
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function displayTags (tags){
+    const tagList = tags.split(' ');
+    let readyTagList = []
+    console.log(tagList)
+    tagList.forEach(tag=>{
+        readyTagList.push(`<span class="projcard-tag">${tag}</span>`)
+        // const tagg = `<span class="projcard-tag">${tag}</span>`
+        // displayTag(tagg)
+    })
+    return readyTagList
+}
+
+function removeComma(tag){
+
+    return tag
+}
 
 function createNewsCard(title, subtitle, description, tags, img){
+    const style = ['projcard-blue', 'projcard-red', 'projcard-green']
+    const currentStyle = style[getRandomInt(3)]
     const newCard = `
-                    <div class="projcard projcard-blue">
+                    <div class="projcard ${currentStyle}">
                         <div class="projcard-innerbox">
                           <img class="projcard-img" src="${img}" />
                           <div class="projcard-textbox">
@@ -33,8 +53,10 @@ function createNewsCard(title, subtitle, description, tags, img){
                             <div class="projcard-bar"></div>
                             <div class="projcard-description">${description}</div>
                             <div class="projcard-tagbox">
-                              <span class="projcard-tag">HTML</span>
-                              <span class="projcard-tag">CSS</span>
+                                ${displayTags(tags)}
+                                
+<!--                              <span class="projcard-tag">HTML</span>-->
+<!--                              <span class="projcard-tag">CSS</span>-->
                             </div>
                           </div>
                         </div>

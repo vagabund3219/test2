@@ -26,6 +26,10 @@
   animation-delay: calc(var(--animation-order)*100ms);
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
+    box-shadow:
+       inset 0 -3em 3em rgba(0,0,0,0.1),
+             0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
 
 .articles__article:before {
@@ -120,5 +124,11 @@
   opacity: 1;
   transform: translateX(calc(var(--base-grid)*1.5));
   transition: opacity .5s ease-in,transform .3s ease-in-out .25s;
+}
+
+.delete-category-button{
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
 }
 

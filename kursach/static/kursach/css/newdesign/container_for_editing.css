@@ -1,0 +1,12 @@
+.category_menu{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.category_menu_button{
+    background-color: #f6f7ff ;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 25px;
+}

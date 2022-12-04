@@ -1,7 +1,13 @@
 import {getAllTransaction, displayTransactions, showLastTransactions} from "./newdesign_show_transactions.js";
 import {fetchReq, CategoriesApiList} from "./requests.js";
-import {categoryDisplay} from "./newdesign_show_categories.js";
+import {categoriesButtonListener, categoryDisplay} from "./newdesign_show_categories.js";
 import {showNews} from "./new_design_news.js";
+import {categoryEditingMenu} from "./container_for_editing.js";
+
+
+export function ifDelete(className){
+    document.querySelector(className) ? document.querySelector(className).remove() : {}
+}
 
 
 window.addEventListener('load', ()=>{
@@ -13,19 +19,33 @@ window.addEventListener('load', ()=>{
     const CategoriesApiList = 'CategoriesApiList';
     const TypeOfTransactionApiList = 'TypeOfTransactionApiList';
     const navNewsButton = doc.getElementById('nav_news');
+    const headerTitle = doc.querySelector('.header_title');
 
+    const mainContentContainer = document.querySelector('.main_content_container');
 
     navTransactionButton.addEventListener('click', async ()=>{
-        const articlesOl = document.querySelector('.articles');
-        articlesOl ? articlesOl.remove() : {}
-        categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
+        mainContentContainer.innerHTML = ''
+        const transactionsContainer = doc.createElement('div');
+        transactionsContainer.classList.add('transactions-container')
+        mainContentContainer.append(transactionsContainer)
+
+        headerTitle.textContent = 'Категории'
+
+        categoryEditingMenu()
+
+        await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
+        categoriesButtonListener();
     })
 
     navNewsButton.addEventListener('click', async ()=>{
-        const newsContainer = doc.querySelector('.news_container');
-        // newsContainer.classList.toggle('hidden');
+        mainContentContainer.innerHTML = ''
+
+        headerTitle.textContent = 'Новости'
+
         showNews()
     })
+
+
 
 
 

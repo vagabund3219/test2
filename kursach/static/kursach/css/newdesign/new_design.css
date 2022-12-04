@@ -349,6 +349,29 @@ body {
 /* Last payments */
 
 
+
+
+.row{
+    /*justify-content: space-around;*/
+    gap: 10px;
+}
+
+div.card {
+    width: 18rem;
+    margin: 15px 0 0 20px;
+    display: inline-block;
+}
+
+span.label{
+    font-size: 13px;
+
+}
+
+li.list-group-item.card-row{
+    display: flex;
+    justify-content: space-between;
+}
+
 .hidden {
     display: none;
 }

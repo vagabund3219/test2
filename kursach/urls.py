@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 
+
 urlpatterns = [
     path('news/<int:pk>', NewsDetail.as_view(), name='news_detail'),
     path('add_transaction/', AddTransactionView.as_view(), name='add_transaction'),
