@@ -1,8 +1,7 @@
-import {getAllTransaction, displayTransactions, showLastTransactions} from "./newdesign_show_transactions.js";
-import {fetchReq, CategoriesApiList} from "./requests.js";
-import {categoriesButtonListener, categoryDisplay, showCategories} from "./newdesign_show_categories.js";
+import {showLastTransactions} from "./newdesign_show_transactions.js";
+import {showCategories} from "./newdesign_show_categories.js";
 import {showNews} from "./new_design_news.js";
-import {categoryEditingListeners, categoryEditingMenu} from "./container_for_editing.js";
+import {donutCategoriesDiagram} from "./new_design_diagrams.js";
 
 
 export function ifDelete(className){
@@ -23,8 +22,17 @@ window.addEventListener('load', ()=>{
     const doc = document;
     //Кнопки бокового меню
     const navNewsButton = doc.getElementById('nav_news');
+    const navDiagramsButton = doc.getElementById('nav_diagrams');
     //Заголовок в контенте
     const headerTitle = doc.querySelector('.header_title');
+
+    navDiagramsButton.addEventListener('click', (event)=>{
+        const mainContentContainer = document.querySelector('.main_content_container');
+        mainContentContainer.innerHTML = ''
+        headerTitle.textContent = 'Графики'
+
+        donutCategoriesDiagram();
+    })
 
 
 

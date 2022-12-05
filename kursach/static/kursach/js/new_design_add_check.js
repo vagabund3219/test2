@@ -81,6 +81,12 @@ export async function addCheckForm(){
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", url);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.setRequestHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+                xhr.setRequestHeader("Origin", "127.32.23.3:8080");
+
+
+
+
                 xhr.onreadystatechange = function () {
                    if (xhr.readyState === 4) {
                       console.log(xhr.status);
@@ -89,6 +95,7 @@ export async function addCheckForm(){
                           try{
                               for (item of xhr.responseText["data"]['json']['items']){
                                   console.log(item)
+                                  console.log(xhr.responseText)
                               }
                           }catch (e){
 
@@ -101,6 +108,8 @@ export async function addCheckForm(){
 
                 xhr.send(data)
             })
+
+
     }
 
 

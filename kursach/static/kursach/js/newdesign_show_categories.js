@@ -48,9 +48,9 @@ import {categoryEditingListeners, categoryEditingMenu, transactionsEditingMenu, 
       mainContentContainer.innerHTML = `<div class="transactions-container"></div>`
 
       headerTitle.textContent = 'Категории';
-        categoryEditingMenu();
-        categoryEditingListeners();
+        await categoryEditingMenu();
+        await categoryEditingListeners();
         await categoryDisplay(fetchReq(CategoriesApiList, 'категориями'));
-        categoriesButtonListener();
+        await categoriesButtonListener();
   }
 

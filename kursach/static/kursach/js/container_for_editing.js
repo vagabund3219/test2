@@ -51,7 +51,8 @@ export function categoryEditingListeners(){
             category.querySelector('.delete-category-button').addEventListener('click', async (event)=>{
                 await sendRequest('delete', `${url}${CategoriesApiDelete}/${category.id}/`)
                 // navTransactionButtonListener();
-                showCategories(document.querySelector('.header_title'));
+                // showCategories(document.querySelector('.header_title'));
+                setTimeout(()=>showCategories(document.querySelector('.header_title')), 100)
             })
         })
     })
