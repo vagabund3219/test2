@@ -15,10 +15,12 @@
   bottom: 2%;
   right: 1%;
   font-size: 22px;
+    transition: .45s;
 }
 
 .delete-trans-button:hover{
     background: #900;
     color: #fff;
     transform: translateY(-7px);
+    border-radius: 25px;
 }

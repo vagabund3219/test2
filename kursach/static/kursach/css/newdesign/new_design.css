@@ -363,6 +363,7 @@ body {
     border-radius: 25px;
     /*padding: 10px;*/
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 

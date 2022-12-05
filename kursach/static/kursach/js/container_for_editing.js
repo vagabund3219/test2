@@ -3,6 +3,7 @@ import {CategoriesApiDelete, CategoriesApiList, fetchReq, sendRequest, url, Tran
 import {categoriesButtonListener, categoryDisplay, showCategories} from "./newdesign_show_categories.js";
 import {navTransactionButtonListener} from "./new_design_base.js";
 import {transactionsAddForm} from './new_design_add_transaction.js'
+import {addCheckForm} from './new_design_add_check.js'
 
 function ifDelete(className){
     document.querySelector(className) ? document.querySelector(className).remove() : {}
@@ -58,6 +59,10 @@ export function categoryEditingListeners(){
 
 export function transactionsEditingMenu (){
     EditingMenu('transaction_menu', 'add_transaction_button', 'delete_transaction_button')
+    document.querySelector('.category_menu_left').innerHTML+= `           
+           <div class="add_check_button category_menu_button">
+                <i class="bi bi-qr-code-scan"></i>
+            </div>`
     const transactionMenu = document.querySelector('.transaction_menu');
     const categoryName = document.querySelector('#categoryName').textContent;
     transactionMenu.innerHTML += `<div class="trans_category_name">${categoryName}</div>`
@@ -72,6 +77,9 @@ export function transactionsEditingMenu (){
 export function transactionsEditingListeners(){
     const transactionAddButton = document.querySelector('.add_transaction_button');
     const transactionDeleteButton = document.querySelector('.delete_transaction_button');
+    const checkAddbutton = document.querySelector('.add_check_button');
+
+
 
     transactionAddButton.addEventListener('click', (event)=>{
         ifDelete('.row');
@@ -91,5 +99,13 @@ export function transactionsEditingListeners(){
                 showCategories(document.querySelector('.header_title'));
             })
         })
+    })
+
+
+    checkAddbutton.addEventListener('click', (event)=>{
+        ifDelete('.row');
+        ifDelete('#add-new-check-form');
+        console.log(1)
+        addCheckForm();
     })
 }
