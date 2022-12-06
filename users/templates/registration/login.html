@@ -1,4 +1,5 @@
-{% extends 'kursach/base.html' %}
+{#{% extends 'kursach/base.html' %}#}
+{% extends 'kursach/new_design/new_design_base.html' %}
 {% load crispy_forms_tags %}
 {% block auth %}
     <div  class="container">
@@ -9,7 +10,8 @@
                         <form method="post">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ next }}">
-                            {{ form|crispy }}
+{#                            {{ form|crispy }}#}
+                                {{ form }}
                             <button type="submit" class="btn btn-primary btn-block">Войти</button>
                         </form>
                     </div>

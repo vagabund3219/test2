@@ -16,4 +16,33 @@
 .donut-categories-diagram{
   width: 30rem;
   height: 20rem;
+  margin-top: 2rem;
+}
+
+.bar-diagram{
+  /*width: 110rem;*/
+  /*height: 32rem;*/
+}
+
+.bar-categories-diagram{
+  margin-top: 3rem;
+  /*width: 60rem;*/
+  /*height: 30rem;*/
+}
+
+.bar_title{
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.barChoosingDate{
+  display: flex;
+  justify-content: space-between;
+}
+
+#barChoosingDateId{
+  width: 6rem;
+  /*height: 3rem;*/
+
 }

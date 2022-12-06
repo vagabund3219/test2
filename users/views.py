@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, reverse
 from .forms import User_register_form
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
+from kursach.models import Bill
 
 def register(request):
     if request.method == 'POST':

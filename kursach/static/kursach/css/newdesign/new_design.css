@@ -405,6 +405,17 @@ li.list-group-item.card-row{
     font-size: 30px;
 }
 
+
+#lastTransNone{
+    font-family: Raleway;
+    color: #000000;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 2rem;
+    text-align: center;
+    /*margin-right: 1rem;*/
+}
+
 .hidden {
     display: none;
 }

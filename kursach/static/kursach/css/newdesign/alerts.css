@@ -18,6 +18,19 @@
   border-radius: 5px;
   box-shadow: 0 0 15px 5px #ccc;
 }
+.alert-from-reg {
+  width: 20%;
+  /*margin: 20px auto;*/
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+}
+
 .close {
   display: flex;
   align-items: center;

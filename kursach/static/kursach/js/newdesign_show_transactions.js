@@ -46,25 +46,29 @@ async function showTransactionsForCategory(categoryId){
 export async function showLastTransactions(){
         const transactions = await getAllTransaction();
         lastTransactionsUl.innerHTML = '';
-        transactions.sort(byField('date'));
-        let i = 0
-        while (i<4){
-            const li = `                                
-                        <li class="footer_right_li">
-                            <div class="footer_cart">
-                                <i class="bi bi-cart2"></i>
-                            </div>
-                            <div class="footer_right_li_right">
-                                <div class="footer_right_top">
-                                    <div class="footer_right_name">${transactions[i]['name'].substring(0, 16)}</div>
-                                    <div class="footer_right_sum">${transactions[i]['price']}</div>
+        if (transactions.length>0){
+            transactions.sort(byField('date'));
+            let i = 0
+            while (i<4){
+                const li = `                                
+                            <li class="footer_right_li">
+                                <div class="footer_cart">
+                                    <i class="bi bi-cart2"></i>
                                 </div>
-                                <div class="footer_right_time">${(transactions[i]['date'])}</div>
-                            </div>
-                        </li>`
-            lastTransactionsUl.innerHTML += li;
-            i++;
-        }
+                                <div class="footer_right_li_right">
+                                    <div class="footer_right_top">
+                                        <div class="footer_right_name">${transactions[i]['name'].substring(0, 16)}</div>
+                                        <div class="footer_right_sum">${transactions[i]['price']}</div>
+                                    </div>
+                                    <div class="footer_right_time">${(transactions[i]['date'])}</div>
+                                </div>
+                            </li>`
+                lastTransactionsUl.innerHTML += li;
+                i++;
+            }
+        }else{
+            lastTransactionsUl.innerHTML += `<h4 id="lastTransNone">У вас нет транзакций</h4>`;
+            }
     }
 
 

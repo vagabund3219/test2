@@ -29,7 +29,10 @@
 </head>
 <body>
         <input type="hidden" id="categoryName">
-        <input type="hidden" id="userId" value={{user.id}}>
+        {% if user.is_authenticated %}
+            <input type="hidden" id="userId" value={{user.id}}>
+            <input type="hidden" id="billId" value={{balance.id}}>
+        {% endif %}
         <div class="preloader">
           <div class="preloader__row">
             <div class="preloader__item"></div>
@@ -80,13 +83,20 @@
 
             <div class="right_container">
                 <div class="right_container_left">
-                    <div class="right_container_header">
-                        <div class="header_title">Траты</div>
-                        <div class="header_search">
-                            <input type="text" class="header_input" placeholder="Поиск..">
-                            <img src="{% static 'images/search.png' %}" alt="search_icon" class="header_search_icon">
+                    {% if user.is_authenticated %}
+                        <div class="right_container_header">
+                            <div class="header_title">Траты</div>
+                            <div class="header_search">
+                                <input type="text" class="header_input" placeholder="Поиск..">
+                                <img src="{% static 'images/search.png' %}" alt="search_icon" class="header_search_icon">
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
+                    {% if not user.is_authenticated %}
+                        {% block auth %}
+                        {% endblock %}
+                    {% endif %}
+
 {#                    <canvas id="myChart" width="10" height="10"></canvas>#}
                     <div class="main_content_container">
 

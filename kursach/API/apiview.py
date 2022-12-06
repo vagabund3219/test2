@@ -14,7 +14,11 @@ class BillApiGetUpdate(generics.RetrieveUpdateDestroyAPIView):
         return Bill.objects.filter(user_id=user)
 
     serializer_class = BillSerializer
-
+class BillApiCreate(generics.CreateAPIView):
+    serializer_class = BillSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return Bill.objects.create(user_id=user.id)
 
 
 class TypeOfTransactionApiList(generics.ListAPIView):

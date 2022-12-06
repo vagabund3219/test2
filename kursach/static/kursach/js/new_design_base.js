@@ -1,7 +1,7 @@
 import {showLastTransactions} from "./newdesign_show_transactions.js";
 import {showCategories} from "./newdesign_show_categories.js";
 import {showNews} from "./new_design_news.js";
-import {donutCategoriesDiagram} from "./new_design_diagrams.js";
+import {donutCategoriesDiagram, barDiagram} from "./new_design_diagrams.js";
 
 
 export function ifDelete(className){
@@ -9,11 +9,15 @@ export function ifDelete(className){
 }
 
 export async function navTransactionButtonListener(){
-    if (document.getElementById('userId').value){
-        const navTransactionButton = document.getElementById('nav_transactions');
-        const headerTitle = document.querySelector('.header_title');
+    try{
+            if (document.getElementById('userId').value){
+            const navTransactionButton = document.getElementById('nav_transactions');
+            const headerTitle = document.querySelector('.header_title');
 
-        navTransactionButton.addEventListener('click', ()=>showCategories(headerTitle))
+            navTransactionButton.addEventListener('click', ()=>showCategories(headerTitle))
+        }
+    }catch{
+
     }
 }
 
@@ -30,6 +34,7 @@ window.addEventListener('load', ()=>{
         const mainContentContainer = document.querySelector('.main_content_container');
         mainContentContainer.innerHTML = ''
         headerTitle.textContent = 'Графики'
+        barDiagram()
 
         donutCategoriesDiagram();
     })
@@ -49,8 +54,13 @@ window.addEventListener('load', ()=>{
     })
 
 
-    if (document.getElementById('userId').value){
-        showLastTransactions();
+
+    try{
+        if (document.getElementById('userId').value){
+            showLastTransactions();
+        }
+    }catch (e){
+
     }
 
 
