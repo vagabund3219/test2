@@ -1,7 +1,7 @@
 import {showLastTransactions} from "./newdesign_show_transactions.js";
 import {showCategories} from "./newdesign_show_categories.js";
 import {showNews} from "./new_design_news.js";
-import {donutCategoriesDiagram, barDiagram} from "./new_design_diagrams.js";
+import {donutCategoriesDiagram, barDiagram, getItems} from "./new_design_diagrams.js";
 
 
 export function ifDelete(className){
@@ -30,13 +30,19 @@ window.addEventListener('load', ()=>{
     //Заголовок в контенте
     const headerTitle = doc.querySelector('.header_title');
 
-    navDiagramsButton.addEventListener('click', (event)=>{
+    navDiagramsButton.addEventListener('click', async (event)=>{
+        const isNotNull = await getItems();
         const mainContentContainer = document.querySelector('.main_content_container');
         mainContentContainer.innerHTML = ''
-        headerTitle.textContent = 'Графики'
-        barDiagram()
+        if (isNotNull.length==0){
+            mainContentContainer.innerHTML+='<h3 class="no-transactions">У вас отсутствуют транзакции</h3>'
+        }else{
+            headerTitle.textContent = 'Графики'
+            barDiagram()
 
-        donutCategoriesDiagram();
+            donutCategoriesDiagram();
+        }
+
     })
 
 

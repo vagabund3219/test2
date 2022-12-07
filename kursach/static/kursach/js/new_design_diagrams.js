@@ -43,7 +43,7 @@ async function getCategories(){
       return arr
   }
 
-async function getItems(){
+export async function getItems(){
         let dat = []
         await fetchReq(transApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
         await fetchReq(checkApiUrl, '').then(data=>data.forEach(item=>dat.push(item)))
@@ -53,7 +53,7 @@ async function getItems(){
                 if (arr.id===item.category){
                     arr.count += 1;
                 }else{
-                    console.log('....')
+                    // console.log('....')
                 }
             })
         })
@@ -83,6 +83,11 @@ async function createPieDiagram() {
 };
 
 export async function barDiagram(){
+    const date = new Date;
+    const currentMonth = date.getMonth();
+    const currentYear = date.getFullYear();
+
+
     const barCategories = document.createElement('div');
     barCategories.innerHTML = `<div class="barChoosingDate">
                                     <div class="bar_title">Статистика</div>
@@ -112,9 +117,7 @@ export async function barDiagram(){
 
 
 
-    const date = new Date;
-    const currentMonth = date.getMonth();
-    const currentYear = date.getFullYear();
+
     createBarDiagram(currentMonth, currentYear)
 
     const dateElem = document.getElementById('monthBar');
@@ -151,7 +154,7 @@ export async function barDiagram(){
         // labels: data.map(row => row[0]),
         labels: data.map(row => {
             if (+row[0]<0){
-                console.log(+row[0])
+                // console.log(+row[0], 'dddddddddd')
                 return new Date(`${+row[0]+13}-01-2021`).customFormat('#MMM#  #YYYY#')
             }else{
                 return new Date(`${+row[0]+1}-01-2022`).customFormat('#MMM#  #YYYY#')
@@ -176,7 +179,7 @@ async function getItemsForBarDiagram(currentMonth, currentYear){
         let dat = [];
         await fetchReq(transApiUrl, '').then(data=>data.forEach(item=>dat.push(item)));
         await fetchReq(checkApiUrl, '').then(data=>data.forEach(item=>dat.push(item)));
-        // debugger
+
 
         //
         const lastSixMonths = {
@@ -191,7 +194,7 @@ async function getItemsForBarDiagram(currentMonth, currentYear){
         let i = 0
         while (i < 6){
             if (currentMonth-i<0){
-                console.log(1)
+                // console.log(1)
                 lastSixMonths[12+currentMonth-i] = [0, 0]
             }else{
                 lastSixMonths[currentMonth-i] = [0, 0]
@@ -199,7 +202,7 @@ async function getItemsForBarDiagram(currentMonth, currentYear){
 
             i++
         }
-        console.log(lastSixMonths, 'lastSixMonths')
+        // console.log(lastSixMonths, 'lastSixMonths')
         //
         // const filteredData = dat.filter(item=>{
         //     const itemMonth = new Date(item.date).getMonth()
@@ -242,7 +245,7 @@ async function getItemsForBarDiagram(currentMonth, currentYear){
 
 
         filteredData.sort(byField('date'))
-        console.log(filteredData, 'filtered')
+        // console.log(filteredData, 'filtered')
         filteredData.forEach(item => {
             const itemMonth = new Date(item.date).getMonth()
             if (item.type === 1){

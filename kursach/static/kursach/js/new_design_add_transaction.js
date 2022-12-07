@@ -62,7 +62,6 @@ function createTransactionsForm(){
             const filtered = categories.filter(item=>item.type===+typeSelect.value);
             categorySelect.innerHTML = filtered.map(category => `<option value="${category.id}">${category.name}</option>`).join('');
         })
-            console.log(document.getElementById('date'))
     const datepicker = new Datepicker(document.getElementById('date'), {
       format: 'dd.mm.yyyy',
       language: 'ru'

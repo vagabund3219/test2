@@ -416,6 +416,15 @@ li.list-group-item.card-row{
     /*margin-right: 1rem;*/
 }
 
+.no-transactions{
+    margin-top: 1rem;
+    text-align: center;
+}
+
 .hidden {
+    display: none;
+}
+
+div.hidden {
     display: none;
 }

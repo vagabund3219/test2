@@ -29,7 +29,8 @@ class TypeOfTranscation(models.Model):
 
 class CheckData(models.Model):
     name = models.CharField(max_length=80)
-    price = models.FloatField()
+    # price = models.FloatField()
+    price = models.PositiveIntegerField()
     count = models.FloatField()
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today())
@@ -64,7 +65,8 @@ class News(models.Model):
 class Transactions(models.Model):
     date = models.DateField(verbose_name='Дата')
     name = models.CharField(max_length=80, verbose_name='Имя транзакции')
-    price = models.FloatField(verbose_name='Цена')
+    price = models.PositiveIntegerField(verbose_name='Цена')
+    # price = models.FloatField(verbose_name='Цена')
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name='Категория')
     type = models.ForeignKey(TypeOfTranscation, on_delete=models.PROTECT, verbose_name='Тип')# expenses incomes
     user = models.ForeignKey(User, on_delete=models.CASCADE)

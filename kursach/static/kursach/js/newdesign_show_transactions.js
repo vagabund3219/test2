@@ -91,7 +91,7 @@ export async function showLastTransactions(){
       ul.innerHTML =
 `            <li class="list-group-item card-row">
                 <span class="label">Имя транзакции</span>
-                <span class="value">${item.name.slice(0, 13)}</span>
+                <span class="value item_textname">${item.name.slice(0, 13)}</span>
             </li>
             <li class="list-group-item card-row">
                 <span class="label">Кто добавил</span>
@@ -100,11 +100,12 @@ export async function showLastTransactions(){
             <li class="list-group-item card-row">
                 <span class="label">Тип</span>
                 <span class="value">${type}</span>
+                <span class="value item_type hidden">${item.type}</span>
             </li>
 <!--            // <li class="list-group-item"><span class="label">Количество</span></li> -->
             <li class="list-group-item card-row">
                 <span class="label">Сумма</span>
-                <span class="value">${item.price}</span>
+                <span class="value item_price">${item.price}</span>
             </li>
             <li class="list-group-item card-row">
                 <span class="label">Дата</span>

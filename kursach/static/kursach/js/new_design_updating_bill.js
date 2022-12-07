@@ -6,7 +6,6 @@ export async function getBill(){
     const billId = document.getElementById('billId');
     const bill = await fetchReq(`${BillApiGetUpdate}/${billId.value}`);
     // const bill = await fetchReq(`${BillApiGetUpdate}/${userId.value}`);
-    console.log(bill)
     document.querySelector('.footer_card_balance').textContent = parseFloat(bill['sum']);
 }
 
@@ -27,6 +26,30 @@ export async function updateBill(transactionForm){
         "user": userId.value
     }
     // sendRequest('put', `${url}${BillApiGetUpdate}/${userId.value}/`, requestBody );
+    sendRequest('put', `${url}${BillApiGetUpdate}/${billId.value}/`, requestBody );
+    showLastTransactions()
+
+    document.querySelector('.footer_card_balance').textContent = parseFloat(sumOfbill);
+}
+
+export async function updateBillOnDelete(type, price){
+    const userId = document.getElementById('userId');
+    const billId = document.getElementById('billId');
+
+    const bill = await fetchReq(`${BillApiGetUpdate}/${billId.value}`);
+
+    let sumOfbill = parseFloat(bill['sum']);
+    if (+type == 1){
+        sumOfbill += +price;
+    }else if (+type == 2){
+        sumOfbill -= +price;
+    }
+    const requestBody = {
+        "sum": sumOfbill,
+        "id": bill.id,
+        "user": userId.value
+    }
+
     sendRequest('put', `${url}${BillApiGetUpdate}/${billId.value}/`, requestBody );
     showLastTransactions()
 

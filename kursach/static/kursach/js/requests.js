@@ -59,6 +59,6 @@ export function sendRequest(method, url, body = null, labelClass){
         if (req.ok == true && req.status < 300){
           return req.json();
         } else{
-          console.log(`Что-то не так с ${errorText}`);
+          // console.log(`Что-то не так с ${errorText}`);
         }
   }
