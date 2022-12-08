@@ -2,6 +2,7 @@ import {showLastTransactions} from "./newdesign_show_transactions.js";
 import {showCategories} from "./newdesign_show_categories.js";
 import {showNews} from "./new_design_news.js";
 import {donutCategoriesDiagram, barDiagram, getItems} from "./new_design_diagrams.js";
+import {newsNotEnded} from "./new_design_not_ended.js";
 
 
 export function ifDelete(className){
@@ -56,7 +57,8 @@ window.addEventListener('load', ()=>{
 
         headerTitle.textContent = 'Новости'
 
-        showNews()
+        await showNews()
+        newsNotEnded()
     })
 
 

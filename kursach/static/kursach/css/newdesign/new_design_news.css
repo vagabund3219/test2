@@ -156,7 +156,8 @@
   font-size: 15px;
   color: #424242;
   height: 125px;
-  overflow: hidden;
+  /*overflow: hidden;*/
+  overflow: scroll;
   text-overflow: ellipsis;
 }
 .projcard-tagbox {
@@ -201,5 +202,92 @@
   right: -10px;
   top: 0;
 }
+
+
+.news_adapt_card{
+  width: 100%;
+  margin-top: 3.2rem;
+  /*height: 17rem;*/
+  border-radius: 10px;
+  border: 3px solid #ddd;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, .66);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.news_adapt_image{
+  width: 100%;
+  height: 17rem;
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.2s ease;
+
+}
+.news_adapt_upper{
+  overflow: hidden;
+}
+
+.news_adapt_card:hover .news_adapt_image {
+  transform: scale(1.1) rotate(3.6deg);
+}
+.news_adapt_footer{
+  padding: 5px;
+  border-radius: 0 0 10px 10px ;
+}
+
+.news_adapt_title{
+    font-family: 'Voces', 'Open Sans', arial, sans-serif;
+    font-size: 24px;
+}
+
+.news_adapt_subtitle{
+  font-family: 'Voces', 'Open Sans', arial, sans-serif;
+  color: #888;
+}
+
+.news_adapt_text{
+  font-size: 15px;
+  color: #424242;
+  height: 125px;
+  overflow: hidden;
+  overflow-y: scroll;
+  text-overflow: ellipsis;
+}
+.news_adapt_tags{
+  margin-top: 0.3rem;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  /*  position: absolute;*/
+  /*bottom: 3%;*/
+}
+
+.news_adapt_card:hover {
+  box-shadow: 0 34px 32px -33px rgba(0, 0, 0, .18);
+  transform: translate(0px, -3px);
+}
+.news_adapt_card:hover .projcard-bar {
+  width: 93px;
+}
+
+
+
+.card_blue{
+  background-image: linear-gradient(-70deg, rgba(0, 136,255, .16), transparent 90%);
+}
+.card_red{
+  background-image: linear-gradient(-70deg, rgba(214, 47,31, .16), transparent 90%);
+}
+.card_green{
+  background-image: linear-gradient(-70deg, rgba(64, 189,0, .16), transparent 90%);
+}
+
+.card_blue .projcard-bar { background-color: #0088FF; }
+.card_blue::before { background-image: linear-gradient(-70deg, #0088FF, transparent 50%); }
+.card_blue:nth-child(2n)::before { background-image: linear-gradient(-250deg, #0088FF, transparent 50%); }
+.card_red .projcard-bar { background-color: #D62F1F; }
+.card_red::before { background-image: linear-gradient(-70deg, #D62F1F, transparent 50%); }
+.card_red:nth-child(2n)::before { background-image: linear-gradient(-250deg, #D62F1F, transparent 50%); }
+.card_green .projcard-bar { background-color: #40BD00; }
+.card_green::before { background-image: linear-gradient(-70deg, #40BD00, transparent 50%); }
+.card_green:nth-child(2n)::before { background-image: linear-gradient(-250deg, #40BD00, transparent 50%); }
 
 

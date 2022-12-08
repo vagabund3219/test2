@@ -4,6 +4,7 @@ import {sendRequest} from "./requests.js";
 
 export function createCategoryForm(){
     const categoryForm = document.createElement('div')
+    categoryForm.classList.add('category-form-div');
     categoryForm.innerHTML = `        
         <form novalidate method="POST" id="add-category-form">
                 <div class="category_form_container">

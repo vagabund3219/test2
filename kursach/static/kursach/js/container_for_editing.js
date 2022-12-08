@@ -107,6 +107,7 @@ export function transactionsEditingListeners(){
     transactionAddButton.addEventListener('click', (event)=>{
         ifDelete('.row');
         ifDelete('#add-transaction');
+        ifDelete('#add-new-check-form');
         transactionsAddForm();
     })
 
@@ -136,6 +137,7 @@ export function transactionsEditingListeners(){
     checkAddbutton.addEventListener('click', (event)=>{
         ifDelete('.row');
         ifDelete('#add-new-check-form');
+        ifDelete('#add-transaction');
         addCheckForm();
     })
 }

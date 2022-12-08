@@ -192,6 +192,7 @@ async function getItemsForBarDiagram(currentMonth, currentYear){
         }
 
         let i = 0
+
         while (i < 6){
             if (currentMonth-i<0){
                 // console.log(1)
@@ -199,34 +200,34 @@ async function getItemsForBarDiagram(currentMonth, currentYear){
             }else{
                 lastSixMonths[currentMonth-i] = [0, 0]
             }
-
             i++
         }
-        // console.log(lastSixMonths, 'lastSixMonths')
-        //
-        // const filteredData = dat.filter(item=>{
-        //     const itemMonth = new Date(item.date).getMonth()
-        //     const itemYear = new Date(item.date).getFullYear()
-        //     let i = 0
-        //     while (i<6){
-        //         if (currentMonth-i<0){
-        //             if (itemMonth==currentMonth-i+12 && itemYear==2021){
-        //                 return true
-        //             }
-        //         }else{
-        //             if (itemMonth==currentMonth-i && itemYear==currentYear){
-        //                 return true
-        //             }
-        //         }
-        //         i++
-        //     }
-        //     return false
-        // })
 
         const filteredData = dat.filter(item=>{
             const itemMonth = new Date(item.date).getMonth()
             const itemYear = new Date(item.date).getFullYear()
             let i = 0
+            // if (currentMonth<5){
+            //     while (i<currentMonth){
+            //         if (itemMonth==currentMonth-i){
+            //             return true
+            //         }
+            //         i++
+            //     }
+            // }else{
+            //     while (i<6){
+            //         if (currentMonth-i<0){
+            //             if (itemMonth==currentMonth-i+12){
+            //                 return true
+            //             }
+            //         }else{
+            //             if (itemMonth==currentMonth-i){
+            //                 return true
+            //             }
+            //         }
+            //         i++
+            //     }
+            // }
             while (i<6){
                 if (currentMonth-i<0){
                     if (itemMonth==currentMonth-i+12){

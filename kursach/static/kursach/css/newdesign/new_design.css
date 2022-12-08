@@ -381,7 +381,8 @@ body {
 }
 
 div.card {
-    width: 19rem;
+    /*width: 19rem;*/
+    width: 30%;
     margin: 15px 0 0 20px;
     display: inline-block;
 }
@@ -420,6 +421,35 @@ li.list-group-item.card-row{
     margin-top: 1rem;
     text-align: center;
 }
+
+.category-form-div{
+    display: flex;
+    justify-content: center;
+}
+
+.check-form-div{
+    display: flex;
+    justify-content: center;
+}
+
+.card-body form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn.btn-primary{
+
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.news_adapt_card{
+    display: none;
+}
+
 
 .hidden {
     display: none;

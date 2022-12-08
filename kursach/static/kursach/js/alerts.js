@@ -25,5 +25,9 @@
         alertExp(text, 'success-alert')
     }
 
+    export function notEndedAlert(text){
+        alertExp(text, 'danger-alert')
+    }
+
 
 

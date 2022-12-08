@@ -7,6 +7,7 @@ import {getBill, updateBill} from "./new_design_updating_bill.js";
 
 function createTransactionsForm(){
     const transactionsForm = document.createElement('div');
+    transactionsForm.classList.add('check-form-div');
     transactionsForm.innerHTML = `<form novalidate method="POST" id="add-transaction">
 <!--                    {% csrf_token %}-->
                         <div class="form-container">

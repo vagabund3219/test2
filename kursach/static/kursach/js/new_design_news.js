@@ -15,6 +15,7 @@ export async function showNews(){
 
     news.forEach(item=>{
         newsCardContainer.innerHTML += (createNewsCard(item.title, item.subtitle, item.description, item.tags, item.image))
+        newsCardContainer.innerHTML += (createAnotherNewsCard(item.title, item.subtitle, item.description, item.tags, item.image))
     })
     newsContainer.append(newsCardContainer)
 }
@@ -63,5 +64,25 @@ function createNewsCard(title, subtitle, description, tags, img){
                     </div>
     `
     return newCard
+}
+
+function createAnotherNewsCard(title, subtitle, description, tags, img){
+    const style = ['card_blue', 'card_green', 'card_red']
+    const currentStyle = style[getRandomInt(3)]
+    const newsAdaptCard = `<div class="news_adapt_card">
+                                <div class="news_adapt_upper">
+                                    <img src="${img}" alt="news_image" class="news_adapt_image"/>
+                                </div>
+                                <div class="news_adapt_footer ${currentStyle}">
+                                    <div class="news_adapt_title">${title}</div>
+                                    <div class="news_adapt_subtitle">${subtitle}</div>
+                                    <div class="projcard-bar"></div>
+                                    <div class="news_adapt_text">${description}</div>
+                                    <div class="news_adapt_tags">
+                                        ${displayTags(tags)}
+                                    </div>
+                                </div>
+                              </div>`
+    return newsAdaptCard
 }
 

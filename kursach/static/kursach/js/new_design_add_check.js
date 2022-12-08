@@ -5,6 +5,7 @@ import {getBill, updateBill} from "./new_design_updating_bill.js";
 
 function createCheckForm(){
     const checkForm = document.createElement('div');
+    checkForm.classList.add('check-form-div')
     checkForm.innerHTML = `
         <form novalidate method="POST" class="add-new-check-form" id="add-new-check-form" enctype="multipart/form-data">
             <div class="check-form-container">

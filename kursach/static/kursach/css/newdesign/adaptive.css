@@ -1,0 +1,246 @@
+
+
+@media(max-width: 1399px){
+      .footer_card{
+        height: 23%;
+        padding: 13px;
+        width: 100%;
+    }
+    .card_numbers{
+        font-size: 24px;
+        line-height: 10px;
+
+    }
+    .footer_card_name{
+        font-size: 18px;
+        margin-top: 7px;
+    }
+    .footer_card_balance{
+        font-size: 23px;
+    }
+    .footer_card_right{
+        font-size: 20px;
+    }
+
+
+    .footer_right_down {
+        padding: 0;
+        height: 35%;
+    }
+    .footer_last_payments{
+        font-size: 21px;
+    }
+
+    .footer_right_li {
+        margin-top: 25px;
+
+    }
+    .footer_right_top {
+        font-size: 18px;
+    }
+
+    /*div.card{*/
+    /*    !*width: 18rem;*!*/
+    /*    width: 48%;*/
+    /*}*/
+
+
+    .check-form-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .projcard{
+        height: 305px;
+        /*width: 300px;*/
+    }
+
+    .projcard-img{
+        height: 305px;
+        width: 315px;
+    }
+
+    .projcard-textbox{
+        left: 312px;
+    }
+    .projcard-title{
+        font-size: 21px;
+        width: 18rem;
+    }
+    .projcard-subtitle{
+        width: 18rem;
+        font-size: 17px;
+    }
+    .projcard-textbox:before{
+        left: -25px;
+    }
+    .projcard-textbox:after{
+        right: -150px;
+    }
+    .projcard-description{
+        height: 95px;
+        width: 18rem;
+    }
+    .projcard-tagbox{
+        /*width: 18rem;*/
+        width: 50%;
+        margin-left: -5px;
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+    }
+
+    .projcard:nth-child(2n) .projcard-textbox {
+        right: 454px;
+    }
+
+
+    .right_container {
+        padding: 30px 10px 10px 12px;
+    }
+    .auth_text{
+        font-size: 18px;
+    }
+    .main_content_container {
+        height: 91%;
+    }
+
+}
+
+@media(max-width: 1545px){
+    div.card{
+        /*width: 15rem;*/
+        width: 46%;
+    }
+}
+
+@media(max-width: 1199px){
+    .aside {
+        width: 19%;
+    }
+
+    .aside_header{
+        margin-left: 0;
+        font-size: 23px;
+        margin-top: 26px;
+    }
+
+
+    .navbar-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .navbar-text span{
+        display: none;
+    }
+
+    .containe{
+        padding: 10px 5px 10px 10px;
+    }
+    .right_container{
+        padding-right: 5px;
+    }
+    .right_container_right{
+        padding: 7px;
+    }
+    .footer_title{
+        font-size: 22px;
+    }
+    .footer_last_payments{
+        font-size: 19px;
+    }
+    .account_name {
+        font-size: 17px;
+    }
+    .footer_card {
+        height: 20%;
+    }
+    .footer_card_right {
+        font-size: 19px;
+    }
+    .footer_card_balance{
+        font-size: 20px;
+    }
+    .footer_card_name{
+        font-size: 17px;
+        margin-top: 3px;
+    }
+    .footer_right_li_right{
+        margin-left: 7px;
+
+    }
+    .header_title{
+        font-size: 34px;
+    }
+
+    .category_menu{
+        height: 3.8rem;
+    }
+    .category_menu_button:first-child{
+        margin-left: 5px;
+    }
+    .account_avatar {
+        width: 65px;
+        height: 45px;
+    }
+    .bell {
+        width: 43px;
+        height: 43px;
+        border-radius: 15px;
+    }
+    .category_menu_button{
+        width: 3rem;
+        height: 3rem;
+        border-radius: 20px;
+    }
+    .articles{
+        grid-template-columns: repeat(auto-fit,minmax(calc(var(--base-grid)*20),1fr));
+        margin: calc(var(--base-grid)*3) auto calc(var(--base-grid)*2);
+        grid-row-gap: calc(var(--base-grid)*3);
+        grid-column-gap: calc(var(--base-grid)*1);
+    }
+    .articles__title{
+        font-size: calc(var(--base-grid)*2.6);
+    }
+    .articles__article, .articles__article:before{
+        width: calc(var(--base-grid)*18);
+        height: calc(var(--base-grid)*18);
+    }
+
+    .category_menu_left{
+        gap: 15px;
+    }
+    .trans_category_name{
+        font-size: 28px;
+    }
+    .row{
+        --bs-gutter-x: 0.2rem;
+    }
+
+    .projcard{
+        display: none;
+    }
+    .news_adapt_card{
+        display: block;
+    }
+
+
+}
+
+@media(max-width: 991px){
+
+}
+
+@media(max-width: 767px){
+
+}
+
+@media(max-width: 575px){
+
+}
+
+/*@media(max-width: 360px){*/
+
+/*}*/
+
+

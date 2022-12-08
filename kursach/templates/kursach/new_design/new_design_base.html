@@ -20,7 +20,10 @@
 
     <link rel="stylesheet" href="{% static 'kursach/css/newdesign/new_design_diagrams.css' %}">
 
-        <link rel="stylesheet" href="{% static 'kursach/css/newdesign/new_design.css' %}">
+    <link rel="stylesheet" href="{% static 'kursach/css/newdesign/new_design.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'kursach/css/newdesign/adaptive.css' %}">
 
 
     <title>{% block title %}Money Tracker{% endblock %}</title>
@@ -51,7 +54,7 @@
 
                 <nav class="aside_nav">
                     <ul class="aside_ul">
-                        <li class="aside_li">
+                        <li class="aside_li " id="nav_main">
                             <i class="bi bi-border-all"></i>
 {#                            <img src="{% static 'images/logo.png' %}" alt="aside_icon" class="aside_icon">#}
                             <div class="aside_text">Главная</div>
@@ -78,7 +81,7 @@
                     {% if user.is_authenticated %}
                             <span class="navbar-text auth_text auth-exiting"><a href="{% url 'logout' %}"><i class="bi bi-box-arrow-left" id="exit-arrow"></i>Выход</a></span>
                           {% else %}
-                          <span class="navbar-text auth_text"><a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Авторизация</a></span>
+                          <span class="navbar-text auth_text"><a href="{% url 'register' %}">Регистрация</a> <span>|</span> <a href="{% url 'login' %}">Авторизация</a></span>
                     {% endif %}
                 </div>
             </div>
@@ -186,6 +189,7 @@
         <script type="module" src="{% static 'kursach/js/chart.js/dist/chart.js' %}"></script>
         <script type="module" src="{% static 'kursach/js/chart.js/dist/chart.umd.js' %}"></script>
         <script type="module" src="{% static 'kursach/js/search.js' %}"></script>
+        <script type="module" src="{% static 'kursach/js/new_design_not_ended.js' %}"></script>
 
 </body>
 </html>
