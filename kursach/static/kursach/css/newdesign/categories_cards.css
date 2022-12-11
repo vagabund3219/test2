@@ -15,7 +15,8 @@
   grid-column-gap: calc(var(--base-grid)*1);
   grid-template-columns: repeat(auto-fit,minmax(calc(var(--base-grid)*22),1fr));
   justify-items: center;
-  padding: 0;
+  /*padding: 0;*/
+  padding: 5px;
 }
 
 .articles__article {

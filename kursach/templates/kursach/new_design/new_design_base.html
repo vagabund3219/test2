@@ -88,15 +88,24 @@
 
             <div class="right_container">
                 <div class="right_container_left">
-                    {% if user.is_authenticated %}
-                        <div class="right_container_header">
-                            <div class="header_title">Траты</div>
+                    <div class="right_container_header">
+                        <div class="hamburger_div">
+                            <div class="hamburger">
+                                <span class="hamburger_line"></span>
+                                <span class="hamburger_line"></span>
+                                <span class="hamburger_line"></span>
+                            </div>
+                        </div>
+
+                        {% if user.is_authenticated %}
+                            <div class="header_title"></div>
                             <div class="header_search">
                                 <input type="text" class="header_input" placeholder="Поиск..">
                                 <img src="{% static 'images/search.png' %}" alt="search_icon" class="header_search_icon">
                             </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
+
                     {% if not user.is_authenticated %}
                         {% block auth %}
                         {% endblock %}
@@ -190,6 +199,7 @@
         <script type="module" src="{% static 'kursach/js/chart.js/dist/chart.umd.js' %}"></script>
         <script type="module" src="{% static 'kursach/js/search.js' %}"></script>
         <script type="module" src="{% static 'kursach/js/new_design_not_ended.js' %}"></script>
+        <script type="module" src="{% static 'kursach/js/new_design_adaptive.js' %}"></script>
 
 </body>
 </html>

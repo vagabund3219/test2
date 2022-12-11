@@ -67,15 +67,20 @@ export function categoryEditingListeners(){
     categoryDeleteButton.addEventListener('click', (event)=>{
         const allCategories = document.querySelectorAll('.articles__article')
         allCategories.forEach(category => {
-            category.querySelector('i') ? category.querySelector('i').remove() : {}
-            category.innerHTML += `<i class="bi bi-trash delete-category-button"></i>`
-            category.querySelector('.delete-category-button').addEventListener('click', async (event)=>{
+            // category.querySelector('i') ? category.querySelector('i').remove() : {}
+            if (category.querySelector('i')){
+                category.querySelector('i').remove()
+            }else{
+                category.innerHTML += `<i class="bi bi-trash delete-category-button"></i>`
+                category.querySelector('.delete-category-button').addEventListener('click', async (event)=>{
 
                 await sendRequest('delete', `${url}${CategoriesApiDelete}/${category.id}/`)
 
+                document.getElementById(`${category.id}`).remove()
+                // setTimeout(()=>showCategories(document.querySelector('.header_title')), 100)
+                })
+            }
 
-                setTimeout(()=>showCategories(document.querySelector('.header_title')), 100)
-            })
         })
     })
 }
@@ -121,21 +126,26 @@ export function transactionsEditingListeners(){
     transactionDeleteButton.addEventListener('click', (event)=>{
         const cards = document.querySelectorAll('.card');
         cards.forEach(card=>{
-            card.querySelector('i') ? card.querySelector('i').remove() : {}
-            card.innerHTML += `<i class="bi bi-trash delete-trans-button"></i>`
-            card.querySelector('.delete-trans-button').addEventListener('click', async (event)=>{
+            // card.querySelector('i') ? card.querySelector('i').remove() : {}
+            if (card.querySelector('i')){
+                card.querySelector('i').remove()
+            }else{
+                card.innerHTML += `<i class="bi bi-trash delete-trans-button"></i>`
+                card.querySelector('.delete-trans-button').addEventListener('click', async (event)=>{
 
-                await sendRequest('delete', `${url}${TransactionsApiDelete}/${card.id}/`)
+                    await sendRequest('delete', `${url}${TransactionsApiDelete}/${card.id}/`)
 
-                const price = document.getElementById(`${card.id}`).querySelector('.item_price').textContent
-                const type = document.getElementById(`${card.id}`).querySelector('.item_type').textContent
+                    const price = document.getElementById(`${card.id}`).querySelector('.item_price').textContent
+                    const type = document.getElementById(`${card.id}`).querySelector('.item_type').textContent
 
-                await updateBillOnDelete(type, price);
+                    await updateBillOnDelete(type, price);
 
-                document.getElementById(`${card.id}`).remove()
+                    document.getElementById(`${card.id}`).remove()
 
 
-            })
+                })
+            }
+
         })
     })
 

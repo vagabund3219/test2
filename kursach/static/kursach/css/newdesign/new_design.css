@@ -144,6 +144,7 @@ body {
 .right_container_header{
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 
@@ -458,4 +459,54 @@ li.list-group-item.card-row{
 
 div.hidden {
     display: none;
+}
+
+.hamburger_div{
+    border-radius: 15px;
+    background-color: #e6eaf8;
+    width: 3rem;
+    height: 3rem;
+    /*display: flex;*/
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger {
+    display: block;
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 10px;*/
+    /*-webkit-transform: translateY(-50%);*/
+    /*transform: translateY(-50%);*/
+    width: 26px;
+    height: 12px;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #ffffff;
+    margin-bottom: 3.5px;
+    -webkit-transition: .6s all;
+    transition: .6s all
+}
+
+.hamburger_active span {
+    margin-bottom: -2px
+}
+
+.hamburger_active span:nth-child(1) {
+    -webkit-transform: translateY(3px) rotate(-45deg);
+    transform: translateY(3px) rotate(-45deg)
+}
+
+.hamburger_active span:nth-child(2) {
+    display: none
+}
+
+.hamburger_active span:nth-child(3) {
+    -webkit-transform: translateY(3px) rotate(45deg);
+    transform: translateY(3px) rotate(45deg)
 }

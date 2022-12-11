@@ -14,7 +14,7 @@ async function fullDiagrams(){
 }
 
 
-
+Chart.defaults.font.size = 23;
 
 
 
@@ -92,7 +92,7 @@ export async function barDiagram(){
     barCategories.innerHTML = `<div class="barChoosingDate">
                                     <div class="bar_title">Статистика</div>
                                     <div id="barChoosingDateId">
-                                           <select type="text" id="monthBar" autocomplete="off" class="form-control" required>
+                                           <select type="text" id="monthBar" autocomplete="off" class="form-control choose-month" required>
                                                <option value="0">Январь</option>
                                                <option value="1">Февраль</option>
                                                <option value="2">Март</option>

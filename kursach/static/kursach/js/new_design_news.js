@@ -9,15 +9,20 @@ export async function getAllNews(){
 export async function showNews(){
     const news = await getAllNews()
     const newsCardContainer = document.createElement('div');
+    const newsAnotherCardContainer = document.createElement('div');
     newsCardContainer.classList.add('projcard-container');
+    newsAnotherCardContainer.classList.add('projcard-container');
 
     const newsContainer = document.querySelector('.main_content_container');
 
     news.forEach(item=>{
         newsCardContainer.innerHTML += (createNewsCard(item.title, item.subtitle, item.description, item.tags, item.image))
-        newsCardContainer.innerHTML += (createAnotherNewsCard(item.title, item.subtitle, item.description, item.tags, item.image))
+    })
+    news.forEach(item=>{
+        newsAnotherCardContainer.innerHTML += (createAnotherNewsCard(item.title, item.subtitle, item.description, item.tags, item.image))
     })
     newsContainer.append(newsCardContainer)
+    newsContainer.append(newsAnotherCardContainer)
 }
 
 function getRandomInt(max) {

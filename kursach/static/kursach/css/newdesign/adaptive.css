@@ -3,52 +3,73 @@
         /*width: 15rem;*/
         width: 46%;
     }
+    .category_menu_button:first-child{
+        margin-left: 5px;
+    }
+    .category_menu_left{
+        gap: 20px;
+    }
+    .card_numbers{
+        line-height: 13px;
+    }
     .footer_card{
         height: 25%;
     }
+    .footer_card_balance{
+        font-size: 26px;
+    }
+    .footer_last_payments{
+        margin-top: 7rem;
+    }
 
     .projcard{
-        height: 315px;
+        height: 265px;
         /*width: 300px;*/
     }
 
     .projcard-img{
-        height: 305px;
-        width: 346px;
+        height: 265px;
+        width: 362px;
     }
 
     .projcard-textbox{
         left: 385px;
+        width: calc(100% - 402px);
     }
     .projcard-title{
         font-size: 21px;
-        width: 18rem;
+        width: 100%;
+        /*width: 18rem;*/
     }
     .projcard-subtitle{
-        width: 18rem;
+        width: 100%;
+        /*width: 18rem;*/
         font-size: 17px;
     }
     .projcard-textbox:before{
         left: -53px;
     }
     .projcard-textbox:after{
-        right: -150px;
+        right: -50px;
     }
     .projcard-description{
-        height: 95px;
-        width: 18rem;
+        height: 40%;
+        width: 100%;
     }
     .projcard-tagbox{
         /*width: 18rem;*/
         width: 50%;
         margin-left: -5px;
+        bottom: 0;
         /*display: flex;*/
         /*flex-wrap: wrap;*/
     }
 
     .projcard:nth-child(2n) .projcard-textbox {
-        right: 454px;
+        right: 380px;
     }
+
+
 }
 
 @media(max-width: 1399px){
@@ -60,7 +81,6 @@
     .card_numbers{
         font-size: 24px;
         line-height: 10px;
-
     }
     .footer_card_name{
         font-size: 18px;
@@ -79,12 +99,13 @@
         height: 35%;
     }
     .footer_last_payments{
-        margin-top: 12rem;
+        margin-top: 8rem;
         font-size: 21px;
 
     }
     .footer_right_down{
                 height: 31%;
+        margin-top: 7px;
     }
 
     .footer_right_li {
@@ -122,6 +143,9 @@
     }
     .news_adapt_card{
         display: block;
+    }
+    .news_adapt_image{
+        height: 30%;
     }
 
 }
@@ -231,13 +255,235 @@
     .row{
         --bs-gutter-x: 0.2rem;
     }
-
-
+    .trans_menu_right{
+        gap: 0.7rem;
+    }
+    .alert{
+        width: 45%;
+    }
 
 
 }
 
 @media(max-width: 991px){
+    .hamburger_div{
+        display: flex;
+    }
+    .aside{
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 35%;
+        transition: .5s all;
+        z-index: 500;
+    }
+    .aside_active {
+        left: 0
+    }
+    .right_container{
+        width: 100%;
+    }
+    .right_container_left{
+        width: 100%;
+    }
+    .news_adapt_title{
+        font-size:36px ;
+    }
+    .news_adapt_subtitle{
+        font-size: 28px;
+    }
+    .news_adapt_text{
+        font-size: 21px;
+    }
+    .main_content_container::-webkit-scrollbar{
+        display: block;
+    }
+    .header_search{
+        font-size: 26px;
+    }
+    .right_container_right{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 35%;
+        transition: .5s all;
+        z-index: 500;
+    }
+    .right_active {
+        right: 0
+    }
+    .aside_header_title{
+        font-size: 40px;
+    }
+    .aside_li {
+        font-size: 36px;
+    }
+    .auth-exiting{
+        font-size: 25px;
+    }
+    .account_name{
+        font-size: 24px;
+    }
+    .footer_title{
+        font-size: 32px;
+    }
+    .footer_card_title{
+        font-size: 24px;
+    }
+    .footer_card_balance{
+        font-size: 27px;
+    }
+    .footer_card_right{
+        font-size: 27px;
+    }
+    .footer_last_payments{
+        font-size: 28px;
+        bottom: 32%;
+        position: absolute;
+    }
+    .card_numbers{
+        font-size: 40px;
+    }
+    .footer_card_name{
+        font-size: 25px;
+        /*margin-top: 1%;*/
+        /*margin-bottom: 5px;*/
+        bottom: 5px;
+        position: absolute;
+    }
+    .footer_right_down{
+        bottom: 5px;
+        position: absolute;
+    }
+    .footer_last_payments {
+        margin-top: 30%;
+    }
+    .footer_right_top {
+        font-size: 24px;
+    }
+    .footer_card{
+        height: 22%;
+        position: relative;
+    }
+    .bell{
+        width: 54px;
+        height: 54px;
+    }
+    .bar_title{
+        font-size: 30px;
+    }
+    .choose-month{
+        font-size: 25px;
+    }
+    #barChoosingDateId{
+        width: 10rem;
+    }
+    .category_menu {
+        height: 4.8rem;
+    }
+    .category_menu_button{
+        height: 4rem;
+        width: 4rem;
+    }
+    .category_menu_left{
+        gap: 20px;
+    }
+    .articles__article{
+        width: calc(var(--base-grid)*22);
+        height: calc(var(--base-grid)*22);
+    }
+    .articles__title{
+        font-size: calc(var(--base-grid)*3.4);
+    }
+    .articles{
+        grid-column-gap: calc(var(--base-grid)*4);
+    }
+    .card-row span{
+        font-size: 28px;
+    }
+    .trans_category_name{
+        font-size: 34px;
+    }
+    .category_menu_button{
+        font-size: 33px;
+    }
+    .form-container{
+        font-size: 25px;
+    }
+    .form-container input{
+        font-size: 25px;
+    }
+    .form-container select{
+        font-size: 25px;
+    }
+    .category_form_container{
+        font-size: 25px;
+    }
+    .check-form-container{
+        font-size: 25px;
+    }
+    .check-form-container input{
+    font-size: 25px;
+    }
+    .check-form-container select{
+    font-size: 25px;
+    }
+    .category_form_container select{
+        font-size: 25px;
+    }
+    .category_form_container input{
+        font-size: 25px;
+    }
+    .transactions-container{
+        font-size: 25px;
+    }
+     .transactions-container input{
+         font-size: 25px;
+     }
+     .transactions-container select{
+         font-size: 25px;
+     }
+    .floating-button{
+        width: 15rem;
+        height: 3rem;
+        font-size: 25px;
+    }
+    .delete-trans-button{
+        font-size: 33px;
+    }
+    /*.aside{*/
+    /*    width: 5%;*/
+    /*}*/
+    /*.aside_header{*/
+    /*    font-size: 40px;*/
+    /*}*/
+    /*.aside_text{*/
+    /*    display: none;*/
+    /*}*/
+    /*.aside_li{*/
+    /*    padding: 0;*/
+    /*}*/
+    .auth_text{
+        font-size: 24px;
+    }
+    .form-group{
+        font-size: 23px;
+        width: 19rem;
+
+    }
+    .form-group input{
+        font-size: 25px;
+    }
+    .btn {
+        width: 11rem;
+        font-size: 26px;
+    }
+    .col-md-6{
+        font-size: 24px;
+    }
+    .col-md-6 input{
+        font-size: 25px;
+    }
 
 }
 
