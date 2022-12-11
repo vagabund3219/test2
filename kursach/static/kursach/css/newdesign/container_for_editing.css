@@ -75,3 +75,7 @@
     font-weight: 500;
     color: #000000 ;
 }
+.trans_menu_right{
+    display: flex;
+    gap: 2rem;
+}

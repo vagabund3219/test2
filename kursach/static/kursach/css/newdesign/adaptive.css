@@ -1,4 +1,55 @@
+@media(max-width: 1545px){
+    div.card{
+        /*width: 15rem;*/
+        width: 46%;
+    }
+    .footer_card{
+        height: 25%;
+    }
 
+    .projcard{
+        height: 315px;
+        /*width: 300px;*/
+    }
+
+    .projcard-img{
+        height: 305px;
+        width: 346px;
+    }
+
+    .projcard-textbox{
+        left: 385px;
+    }
+    .projcard-title{
+        font-size: 21px;
+        width: 18rem;
+    }
+    .projcard-subtitle{
+        width: 18rem;
+        font-size: 17px;
+    }
+    .projcard-textbox:before{
+        left: -53px;
+    }
+    .projcard-textbox:after{
+        right: -150px;
+    }
+    .projcard-description{
+        height: 95px;
+        width: 18rem;
+    }
+    .projcard-tagbox{
+        /*width: 18rem;*/
+        width: 50%;
+        margin-left: -5px;
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+    }
+
+    .projcard:nth-child(2n) .projcard-textbox {
+        right: 454px;
+    }
+}
 
 @media(max-width: 1399px){
       .footer_card{
@@ -28,7 +79,12 @@
         height: 35%;
     }
     .footer_last_payments{
+        margin-top: 12rem;
         font-size: 21px;
+
+    }
+    .footer_right_down{
+                height: 31%;
     }
 
     .footer_right_li {
@@ -50,48 +106,6 @@
         flex-direction: column;
     }
 
-    .projcard{
-        height: 305px;
-        /*width: 300px;*/
-    }
-
-    .projcard-img{
-        height: 305px;
-        width: 315px;
-    }
-
-    .projcard-textbox{
-        left: 312px;
-    }
-    .projcard-title{
-        font-size: 21px;
-        width: 18rem;
-    }
-    .projcard-subtitle{
-        width: 18rem;
-        font-size: 17px;
-    }
-    .projcard-textbox:before{
-        left: -25px;
-    }
-    .projcard-textbox:after{
-        right: -150px;
-    }
-    .projcard-description{
-        height: 95px;
-        width: 18rem;
-    }
-    .projcard-tagbox{
-        /*width: 18rem;*/
-        width: 50%;
-        margin-left: -5px;
-        /*display: flex;*/
-        /*flex-wrap: wrap;*/
-    }
-
-    .projcard:nth-child(2n) .projcard-textbox {
-        right: 454px;
-    }
 
 
     .right_container {
@@ -103,15 +117,16 @@
     .main_content_container {
         height: 91%;
     }
-
-}
-
-@media(max-width: 1545px){
-    div.card{
-        /*width: 15rem;*/
-        width: 46%;
+    .projcard{
+        display: none;
     }
+    .news_adapt_card{
+        display: block;
+    }
+
 }
+
+
 
 @media(max-width: 1199px){
     .aside {
@@ -217,12 +232,7 @@
         --bs-gutter-x: 0.2rem;
     }
 
-    .projcard{
-        display: none;
-    }
-    .news_adapt_card{
-        display: block;
-    }
+
 
 
 }

@@ -7,7 +7,7 @@
 }
 
 .alert {
-  width: 20%;
+  width: 24%;
   /*margin: 20px auto;*/
   display: flex;
   justify-content: space-between;
@@ -19,7 +19,7 @@
   box-shadow: 0 0 15px 5px #ccc;
 }
 .alert-from-reg {
-  width: 20%;
+  width: 24%;
   /*margin: 20px auto;*/
   display: flex;
   justify-content: space-between;
@@ -36,14 +36,16 @@
   align-items: center;
   justify-content: center;
   /*position: absolute;*/
-  width: 30px;
-  height: 30px;
+  /*width: 30px;*/
+  width: 2rem;
+  height: 2rem;
+  /*height: 30px;*/
   opacity: 0.5;
   border-width: 1px;
   border-style: solid;
   border-radius: 50%;
-  right: 15px;
-  top: 25px;
+  /*right: 15px;*/
+  /*top: 25px;*/
   text-align: center;
   font-size: 1.6em;
   cursor: pointer;

@@ -89,9 +89,15 @@ export function transactionsEditingMenu (){
     const transactionMenu = document.querySelector('.transaction_menu');
     const categoryName = document.querySelector('#categoryName').textContent;
     transactionMenu.innerHTML += `<div class="trans_category_name">${categoryName}</div>`
-    transactionMenu.innerHTML += `<div class="trans_return_button category_menu_button ">
+    transactionMenu.innerHTML += `<div class="trans_menu_right">
+                                    <div class="trans_filter_button category_menu_button ">
+                                        <i class="bi bi-gear"></i>
+                                    </div>
+                                    <div class="trans_return_button category_menu_button ">
                                        <i class="bi bi-arrow-return-left"></i>
-                                   </div>`
+                                    </div>
+                                  </div>`
+
     document.querySelector('.trans_return_button').addEventListener('click', (event)=>{
         showCategories(document.querySelector('.header_title'));
     })

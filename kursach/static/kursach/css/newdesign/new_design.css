@@ -395,6 +395,7 @@ span.label{
 li.list-group-item.card-row{
     display: flex;
     justify-content: space-between;
+    padding: 5px 0;
 }
 
 #exit-arrow{
