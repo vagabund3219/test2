@@ -3,6 +3,12 @@ const searchInput = document.querySelector('.header_input');
 searchInput.addEventListener('input', (event)=>{
     search('.articles__article', '.articles__title')
     search('.card', '.item_textname')
+    // search('.projcard', '.projcard-title')
+    // search('.projcard', '.projcard-subtitle')
+    search('.projcard', '.projcard-description')
+    // search('.news_adapt_card', '.news_adapt_title')
+    search('.news_adapt_card', '.news_adapt_text')
+    // search('.news_adapt_card', '.news_adapt_subtitle')
 })
 
 function search (classNameItem, classNameText ){

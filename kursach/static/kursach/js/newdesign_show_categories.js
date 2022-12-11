@@ -34,6 +34,7 @@ import {categoryEditingListeners, categoryEditingMenu, transactionsEditingMenu, 
           categoryButton.addEventListener('click', (event)=>{
               if (event.target.tagName != 'I'){
                   mainContentContainer.innerHTML = ''
+                  document.getElementById('categoryId').textContent = categoryButton.id
                   document.querySelector('#categoryName').textContent = categoryButton.querySelector('.articles__title').textContent
                   displayTransactions(categoryButton.id)
                   transactionsEditingMenu();

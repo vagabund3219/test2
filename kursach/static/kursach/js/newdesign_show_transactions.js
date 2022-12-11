@@ -90,12 +90,13 @@ export async function showLastTransactions(){
       await getTypeTrans(item.type).then(data=>type=data)
       ul.innerHTML =
 `            <li class="list-group-item card-row">
-                <span class="label">Имя транзакции</span>
+                <span class="label">Название</span>
+<!--                <span class="label">Имя транзакции</span>-->
                 <span class="value item_textname">${item.name.slice(0, 13)}</span>
             </li>
             <li class="list-group-item card-row">
                 <span class="label">Кто добавил</span>
-                <span class="value">${item.username}</span>
+                <span class="value">${item.username.substring(0, 13)}</span>
             </li>
             <li class="list-group-item card-row">
                 <span class="label">Тип</span>

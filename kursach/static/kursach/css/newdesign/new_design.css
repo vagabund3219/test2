@@ -470,6 +470,7 @@ div.hidden {
     display: none;
     justify-content: center;
     align-items: center;
+    transition: .6s all;
 }
 
 .hamburger {
@@ -481,6 +482,7 @@ div.hidden {
     /*transform: translateY(-50%);*/
     width: 26px;
     height: 12px;
+    transition: .6s all;
 }
 
 .hamburger span {
@@ -510,3 +512,7 @@ div.hidden {
     -webkit-transform: translateY(3px) rotate(45deg);
     transform: translateY(3px) rotate(45deg)
 }
+.close_menu{
+    display: none;
+}
+

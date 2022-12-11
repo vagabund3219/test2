@@ -57,12 +57,15 @@ function createTransactionsForm(){
                             .then(response => response.json())
         const categories = await fetch(`${url}${CategoriesApiList}`)
             .then(response => response.json())
+        // typeSelect.innerHTML = '<option value="d">Выберите тип</option>';
+
         typeSelect.innerHTML = '<option value="d">Выберите тип</option>';
         typeSelect.innerHTML += types.map(item => `<option value="${item.id}">${item.type_name}</option>`).join('');
         typeSelect.addEventListener('change', ()=>{
             const filtered = categories.filter(item=>item.type===+typeSelect.value);
             categorySelect.innerHTML = filtered.map(category => `<option value="${category.id}">${category.name}</option>`).join('');
         })
+
     const datepicker = new Datepicker(document.getElementById('date'), {
       format: 'dd.mm.yyyy',
       language: 'ru'

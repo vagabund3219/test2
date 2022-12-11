@@ -4,7 +4,7 @@ from django.db import models
 from django.shortcuts import reverse
 
 class Categories(models.Model):
-    name = models.CharField(max_length=80, verbose_name='Название категории')
+    name = models.CharField(max_length=30, verbose_name='Название категории')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     type = models.ForeignKey('TypeOfTranscation', on_delete=models.PROTECT)
     def get_absolute_url(self):
@@ -36,7 +36,7 @@ class CheckData(models.Model):
     date = models.DateField(default=datetime.date.today())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     type = models.ForeignKey(TypeOfTranscation, on_delete=models.PROTECT, verbose_name='Тип')
-    username = models.CharField(max_length=60, verbose_name='Кто добавил')
+    username = models.CharField(max_length=30, verbose_name='Кто добавил')
 
     def __str__(self):
         return self.name
