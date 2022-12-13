@@ -68,7 +68,12 @@
     .projcard:nth-child(2n) .projcard-textbox {
         right: 380px;
     }
-
+    .footer_card_name{
+        margin-top: 0;
+    }
+    .footer_last_payments {
+        margin-top: 4.7rem;
+    }
 
 }
 
@@ -548,6 +553,51 @@
 }
 
 @media(max-width: 575px){
+    .aside_text{
+        display: none;
+    }
+    .aside_header_title{
+        display: none;
+    }
+    .exit_text{
+        display: none;
+    }
+    .aside{
+        width: 12%;
+    }
+    #exit-arrow{
+        font-size: 32px;
+    }
+    .right_container_right{
+        width: 88%;
+    }
+    .close_menu{
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .aside_logo{
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 auto;
+        margin-top: 30px;
+
+    }
+    .footer_title{
+        margin-top: 1.5rem;
+    }
+    .news_adapt_title{
+        font-size: 29px;
+    }
+    .news_adapt_subtitle{
+        font-size: 23px;
+    }
+    .news_adapt_text{
+        font-size: 20px;
+    }
+    .header_title{
+        font-size: 29px;
+    }
 
 }
 

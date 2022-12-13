@@ -91,7 +91,7 @@
                 </div>
                 <div class="aside_footer">
                     {% if user.is_authenticated %}
-                            <span class="navbar-text auth_text auth-exiting"><a href="{% url 'logout' %}"><i class="bi bi-box-arrow-left" id="exit-arrow"></i>Выход</a></span>
+                            <span class="navbar-text auth_text auth-exiting"><a href="{% url 'logout' %}"><i class="bi bi-box-arrow-left" id="exit-arrow"></i><span class="exit_text">Выход</span></a></span>
                           {% else %}
                           <span class="navbar-text auth_text"><a href="{% url 'register' %}">Регистрация</a> <span>|</span> <a href="{% url 'login' %}">Авторизация</a></span>
                     {% endif %}
