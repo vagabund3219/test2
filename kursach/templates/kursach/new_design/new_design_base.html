@@ -55,9 +55,7 @@
                         <img src="{% static 'images/logo.png' %}" alt="logo" class="aside_logo">
                         <div class="aside_header_title">
                             Tracker
-
                         </div>
-
                     </div>
 
 
@@ -108,6 +106,9 @@
                                 <span class="hamburger_line"></span>
                             </div>
                         </div>
+                        {% if not user.is_authenticated %}
+                             <span class="if_not_auth"><a href="{% url 'register' %}"> Зарегистрируйтесь </a>или<a href="{% url 'login' %}"> войдите </a>в свой аккаунт</span>
+                        {% endif %}
 
                         {% if user.is_authenticated %}
                             <div class="header_title"></div>

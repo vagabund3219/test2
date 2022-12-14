@@ -239,7 +239,8 @@ body {
 /* Card design*/
 
 .footer_card{
-    margin-top: 25px;
+    /*margin-top: 25px;*/
+    margin-top: 1rem;
     /*background-color: rgb(6,41,198);*/
     background: url('../../../images/card.webp');
     color: #ffffff;
@@ -330,7 +331,8 @@ body {
 
 
 .footer_last_payments{
-    margin-top: 50px;
+    /*margin-top: 50px;*/
+    margin-top: 6rem;
     font-family: Raleway;
     color: #000000;
     font-weight: 600;
@@ -529,3 +531,7 @@ div.hidden {
     align-items: center;
 }
 
+.if_not_auth{
+    margin: 0 auto;
+    text-align: center;
+}

@@ -14,7 +14,9 @@
     }
     .footer_card{
         /*height: 25%;*/
-        height: 28%;
+        /*height: 28%;*/
+        position: relative;
+        height: 13rem;
     }
     .footer_card_balance{
         font-size: 26px;
@@ -54,7 +56,8 @@
         right: -50px;
     }
     .projcard-description{
-        height: 40%;
+        /*height: 40%;*/
+        height: 13rem;
         width: 100%;
     }
     .projcard-tagbox{
@@ -70,22 +73,27 @@
         right: 380px;
     }
     .footer_card_name{
+        position: absolute;
         margin-top: 0;
+        bottom: 10px;
     }
     .footer_last_payments {
         margin-top: 4.7rem;
     }
-
+    .footer_card_number{
+        width: 92%;
+    }
 }
 
 @media(max-width: 1399px){
       .footer_card{
-        height: 23%;
+        /*height: 23%;*/
+        height: 12rem;
         padding: 13px;
         width: 100%;
     }
     .card_numbers{
-        font-size: 24px;
+        font-size: 35px;
         line-height: 10px;
     }
     .footer_card_name{
@@ -102,7 +110,8 @@
 
     .footer_right_down {
         padding: 0;
-        height: 35%;
+        /*height: 35%;*/
+        height: 12rem;
     }
     .footer_last_payments{
         margin-top: 8rem;
@@ -110,7 +119,7 @@
 
     }
     .footer_right_down{
-                height: 31%;
+        /*height: 31%;*/
         margin-top: 7px;
     }
 
@@ -154,17 +163,20 @@
         height: 30%;
     }
 
+    .alert{
+        width: 35%;
+    }
 }
 
 
 
 @media(max-width: 1199px){
-
     .aside {
         width: 19%;
     }
     .footer_right_down{
-        height: 25%;
+        /*height: 25%;*/
+        height: 11.6rem;
     }
     .aside_header{
         margin-left: 0;
@@ -204,7 +216,8 @@
     }
     .footer_card {
         /*height: 20%;*/
-        height: 23%;
+        /*height: 23%;*/
+        height: 10rem;
     }
     .footer_card_right {
         font-size: 19px;
@@ -283,7 +296,12 @@
         display: flex;
         align-items: center;
     }
-
+    .card_numbers{
+        font-size: 29px;
+    }
+    .footer_last_payments {
+        margin-top: 11rem;
+    }
 }
 @media(max-width: 1100px){
     .footer_right_down{
@@ -389,7 +407,8 @@
     }
     .footer_last_payments{
         font-size: 25px;
-        bottom: 32%;
+        /*bottom: 32%;*/
+        bottom: 12rem ;
         position: absolute;
     }
     .card_numbers{
@@ -406,18 +425,20 @@
         gap: 10px;
     }
     .footer_right_down{
-        bottom: 5px;
+        bottom: 2rem;
         position: absolute;
     }
     .footer_last_payments {
-        margin-top: 30%;
+        /*margin-top: 30%;*/
+        margin-top: 15rem;
     }
     .footer_right_top {
         font-size: 24px;
     }
     .footer_card{
         /*height: 22%;*/
-        height: 25%;
+        /*height: 25%;*/
+        height: 13rem;
         position: relative;
     }
     .bell{
@@ -566,7 +587,8 @@
         gap: 12px;
     }
     .footer_card{
-        height: 25%;
+        /*height: 25%;*/
+        height: 13rem;
         width: 95%;
     }
     .card_numbers{
@@ -575,7 +597,13 @@
     .footer_last_payments{
         font-size: 26px;
     }
-
+    .card_numbers{
+        font-size: 38px;
+    }
+    .footer_card_number{
+        margin-top: 2.7rem;
+        gap: 0;
+    }
 }
 
 @media(max-width: 575px){
@@ -644,7 +672,8 @@
         width: 100%;
     }
     .footer_card {
-        height: 32%;
+        /*height: 32%;*/
+        height: 16rem;
         width: 82%;
     }
     .card_numbers{
@@ -701,21 +730,31 @@
         width: 85%;
     }
     .footer_card{
-        height: 28%;
+        /*height: 28%;*/
+        height: 16rem;
         width: 82%;
     }
 }
-
+@media(max-width: 490px){
+    .card_numbers{
+        font-size: 40px;
+    }
+    .footer_card{
+        height: 14.5rem;
+        width: 92%;
+    }
+}
 @media(max-width: 415px){
     .footer_card{
-        height: 26%;
+        /*height: 26%;*/
+        height: 14rem;
         width: 95%;
     }
     .card_numbers{
-        font-size: 35px;
+        font-size: 38px;
     }
     .footer_card_number{
-        margin-top: 1.5rem;
+        margin-top: 3.5rem;
     }
     .news_adapt_title{
         font-size: 26px;
@@ -766,5 +805,7 @@
     }
 
 }
-
+body{
+    overflow: hidden;
+}
 
