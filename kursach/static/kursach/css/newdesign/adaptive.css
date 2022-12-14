@@ -13,7 +13,8 @@
         line-height: 13px;
     }
     .footer_card{
-        height: 25%;
+        /*height: 25%;*/
+        height: 28%;
     }
     .footer_card_balance{
         font-size: 26px;
@@ -158,10 +159,13 @@
 
 
 @media(max-width: 1199px){
+
     .aside {
         width: 19%;
     }
-
+    .footer_right_down{
+        height: 25%;
+    }
     .aside_header{
         margin-left: 0;
         font-size: 23px;
@@ -199,7 +203,8 @@
         font-size: 17px;
     }
     .footer_card {
-        height: 20%;
+        /*height: 20%;*/
+        height: 23%;
     }
     .footer_card_right {
         font-size: 19px;
@@ -270,6 +275,13 @@
     }
     .footer_right_down{
         width: 100%;
+    }
+    #exit_text{
+        display: block;
+    }
+    #auth-exiting{
+        display: flex;
+        align-items: center;
     }
 
 }
@@ -644,11 +656,20 @@
     .trans_category_name{
         font-size: 25.5px;
     }
+    /*.auth_text a{*/
+    /*    display: none;*/
+    /*}*/
+    #login_small{
+        font-size: 35px;
+        display: block;
+    }
+    #exit_text{
+        display: none;
+    }
     .auth_text a{
         display: none;
     }
     #login_small{
-        font-size: 35px;
         display: block;
     }
 }
@@ -679,12 +700,15 @@
     .header_search{
         width: 85%;
     }
-
-}
-
-@media(max-width: 410px){
     .footer_card{
         height: 28%;
+        width: 82%;
+    }
+}
+
+@media(max-width: 415px){
+    .footer_card{
+        height: 26%;
         width: 95%;
     }
     .card_numbers{
@@ -708,6 +732,10 @@
 }
 
 @media(max-width: 370px){
+    body{
+        overflow: hidden;
+        overflow-x: hidden;
+    }
     .transaction_menu{
         gap: 0;
     }
@@ -729,6 +757,14 @@
     .register{
         font-size: 18px;
     }
+    .transaction_menu{
+        gap: 0;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 10rem;
+        justify-content: space-around;
+    }
+
 }
 
 
