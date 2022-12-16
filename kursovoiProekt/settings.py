@@ -1,7 +1,8 @@
 
 import os
 from pathlib import Path
-
+import dj_database_url
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -85,6 +86,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES['default'] = dj_database_url.config()
 
 DATE_INPUT_FORMATS = ['%d.%m.%Y']
 DATE_FORMAT = ['%d.%m.%Y']
@@ -126,10 +128,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = (
-#     ('users', os.path.join(BASE_DIR, 'users', 'static')),
-#     ('kursach', os.path.join(BASE_DIR, 'kursach', 'static')),
-# )
+STATICFILES_DIRS = (
+    ('users', os.path.join(BASE_DIR, 'users', 'static')),
+    ('kursach', os.path.join(BASE_DIR, 'kursach', 'static')),
+)
+STATICFILES_ROOT = BASE_DIR / "staticfiles_build" / "static"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
