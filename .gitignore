@@ -1,4 +1,4 @@
-*.env
-bin/
-lib/
-*.sqlite3
+#*.env
+#bin/
+#lib/
+#*.sqlite3
