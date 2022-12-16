@@ -1,0 +1,26 @@
+.add-transaction-form{
+    display: inline-block;
+}
+.form-container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.delete-trans-button{
+  position: absolute;
+  bottom: 43%;
+  right: 45%;
+  font-size: 22px;
+    transition: .45s;
+}
+
+.delete-trans-button:hover{
+    background: #900;
+    color: #fff;
+    transform: translateY(-7px);
+    border-radius: 25px;
+}

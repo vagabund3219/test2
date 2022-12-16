@@ -1,0 +1,811 @@
+@media(max-width: 1545px){
+    div.card{
+        /*width: 15rem;*/
+        width: 46%;
+    }
+    .category_menu_button:first-child{
+        margin-left: 5px;
+    }
+    .category_menu_left{
+        gap: 20px;
+    }
+    .card_numbers{
+        line-height: 13px;
+    }
+    .footer_card{
+        /*height: 25%;*/
+        /*height: 28%;*/
+        position: relative;
+        height: 13rem;
+    }
+    .footer_card_balance{
+        font-size: 26px;
+    }
+    .footer_last_payments{
+        margin-top: 7rem;
+    }
+
+    .projcard{
+        height: 265px;
+        /*width: 300px;*/
+    }
+
+    .projcard-img{
+        height: 265px;
+        width: 362px;
+    }
+
+    .projcard-textbox{
+        left: 385px;
+        width: calc(100% - 402px);
+    }
+    .projcard-title{
+        font-size: 21px;
+        width: 100%;
+        /*width: 18rem;*/
+    }
+    .projcard-subtitle{
+        width: 100%;
+        /*width: 18rem;*/
+        font-size: 17px;
+    }
+    .projcard-textbox:before{
+        left: -53px;
+    }
+    .projcard-textbox:after{
+        right: -50px;
+    }
+    .projcard-description{
+        /*height: 40%;*/
+        height: 13rem;
+        width: 100%;
+    }
+    .projcard-tagbox{
+        /*width: 18rem;*/
+        width: 50%;
+        margin-left: -5px;
+        bottom: 0;
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+    }
+
+    .projcard:nth-child(2n) .projcard-textbox {
+        right: 380px;
+    }
+    .footer_card_name{
+        position: absolute;
+        margin-top: 0;
+        bottom: 10px;
+    }
+    .footer_last_payments {
+        margin-top: 4.7rem;
+    }
+    .footer_card_number{
+        width: 92%;
+    }
+}
+
+@media(max-width: 1399px){
+      .footer_card{
+        /*height: 23%;*/
+        height: 12rem;
+        padding: 13px;
+        width: 100%;
+    }
+    .card_numbers{
+        font-size: 35px;
+        line-height: 10px;
+    }
+    .footer_card_name{
+        font-size: 18px;
+        margin-top: 7px;
+    }
+    .footer_card_balance{
+        font-size: 23px;
+    }
+    .footer_card_right{
+        font-size: 20px;
+    }
+
+
+    .footer_right_down {
+        padding: 0;
+        /*height: 35%;*/
+        height: 12rem;
+    }
+    .footer_last_payments{
+        margin-top: 8rem;
+        font-size: 21px;
+
+    }
+    .footer_right_down{
+        /*height: 31%;*/
+        margin-top: 7px;
+    }
+
+    .footer_right_li {
+        margin-top: 25px;
+
+    }
+    .footer_right_top {
+        font-size: 18px;
+    }
+
+    /*div.card{*/
+    /*    !*width: 18rem;*!*/
+    /*    width: 48%;*/
+    /*}*/
+
+
+    .check-form-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+    .right_container {
+        padding: 30px 10px 10px 12px;
+    }
+    .auth_text{
+        font-size: 18px;
+    }
+    .main_content_container {
+        height: 91%;
+    }
+    .projcard{
+        display: none;
+    }
+    .news_adapt_card{
+        display: block;
+    }
+    .news_adapt_image{
+        height: 30%;
+    }
+
+    .alert{
+        width: 35%;
+    }
+}
+
+
+
+@media(max-width: 1199px){
+    .aside {
+        width: 19%;
+    }
+    .footer_right_down{
+        /*height: 25%;*/
+        height: 11.6rem;
+    }
+    .aside_header{
+        margin-left: 0;
+        font-size: 23px;
+        margin-top: 26px;
+    }
+
+    .footer_right_down{
+        width: 90%;
+    }
+    .navbar-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .navbar-text span{
+        display: none;
+    }
+
+    .containe{
+        padding: 10px 5px 10px 10px;
+    }
+    .right_container{
+        padding-right: 5px;
+    }
+    .right_container_right{
+        padding: 7px;
+    }
+    .footer_title{
+        font-size: 22px;
+    }
+    .footer_last_payments{
+        font-size: 19px;
+    }
+    .account_name {
+        font-size: 17px;
+    }
+    .footer_card {
+        /*height: 20%;*/
+        /*height: 23%;*/
+        height: 10rem;
+    }
+    .footer_card_right {
+        font-size: 19px;
+    }
+    .footer_card_balance{
+        font-size: 20px;
+    }
+    .footer_card_name{
+        font-size: 17px;
+        margin-top: 3px;
+    }
+    .footer_right_li_right{
+        margin-left: 7px;
+
+    }
+    .header_title{
+        font-size: 34px;
+    }
+
+    .category_menu{
+        height: 3.8rem;
+    }
+    .category_menu_button:first-child{
+        margin-left: 5px;
+    }
+    .account_avatar {
+        width: 65px;
+        height: 45px;
+    }
+    .bell {
+        width: 43px;
+        height: 43px;
+        border-radius: 15px;
+    }
+    .category_menu_button{
+        width: 3rem;
+        height: 3rem;
+        border-radius: 20px;
+    }
+    .articles{
+        grid-template-columns: repeat(auto-fit,minmax(calc(var(--base-grid)*20),1fr));
+        margin: calc(var(--base-grid)*3) auto calc(var(--base-grid)*2);
+        grid-row-gap: calc(var(--base-grid)*3);
+        grid-column-gap: calc(var(--base-grid)*1);
+    }
+    .articles__title{
+        font-size: calc(var(--base-grid)*2.6);
+    }
+    .articles__article, .articles__article:before{
+        width: calc(var(--base-grid)*18);
+        height: calc(var(--base-grid)*18);
+    }
+
+    .category_menu_left{
+        gap: 15px;
+    }
+    .trans_category_name{
+        font-size: 28px;
+    }
+    .row{
+        --bs-gutter-x: 0.2rem;
+    }
+    .trans_menu_right{
+        gap: 0.7rem;
+    }
+    .alert{
+        width: 45%;
+    }
+    .footer_right_down{
+        width: 100%;
+    }
+    #exit_text{
+        display: block;
+    }
+    #auth-exiting{
+        display: flex;
+        align-items: center;
+    }
+    .card_numbers{
+        font-size: 29px;
+    }
+    .footer_last_payments {
+        margin-top: 11rem;
+    }
+}
+@media(max-width: 1100px){
+    .footer_right_down{
+        width: 100%;
+    }
+}
+
+@media(max-width: 991px){
+    .close_menu{
+        position: absolute;
+        display: flex;
+        width: 20px;
+        height: 20px;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        top: 0;
+        right: 0;
+    }
+    .bi-x{
+        font-size: 55px;
+        /*position: absolute;*/
+        /*right: 0;*/
+        /*top: 0;*/
+    }
+    .aside_header{
+        position: relative;
+    }
+
+    .footer_right_down{
+        width: 90%;
+    }
+
+    .hamburger_div{
+        display: flex;
+    }
+    .aside{
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 35%;
+        transition: .5s all;
+        z-index: 500;
+    }
+    .aside_active {
+        left: 0
+    }
+    .right_container{
+        width: 100%;
+    }
+    .right_container_left{
+        width: 100%;
+    }
+    .news_adapt_title{
+        font-size:36px ;
+    }
+    .news_adapt_subtitle{
+        font-size: 28px;
+    }
+    .news_adapt_text{
+        font-size: 21px;
+    }
+    .main_content_container::-webkit-scrollbar{
+        display: block;
+    }
+    .header_search{
+        font-size: 26px;
+    }
+    .right_container_right{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 35%;
+        transition: .5s all;
+        z-index: 500;
+    }
+    .right_active {
+        right: 0
+    }
+    .aside_header_title{
+        font-size: 40px;
+    }
+    .aside_li {
+        font-size: 36px;
+    }
+    .auth-exiting{
+        font-size: 25px;
+    }
+    .account_name{
+        font-size: 24px;
+    }
+    .footer_title{
+        font-size: 32px;
+    }
+    .footer_card_title{
+        font-size: 24px;
+    }
+    .footer_card_balance{
+        font-size: 27px;
+    }
+    .footer_card_right{
+        font-size: 27px;
+    }
+    .footer_last_payments{
+        font-size: 25px;
+        /*bottom: 32%;*/
+        bottom: 12rem ;
+        position: absolute;
+    }
+    .card_numbers{
+        font-size: 36px;
+    }
+    .footer_card_name{
+        font-size: 24px;
+        /*margin-top: 1%;*/
+        /*margin-bottom: 5px;*/
+        bottom: 5px;
+        position: absolute;
+    }
+    .footer_card_number{
+        gap: 10px;
+    }
+    .footer_right_down{
+        bottom: 2rem;
+        position: absolute;
+    }
+    .footer_last_payments {
+        /*margin-top: 30%;*/
+        margin-top: 15rem;
+    }
+    .footer_right_top {
+        font-size: 24px;
+    }
+    .footer_card{
+        /*height: 22%;*/
+        /*height: 25%;*/
+        height: 13rem;
+        position: relative;
+    }
+    .bell{
+        width: 54px;
+        height: 54px;
+    }
+    .bar_title{
+        font-size: 30px;
+    }
+    .choose-month{
+        font-size: 25px;
+    }
+    #barChoosingDateId{
+        width: 10rem;
+    }
+    .category_menu {
+        height: 4.8rem;
+    }
+    .category_menu_button{
+        height: 4rem;
+        width: 4rem;
+    }
+    .category_menu_left{
+        gap: 20px;
+    }
+    .articles__article{
+        width: calc(var(--base-grid)*22);
+        height: calc(var(--base-grid)*22);
+    }
+    .articles__title{
+        font-size: calc(var(--base-grid)*3.4);
+    }
+    .articles{
+        grid-column-gap: calc(var(--base-grid)*4);
+    }
+    .card-row span{
+        font-size: 28px;
+    }
+    .trans_category_name{
+        font-size: 34px;
+    }
+    .category_menu_button{
+        font-size: 33px;
+    }
+    .form-container{
+        font-size: 25px;
+    }
+    .form-container input{
+        font-size: 25px;
+    }
+    .form-container select{
+        font-size: 25px;
+    }
+    .category_form_container{
+        font-size: 25px;
+    }
+    .check-form-container{
+        font-size: 25px;
+    }
+    .check-form-container input{
+    font-size: 25px;
+    }
+    .check-form-container select{
+    font-size: 25px;
+    }
+    .category_form_container select{
+        font-size: 25px;
+    }
+    .category_form_container input{
+        font-size: 25px;
+    }
+    .transactions-container{
+        font-size: 25px;
+    }
+     .transactions-container input{
+         font-size: 25px;
+     }
+     .transactions-container select{
+         font-size: 25px;
+     }
+    .floating-button{
+        width: 15rem;
+        height: 3rem;
+        font-size: 25px;
+    }
+    .delete-trans-button{
+        font-size: 33px;
+    }
+    .auth_text{
+        font-size: 24px;
+    }
+    .form-group{
+        font-size: 23px;
+        width: 19rem;
+
+    }
+    .form-group input{
+        font-size: 25px;
+    }
+    .btn {
+        width: 11rem;
+        font-size: 26px;
+    }
+    .col-md-6{
+        font-size: 24px;
+    }
+    .col-md-6 input{
+        font-size: 25px;
+    }
+    .register{
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 767px){
+    .right_container_right {
+        width: 50%;
+    }
+    .aside {
+        width: 50%;
+    }
+    .register{
+        font-size: 19px;
+    }
+    .alert{
+        width: 100%;
+    }
+    .donut-categories-diagram{
+        width: 100%;
+    }
+    .card-row span{
+        font-size: 19px;
+    }
+    .transaction_menu {
+        padding: 5px 5px;
+    }
+    .category_menu_button {
+        width: 3.2rem;
+        height: 3.2rem;
+        font-size: 26px;
+    }
+    .trans_category_name{
+        font-size: 27px;
+    }
+    .category_menu_left{
+        gap: 12px;
+    }
+    .footer_card{
+        /*height: 25%;*/
+        height: 13rem;
+        width: 95%;
+    }
+    .card_numbers{
+        font-size: 30px;
+    }
+    .footer_last_payments{
+        font-size: 26px;
+    }
+    .card_numbers{
+        font-size: 38px;
+    }
+    .footer_card_number{
+        margin-top: 2.7rem;
+        gap: 0;
+    }
+}
+
+@media(max-width: 575px){
+    .aside_text{
+        display: none;
+    }
+    .aside_header_title{
+        display: none;
+    }
+    .exit_text{
+        display: none;
+    }
+    .aside{
+        width: 12%;
+    }
+    #exit-arrow{
+        font-size: 32px;
+    }
+    .right_container_right{
+        width: 88%;
+    }
+    .close_menu{
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .aside_logo{
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 0 auto;
+        margin-top: 30px;
+
+    }
+    .footer_title{
+        margin-top: 1.5rem;
+    }
+    .news_adapt_title{
+        font-size: 29px;
+    }
+    .news_adapt_subtitle{
+        font-size: 23px;
+    }
+    .news_adapt_text{
+        font-size: 20px;
+    }
+    .header_title{
+        font-size: 27px;
+    }
+    div.card{
+        width: 91%;
+        margin: 0;
+    }
+    .row{
+        --bs-gutter-x: 1.5rem;
+        margin: 0;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .main_content_container{
+        width: 103%;
+        padding: 0;
+    }
+    .transactions-container{
+        width: 100%;
+    }
+    .footer_card {
+        /*height: 32%;*/
+        height: 16rem;
+        width: 82%;
+    }
+    .card_numbers{
+        font-size: 46px;
+    }
+    .footer_card_number{
+        margin-top: 3.8rem;
+    }
+    .trans_category_name{
+        font-size: 25.5px;
+    }
+    /*.auth_text a{*/
+    /*    display: none;*/
+    /*}*/
+    #login_small{
+        font-size: 35px;
+        display: block;
+    }
+    #exit_text{
+        display: none;
+    }
+    .auth_text a{
+        display: none;
+    }
+    #login_small{
+        display: block;
+    }
+}
+
+
+@media(max-width: 530px){
+    .transaction_menu{
+        /*flex-direction: column;*/
+        flex-wrap: wrap;
+        height: 7rem;
+        gap: 10px;
+        justify-content: center;
+    }
+    .aside_logo{
+        width: 2.9rem;
+        height: 2.9rem;
+    }
+    .trans_menu_right{
+        order: 2;
+    }
+    .trans_category_name{
+        order: 3;
+        margin: 0 auto;
+    }
+    .header_title{
+        display: none;
+    }
+    .header_search{
+        width: 85%;
+    }
+    .footer_card{
+        /*height: 28%;*/
+        height: 16rem;
+        width: 82%;
+    }
+}
+@media(max-width: 490px){
+    .card_numbers{
+        font-size: 40px;
+    }
+    .footer_card{
+        height: 14.5rem;
+        width: 92%;
+    }
+}
+@media(max-width: 415px){
+    .footer_card{
+        /*height: 26%;*/
+        height: 14rem;
+        width: 95%;
+    }
+    .card_numbers{
+        font-size: 38px;
+    }
+    .footer_card_number{
+        margin-top: 3.5rem;
+    }
+    .news_adapt_title{
+        font-size: 26px;
+    }
+    .news_adapt_subtitle {
+        font-size: 21px;
+    }
+    .news_adapt_text {
+        font-size: 19px;
+    }
+    .header_search{
+        width: 80%;
+    }
+}
+
+@media(max-width: 370px){
+    body{
+        overflow: hidden;
+        overflow-x: hidden;
+    }
+    .transaction_menu{
+        gap: 0;
+    }
+    .news_adapt_title{
+        font-size: 24px;
+    }
+    .news_adapt_subtitle {
+        font-size: 20px;
+    }
+    .news_adapt_text {
+        font-size: 19px;
+    }
+    .footer_last_payments{
+        font-size: 25px;
+    }
+    .footer_right_top{
+        font-size: 22px;
+    }
+    .register{
+        font-size: 18px;
+    }
+    .transaction_menu{
+        gap: 0;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 10rem;
+        justify-content: space-around;
+    }
+
+}
+body{
+    overflow: hidden;
+}
+

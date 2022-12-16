@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-vu_o=r4vsmdnuj5_yo$tm%7fszswnoz5o2bct&_*usmg#5we-s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES['default'] = dj_database_url.config()
+# DATABASES['default'] = dj_database_url.config()
 
 DATE_INPUT_FORMATS = ['%d.%m.%Y']
 DATE_FORMAT = ['%d.%m.%Y']
@@ -132,7 +132,7 @@ STATICFILES_DIRS = (
     ('users', os.path.join(BASE_DIR, 'users', 'static')),
     ('kursach', os.path.join(BASE_DIR, 'kursach', 'static')),
 )
-STATICFILES_ROOT = BASE_DIR / "staticfiles_build" / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
