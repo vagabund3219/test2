@@ -1,3 +1,4 @@
 #staticfiles_build
 media
 .vercel
+.env
