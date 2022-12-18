@@ -1,3 +1,3 @@
-staticfiles_build
+#staticfiles_build
 media
 .vercel
