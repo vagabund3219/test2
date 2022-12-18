@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "kursovoiProekt/wsgi.py",
-      "use": "@vercel/vercel-builder@0.22.1/python",
+      "use": "@vercel/python",
       "config": {
         "maxLamdaSize" : "15mb",
         "runtime": "python3.9"
